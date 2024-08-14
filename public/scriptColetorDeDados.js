@@ -17,7 +17,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
   const servico = document.getElementById('servicos').value;
-  const testemunhaSenai = document.getElementById('testemunhaSenai');
+  const testemunhaSTecSenai = document.getElementById('testemunhaSTecSenai');
 
   try {
     let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
