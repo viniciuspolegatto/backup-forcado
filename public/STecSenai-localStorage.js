@@ -1,11 +1,5 @@
 // STecSenai-localStorage.js
 
-// Função para obter os dados do localStorage lá no scriptColetorDeDados.js (Stringfy)
-function obterDadosContrato() {
-    const dados = localStorage.getItem('dadosContrato');
-    return dados ? JSON.parse(dados) : null;
-}
-
 /* ******************** OPÇÕES DE DADOS DA STRING dados ****
     
     nome,                estadoPf          estadoPj          cnpjPj              testemunhaSenai,

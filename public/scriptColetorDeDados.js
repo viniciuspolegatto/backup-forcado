@@ -170,34 +170,35 @@ botaoAddDados.addEventListener("click", async function() {
 
 //********** Salva os dados no localStorage  ******
 //--------------------------------------------------------------------------------- 
-//  localStorage.setItem('dadosContrato', JSON.stringify({
-  localStorage.setItem('nome', nome);
-  localStorage.setItem('cpf',cpf);
-  localStorage.setItem('nasc',nasc);
-    localStorage.setItem('logradouroPf,
-    localStorage.setItem('numPf,
-    localStorage.setItem('bairroPf,
-    localStorage.setItem('cidadePf,
-    localStorage.setItem('estadoPf,
-    localStorage.setItem('cep,
-    localStorage.setItem('telefone,
-    localStorage.setItem('email,
-    localStorage.setItem('STecSenai,
-    localStorage.setItem('cnpjPj,
-    localStorage.setItem('razaoPj,
-    localStorage.setItem('fantasiaPj,
-    localStorage.setItem('logradouroPj,
-    localStorage.setItem('numPj,
-    localStorage.setItem('bairroPj,
-    localStorage.setItem('municipioPj,
-    localStorage.setItem('estadoPj,
-    localStorage.setItem('cepPj,
-    localStorage.setItem('situacaoPj,
-    localStorage.setItem('telefonePj,
-    localStorage.setItem('emailPj,
-    localStorage.setItem('testemunhaSenai',testemunhaSenai)
-  }));
-
+//  localStorage.setItem('dadosContrato', JSON.stringify({ }));
+    
+    localStorage.setItem('nome', nome);
+    localStorage.setItem('cpf',cpf);
+    localStorage.setItem('nasc',nasc);
+    localStorage.setItem('logradouroPf',logradouroPf);
+    localStorage.setItem('numPf',numPf);
+    localStorage.setItem('bairroPf',bairroPf);
+    localStorage.setItem('cidadePf',cidadePf);
+    localStorage.setItem('estadoPf',estadoPf);
+    localStorage.setItem('cep',cep);
+    localStorage.setItem('telefone',telefone);
+    localStorage.setItem('email',email);
+    localStorage.setItem('STecSenai',STecSenai);
+    localStorage.setItem('cnpjPj',cnpjPj);
+    localStorage.setItem('razaoPj',razaoPj);
+    localStorage.setItem('fantasiaPj',fantasiaPj);
+    localStorage.setItem('logradouroPj',logradouroPj);
+    localStorage.setItem('numPj',numPj);
+    localStorage.setItem('bairroPj',bairroPj);
+    localStorage.setItem('municipioPj',municipioPj);
+    localStorage.setItem('estadoPj',estadoPj);
+    localStorage.setItem('cepPj',cepPj);
+    localStorage.setItem('situacaoPj',situacaoPj);
+    localStorage.setItem('telefonePj',telefonePj);
+    localStorage.setItem('emailPj',emailPj);
+    localStorage.setItem('testemunhaSenai',testemunhaSenai);  
+  
+  
 // ---------------------------------------------------------------------------------- 
 
     // Envia os dados para o servidor
