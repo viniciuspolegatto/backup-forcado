@@ -35,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const municipioPj = localStorage.getItem("municipioPj");
   const estadoPj = localStorage.getItem("estadoPj");
  
-  const enderecoPf = `${logradouroPf} - nº ${numPf}, ${bairroPf}, ${cidadePf} - ${estadoPf}, CEP: ${cep}`;
-  const enderecoPj = `${logradouroPj} - nº ${numPj}, bairro: ${bairroPj}, no município de ${municipioPj} - ${estadoPj}, CEP: ${cepPj}`;
  
   const STecSenai = localStorage.getItem("STecSenai");
   
@@ -44,10 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const reportDiv = document.getElementById("report");
   reportDiv.innerHTML = `
     <p style="text-align: justify;">
-        ${razaoPj}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${cnpjPj}, localizada na ${enderecoPj}
+        ${razaoPj}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${cnpjPj}, localizada na
         , telefone(s) ${telefonePj}, e-mail ${emailPj}, empresa neste ato representada por ${nome}, brasileiro(a), Empresário(a)/Autônomo(a)
-        com inscrição no CPF nº ${cpf}, residente à ${enderecoPf}, telefone(s) de contato ${telefone} e e-mail ${email}
-        , denominado(a) como <b>CONTRATANTE</b>`;
+        com inscrição no CPF nº ${cpf}, residente à , telefone(s) de contato ${telefone} e e-mail ${email}
+        , denominado(a) como <b>CONTRATANTE</b> </p>`;
 
   const reportProduto = document.getElementById("reportProduto");
   reportProduto.innerHTML = `
