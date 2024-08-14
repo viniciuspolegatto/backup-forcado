@@ -19,6 +19,13 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const servico = document.getElementById('servicos').value;
   const testemunhaSTecSenai = document.getElementById('testemunhaSTecSenai');
 
+// Valida se nome, cpf e telefone estão preenchidos
+    if (!nomeCliente || !cpf || !telefone) {
+      alert("Preencha Nome, CPF e Telefone");
+      return; // Impede o envio dos dados
+    }
+  
+  
   try {
     let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
     let dataCep = await resCep.json();
@@ -29,6 +36,15 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
     let resCnpj = await fetch(`/cnpj/${cnpjDigitado}`);
     let dataCnpj = await resCnpj.json();
+    
+  
+    
+    
+    
+    
+    
+    
+    
 
     // Preenchendo a tabela
     document.getElementById('cnpj-td').textContent = cnpjDigitado;
