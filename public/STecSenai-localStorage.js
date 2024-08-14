@@ -1,16 +1,3 @@
-// STecSenai-localStorage.js
-
-/* ******************** OPÇÕES DE DADOS DO LOCAL STORAGE PARA FUNçÂO getItem ****
-    
-    nome,                estadoPf          estadoPj          cnpjPj              testemunhaSenai,
-    cpf,                 cep               cepPj             razaoPj
-    nasc,                telefone          situacaoPj        fantasiaPj
-    logradouroPf,        email             telefonePj        logradouroPj
-    numPf,               STecSenai         emailPj           numPj
-    bairroPf,            cidadePf,         municipioPj       bairroPj
-   
-********************************************************* */
-
 document.addEventListener("DOMContentLoaded", function () {
   const dadosCnpj = JSON.parse(localStorage.getItem("dadosCnpj"));
   const cepDigitadoString = localStorage.getItem("cepDigitado");
@@ -90,6 +77,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* /************************************************************************
 // Função para gerar o texto do contrato com base nos dados do localStorage
+/* ******************** OPÇÕES DE DADOS DO LOCAL STORAGE PARA FUNçÂO getItem ****
+    
+    nome,                estadoPf          estadoPj          cnpjPj              testemunhaSenai,
+    cpf,                 cep               cepPj             razaoPj
+    nasc,                telefone          situacaoPj        fantasiaPj
+    logradouroPf,        email             telefonePj        logradouroPj
+    numPf,               STecSenai         emailPj           numPj
+    bairroPf,            cidadePf,         municipioPj       bairroPj
+   
+********************************************************* 
+
+
+
 function gerarTextoContrato() {
     const dados = obterDadosContrato();
 
