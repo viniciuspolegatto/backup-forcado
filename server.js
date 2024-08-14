@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Rota para busca de CNPJ
 app.get('/cnpj/:cnpj', (req, res) => {
   const cnpj = req.params.cnpj;
@@ -40,6 +41,7 @@ app.get('/cnpj/:cnpj', (req, res) => {
   apiReq.end();
 });
 
+
 // Configuração do banco de dados
 const db = mysql.createConnection({
   host: process.env.MYSQL_HOST,
@@ -48,11 +50,11 @@ const db = mysql.createConnection({
   database: process.env.MYSQL_DB
 });
 
-
 db.connect((err) => {
   if (err) throw err;
   console.log("Database connected!");
 });
+
 
 // Rota principal
 app.get('/', (req, res) => {
