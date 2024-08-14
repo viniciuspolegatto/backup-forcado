@@ -36,27 +36,57 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
     let resCnpj = await fetch(`/cnpj/${cnpjDigitado}`);
     let dataCnpj = await resCnpj.json();
-    
   
-    
-    
-    
-    
-    
-    
+// Função para corrigir o nome fantasia, telefone Email e QSA da PJ caso não tenha -------------------------------------------------
+
+  function obterNomeFantasia() {
+    let fantasiaPj = dataCnpj.fantasia;
+      if (!fantasiaPj || fantasiaPj === "") {
+        fantasiaPj = "não atribuído";
+      } else {
+      fantasiaPj = dataCnpj.fantasia;
+    }
+     return fantasiaPj;} // Obtém o nome fantasia
+  let fantasiaPj = obterNomeFantasia();
+  
+  function obterTelefonePj () {
+    let telefonePj = dataCnpj.telefone;
+    if (!telefonePj || telefonePj === "") {
+      telefonePj = "não atribuído";
+    } else {telefonePj = dataCnpj.telefone;}
+     return telefonePj;}
+  let telefonePj = obterTelefonePj();
+  
+  function obterEmailPj () {
+    let emailPj = dataCnpj.email;
+    if (!emailPj || emailPj === "") {
+      emailPj = "não atribuído";
+    } else {emailPj = dataCnpj.email;}
+     return emailPj;}
+  let emailPj = obterEmailPj();
+  
+  function obterQsaPj () {
+    let socioPj = dataCnpj.qsa[0]
+    if (!socioPj || socioPj === "") {
+      socioPj = "não atribuído";
+    } else {socioPj = dataCnpj.qsa[0].nome;}
+     return socioPj;}
+  let socioPj = obterQsaPj();
+  
+  // ----------------------------------------
     
 
-    // Preenchendo a tabela
-    document.getElementById('cnpj-td').textContent = cnpjDigitado;
+// Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
+    document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
-    document.getElementById('empresa-nome-fantasia').textContent = dataCnpj.fantasia;
+    document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
     document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
     document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
-    document.getElementById('telefone-td').textContent = dataCnpj.telefone;
+    document.getElementById('telefone-td').textContent = telefonePj;
     document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
-    document.getElementById('cep-td').textContent = cepDigitado;
+    document.getElementById('cep-td').textContent = data;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpf;
     document.getElementById('numero-residencia-td').textContent = numeroResidencia;
