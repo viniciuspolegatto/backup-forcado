@@ -1,6 +1,9 @@
 /* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir */
+const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
+const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
+
 
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   const cepDigitado = document.getElementById('cep').value;
@@ -58,6 +61,25 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
   }
 });
+
+
+botaoBuscarCadastro.addEventListener("click", function() {
+    const senha = prompt("Digite a senha para acessar a busca de cadastro:");
+    const senhaCorreta = "Sebrae@123";
+
+    if (senha === senhaCorreta) {
+        window.location.href = "buscaCadastro.html";
+    } else {
+        alert("Senha incorreta. Acesso negado.");
+    }
+});
+
+// Adiciona o evento de clique para o botão Gerar Contrato
+botaoGerarContrato.addEventListener("click", function() {
+    // Redireciona para a página de contrato
+    window.location.href = "STecSenai-contrato.html";
+});
+
 
 /* ********************* EXTRA - VARIÁVEIS ******************
 
