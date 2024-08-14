@@ -2,7 +2,7 @@
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir */
 
-const botaoAddDados = document.querySelector("#botaoAdicionarDados");
+const botaoAddDados = document.querySelector("#botaoImpressaoCnpj");
 const listaMontada = document.querySelector("#listaVisualDeDados");
 const botaoLimparDados = document.querySelector("#botaoLimparDados");
 const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
@@ -10,7 +10,7 @@ const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 
 // ********************************************************************
-document.getElementById('botaoAdicionarDados').addEventListener('click', async function() {
+document.getElementById('botaoAddDados').addEventListener('click', async function() {
   const cepDigitado = document.getElementById('cepCon').value;
   const cnpjDigitado = document.getElementById('cnpj').value;
   const nomeCliente = document.getElementById('nomeCon').value;
