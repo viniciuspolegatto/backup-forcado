@@ -33,35 +33,51 @@ document.getElementById('botaoAdicionarDados').addEventListener('click', async f
     let cnpjData = {};
     let cepData = {};
 
-    try {
-        if (cnpj) {
-            let resCnpj = await fetch(`/cnpj/${cnpj}`);
-            if (!resCnpj.ok) {
-                throw new Error("CNPJ não encontrado.");
-            }
-            cnpjData = await resCnpj.json();
-            if (!cnpjData.nome) {
-                alert("CNPJ inválido. Verifique o número e tente novamente.");
-                return; // Impede o envio dos dados
-            }
-        }
+  try {
+    let resCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    let cepData = await resCep.json();
 
-        if (cep) {
-            let resCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            if (!resCep.ok) {
-                throw new Error("CEP não encontrado.");
-            }
-            cepData = await resCep.json();
-            if (cepData.erro) {
-                alert("CEP inválido. Verifique o número e tente novamente.");
-                return; // Impede o envio dos dados
-            }
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Erro ao buscar os dados: " + error.message);
-        return; // Impede o envio dos dados em caso de erro
+    if (cepData.erro) {
+      throw new Error("CEP não encontrado");
     }
+
+    let resCnpj = await fetch(`/cnpj/${cnpj}`);
+    let cnpjData = await resCnpj.json();
+
+    // Preenchendo a tabela
+    document.getElementById('cnpj-td').textContent = cnpjDigitado;
+    document.getElementById('razao-social-td').textContent = dataCnpj.nome;
+    document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
+    document.getElementById('empresa-nome-fantasia').textContent = dataCnpj.fantasia;
+    document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
+    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
+    document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
+    document.getElementById('telefone-td').textContent = dataCnpj.telefone;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
+    document.getElementById('cep-td').textContent = cepDigitado;
+    document.getElementById('nome-cliente-td').textContent = nomeCliente;
+    document.getElementById('cpf-td').textContent = cpf;
+    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
+    document.getElementById('telefone-contato-td').textContent = telefone;
+    document.getElementById('email-td').textContent = email;
+    document.getElementById('servico-td').textContent = servico;
+
+    document.getElementById('data-table').style.display = 'block';
+
+    // Armazenar os dados no localStorage
+    localStorage.setItem('dadosCnpj', JSON.stringify(dataCnpj));
+    localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
+    localStorage.setItem('nomeCliente', nomeCliente);
+    localStorage.setItem('cpf', cpf);
+    localStorage.setItem('numeroResidencia', numeroResidencia);
+    localStorage.setItem('telefone', telefone);
+    localStorage.setItem('email', email);
+    localStorage.setItem('servico', servico);
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
+  }
 
   // Constrói a lista com os dados coletados
   // Para puxar dados de uma lista let fruta = {cor: "azul", sementes:true}, usa-se apenas fruta.cor
