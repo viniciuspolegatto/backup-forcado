@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Busca Cadastro</title>
+    <style>
+        #resultados {
+            max-height: 300px; /* Ajuste a altura conforme necessário */
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        #listaDados {
+            max-height: 300px; /* Ajuste a altura conforme necessário */
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .tabela-container {
+            position: relative;
+            max-height: 300px; /* Ajuste a altura conforme necessário */
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            position: relative;
+            z-index: 1;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        tbody {
+            display: block;
+            height: 200px; /* Ajuste a altura conforme necessário */
+            overflow-y: auto;
+        }
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Buscar Cadastro</h1>
+
+    <input type="text" id="cpfBusca" placeholder="Digite o CPF" />
+    <button id="botaoPesquisar">PESQUISAR</button>
+
+    <p />
+
+    <!-- Área para mostrar os dados existentes -->
+    <div id="listaDados" class="tabela-container">
+        <h2>Dados Cadastrados:</h2>
+    </div>
+
+    <script>
+        // Função para carregar dados existentes
+        function carregarDados() {
+            console.log("Carregando dados cadastrados...");
+            fetch('/buscarCadastro')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dados recebidos:", data);
+                    let html = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Telefone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    data.forEach(item => {
+                        html += `
+                            <tr>
+                                <td>${item.nome}</td>
+                                <td>${item.cpf}</td>
+                                <td>${item.telefone}</td>
+                            </tr>
+                        `;
+                    });
+                    html += `
+                            </tbody>
+                        </table>
+                    `;
+                    document.querySelector("#listaDados").innerHTML = html;
+                })
+                .catch(error => console.error('Error ao carregar dados:', error));
+        }
+
+        // Carregar dados ao iniciar a página
+        carregarDados();
+
+        document.querySelector("#botaoPesquisar").addEventListener("click", function () {
+            const cpf = document.querySelector("#cpfBusca").value;
+            console.log("Pesquisando CPF:", cpf);
+            window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
+        });
+    </script>
+
+</body>
+
+</html>

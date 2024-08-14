@@ -1,119 +1,112 @@
-/**
- * This is the main Node.js server script for your project
- * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
- */
+/* Arquivo server.js usado como motor para os arquivos STecSenai-lounge.html
+STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
+STecSenai-contrato e STecSenai-consumir*/
 
-const path = require("path");
+const https = require('https');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const app = express();
+const PORT = process.env.PORT || 3306;
 
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // Set this to true for detailed logging:
-  logger: false,
+// Configuração do banco de dados
+const db = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASS,
+  database: process.env.MYSQL_DB
 });
 
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
 
-// Setup our static files
-fastify.register(require("@fastify/static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/", // optional: default '/'
+db.connect((err) => {
+  if (err) throw err;
+  console.log("Database connected!");
 });
 
-// Formbody lets us parse incoming forms
-fastify.register(require("@fastify/formbody"));
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// View is a templating manager for fastify
-fastify.register(require("@fastify/view"), {
-  engine: {
-    handlebars: require("handlebars"),
-  },
+// Rota para busca de CNPJ
+app.get('/cnpj/:cnpj', (req, res) => {
+  const cnpj = req.params.cnpj;
+  const options = {
+    method: 'GET',
+    hostname: 'receitaws.com.br',
+    path: `/v1/cnpj/${cnpj}`,
+    headers: { Accept: 'application/json' }
+  };
+
+  const apiReq = https.request(options, (apiRes) => {
+    const chunks = [];
+    apiRes.on('data', (chunk) => { chunks.push(chunk); });
+    apiRes.on('end', () => {
+      const body = Buffer.concat(chunks);
+      res.json(JSON.parse(body.toString()));
+    });
+  });
+
+  apiReq.on('error', (e) => { res.status(500).send(e.message); });
+  apiReq.end();
 });
 
-// Load and parse SEO data
-const seo = require("./src/seo.json");
-if (seo.url === "glitch-default") {
-  seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
-}
-
-/**
- * Our home page route
- *
- * Returns src/pages/index.hbs with data built into it
- */
-fastify.get("/", function (request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = { seo: seo };
-
-  // If someone clicked the option for a random color it'll be passed in the querystring
-  if (request.query.randomize) {
-    // We need to load our color data file, pick one at random, and add it to the params
-    const colors = require("./src/colors.json");
-    const allColors = Object.keys(colors);
-    let currentColor = allColors[(allColors.length * Math.random()) << 0];
-
-    // Add the color properties to the params object
-    params = {
-      color: colors[currentColor],
-      colorError: null,
-      seo: seo,
-    };
-  }
-
-  // The Handlebars code will be able to access the parameter values and build them into the page
-  return reply.view("/src/pages/index.hbs", params);
+// Rota principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-/**
- * Our POST route to handle and react to form submissions
- *
- * Accepts body data indicating the user choice
- */
-fastify.post("/", function (request, reply) {
-  // Build the params object to pass to the template
-  let params = { seo: seo };
+// Rota para adicionar dados ao banco de dados
+app.post('/addData', (req, res) => {
+  const { nome, cpf, email, tel, logradouroPj } = req.body;
+  const query = 'INSERT INTO ClientesSEBRAE (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
+  
+  console.log('Dados recebidos:', { nome, cpf, email, tel, logradouroPj });
 
-  // If the user submitted a color through the form it'll be passed here in the request body
-  let color = request.body.color;
-
-  // If it's not empty, let's try to find the color
-  if (color) {
-    // ADD CODE FROM TODO HERE TO SAVE SUBMITTED FAVORITES
-
-    // Load our color data file
-    const colors = require("./src/colors.json");
-
-    // Take our form submission, remove whitespace, and convert to lowercase
-    color = color.toLowerCase().replace(/\s/g, "");
-
-    // Now we see if that color is a key in our colors object
-    if (colors[color]) {
-      // Found one!
-      params = {
-        color: colors[color],
-        colorError: null,
-        seo: seo,
-      };
-    } else {
-      // No luck! Return the user value as the error property
-      params = {
-        colorError: request.body.color,
-        seo: seo,
-      };
-    }
-  }
-
-  // The Handlebars template will use the parameter values to update the page with the chosen color
-  return reply.view("/src/pages/index.hbs", params);
-});
-
-// Run the server and report out to the logs
-fastify.listen(
-  { port: process.env.PORT, host: "0.0.0.0" },
-  function (err, address) {
+  db.query(query, [nome, cpf, email, tel, logradouroPj], (err, result) => {
     if (err) {
-      console.error(err);
-      process.exit(1);
+      console.error('Erro ao inserir dados:', err);
+      res.status(500).send('Erro ao inserir dados: ' + err.message);
+      return;
     }
-    console.log(`Your app is listening on ${address}`);
-  }
-);
+    console.log('Dados inseridos com sucesso:', result);
+    res.send('Dados adicionados ao banco de dados');
+  });
+});
+
+// Rota para buscar todos os cadastros
+app.get('/buscarCadastro', (req, res) => {
+  const query = 'SELECT nome, cpf, telefone FROM ClientesSEBRAE';
+  
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar dados:', err);
+      res.status(500).send('Erro ao buscar dados: ' + err.message);
+      return;
+    }
+    console.log('Dados encontrados:', results);
+    res.json(results);
+  });
+});
+
+// Rota para buscar dados por CPF
+app.get('/buscarPorCpf/:cpf', (req, res) => {
+  const cpf = req.params.cpf;
+  const query = 'SELECT * FROM ClientesSEBRAE WHERE cpf = ?';
+  
+  db.query(query, [cpf], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar dados:', err);
+      res.status(500).send('Erro ao buscar dados: ' + err.message);
+      return;
+    }
+    console.log('Dados encontrados:', results);
+    res.json(results);
+  });
+});
+
+// Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

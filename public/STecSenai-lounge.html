@@ -1,0 +1,49 @@
+<!-- Arquivo STecSenai-lounge.html, usado como tela de boas vindas para um visitante
+  que deseje obter informações sobre o SEBRAETEC SENAI e gerar contratos -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área SEBRAETEC SENAI</title>
+    <script src="scrSTecSenaiBd.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header style="background-color: #003366; padding: 10px; color: white;">
+        <h1>Área SEBRAETEC SENAI</h1>
+    </header>
+    <p />
+    <div>
+        <button><a href="index.html">VOLTAR</a></button>
+        <button><a href="STecSenai-dadosContrato.html">FAZER CONTRATO</a></button>
+        <button id="consumirSaldoButton">CONSUMIR SALDO</button>
+    </div>
+
+    <h2>Dados Disponíveis</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+    </table>
+
+    <script>
+        // Função para solicitar senha antes de redirecionar
+        document.getElementById('consumirSaldoButton').addEventListener('click', function(event) {
+            const senhaCorreta = 'Sebrae@123'; // A senha deve ser a mesma do scriptColetorDeDados.js ou do arquivo .env
+            const senhaDigitada = prompt('Digite a senha para acessar a página de consumo de saldo:');
+            
+            if (senhaDigitada === senhaCorreta) {
+                window.location.href = 'STecSenai-consumir.html';
+            } else {
+                alert('Senha incorreta. Acesso negado.');
+            }
+        });
+    </script>
+</body>
+</html>
