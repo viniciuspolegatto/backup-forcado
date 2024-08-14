@@ -1,8 +1,11 @@
 /* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir */
+
+// Valores declarados em função dos botões existentes na STecSenai
 const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
+const botaoAddBd = document.querySelector("#botaoImpressaoCnpj");
 
 
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
@@ -55,6 +58,12 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
     localStorage.setItem('servico', servico);
+    
+    
+    
+    
+    
+  
 
   } catch (error) {
     console.error(error);
