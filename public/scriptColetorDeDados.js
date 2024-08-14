@@ -44,35 +44,22 @@ document.getElementById('botaoAdicionarDados').addEventListener('click', async f
     let resCnpj = await fetch(`/cnpj/${cnpj}`);
     let cnpjData = await resCnpj.json();
 
-    // Preenchendo a tabela
-    document.getElementById('cnpj-td').textContent = cnpjDigitado;
-    document.getElementById('razao-social-td').textContent = dataCnpj.nome;
-    document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
-    document.getElementById('empresa-nome-fantasia').textContent = dataCnpj.fantasia;
-    document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
-    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
-    document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
-    document.getElementById('telefone-td').textContent = dataCnpj.telefone;
-    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
-    document.getElementById('cep-td').textContent = cepDigitado;
-    document.getElementById('nome-cliente-td').textContent = nomeCliente;
-    document.getElementById('cpf-td').textContent = cpf;
-    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
-    document.getElementById('telefone-contato-td').textContent = telefone;
-    document.getElementById('email-td').textContent = email;
-    document.getElementById('servico-td').textContent = servico;
+// *** Preenchendo a tabela = levando para o HTML antigo após coleta da API
+  // document.getElementById('cnpj-td').textContent = cnpj;
+  // document.getElementById('razao-social-td').textContent = cnpjData.nome;
 
     document.getElementById('data-table').style.display = 'block';
 
-    // Armazenar os dados no localStorage
-    localStorage.setItem('dadosCnpj', JSON.stringify(dataCnpj));
-    localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
-    localStorage.setItem('nomeCliente', nomeCliente);
+    // ********** Salva os dados no localStorage  ******
+    localStorage.setItem('dadosCnpj', JSON.stringify(cnpjData));
+    localStorage.setItem('cepDigitado', JSON.stringify(cepData)); // Armazenar dados do CEP como JSON
+    localStorage.setItem('nome', nome);
     localStorage.setItem('cpf', cpf);
-    localStorage.setItem('numeroResidencia', numeroResidencia);
+    localStorage.setItem('numPf', numPf);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
-    localStorage.setItem('servico', servico);
+    localStorage.setItem('STecSenai', STecSenai);
+    localStorage.setItem('testemunhaSenai', testemunhaSenai)
 
   } catch (error) {
     console.error(error);
@@ -172,38 +159,7 @@ document.getElementById('botaoAdicionarDados').addEventListener('click', async f
     // Exibe o botão Gerar Contrato
     botaoGerarContrato.style.display = 'block';
 
-//********** Salva os dados no localStorage  ******
-//--------------------------------------------------------------------------------- 
-//  localStorage.setItem('dadosContrato', JSON.stringify({ }));
-    
-    localStorage.setItem('nome', nome);
-    localStorage.setItem('cpf',cpf);
-    localStorage.setItem('nasc',nasc);
-    localStorage.setItem('logradouroPf',logradouroPf);
-    localStorage.setItem('numPf',numPf);
-    localStorage.setItem('bairroPf',bairroPf);
-    localStorage.setItem('cidadePf',cidadePf);
-    localStorage.setItem('estadoPf',estadoPf);
-    localStorage.setItem('cep',cep);
-    localStorage.setItem('telefone',telefone);
-    localStorage.setItem('email',email);
-    localStorage.setItem('STecSenai',STecSenai);
-    localStorage.setItem('cnpjPj',cnpjPj);
-    localStorage.setItem('razaoPj',razaoPj);
-    localStorage.setItem('fantasiaPj',fantasiaPj);
-    localStorage.setItem('logradouroPj',logradouroPj);
-    localStorage.setItem('numPj',numPj);
-    localStorage.setItem('bairroPj',bairroPj);
-    localStorage.setItem('municipioPj',municipioPj);
-    localStorage.setItem('estadoPj',estadoPj);
-    localStorage.setItem('cepPj',cepPj);
-    localStorage.setItem('situacaoPj',situacaoPj);
-    localStorage.setItem('telefonePj',telefonePj);
-    localStorage.setItem('emailPj',emailPj);
-    localStorage.setItem('testemunhaSenai',testemunhaSenai);  
-  
-  
-// ---------------------------------------------------------------------------------- 
+
 
     // Envia os dados para o servidor
     const data = {
@@ -334,7 +290,7 @@ botaoAddDados.addEventListener("click", async function() {
         return; // Impede o envio dos dados em caso de erro
     }
 
-    // Constrói a lista com os dados coletados
+  // Constrói a lista com os dados coletados
   // Para puxar dados de uma lista let fruta = {cor: "azul", sementes:true}, usa-se apenas fruta.cor
   // Para puxar dados de uma array let lista = [true, 1, "texto", {cor:"azul",sementes:true}], usa-se lista[4].cor
 
@@ -416,7 +372,7 @@ botaoAddDados.addEventListener("click", async function() {
   
   
 
-    // Constrói o HTML da lista
+  // Constrói o HTML da lista
     let futuroValorInnerHTML = "";
     for (let i = 0; i < listaDeDados.length; i++) {
         futuroValorInnerHTML += "<li>" + listaDeDados[i] + "</li>";
@@ -424,7 +380,7 @@ botaoAddDados.addEventListener("click", async function() {
 
     listaMontada.innerHTML = futuroValorInnerHTML;
 
-    // Exibe o botão Gerar Contrato
+  // Exibe o botão Gerar Contrato
     botaoGerarContrato.style.display = 'block';
 
 //********** Salva os dados no localStorage  ******
