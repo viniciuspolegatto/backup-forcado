@@ -170,32 +170,32 @@ botaoAddDados.addEventListener("click", async function() {
 
 //********** Salva os dados no localStorage  ******
 //--------------------------------------------------------------------------------- 
-  localStorage.setItem('dadosContrato', JSON.stringify({
-    nome,
-    cpf,
-    nasc,
-    logradouroPf,
-    numPf,
-    bairroPf,
-    cidadePf,
-    estadoPf,
-    cep,
-    telefone,
-    email,
-    STecSenai,
-    cnpjPj,
-    razaoPj,
-    fantasiaPj,
-    logradouroPj,
-    numPj,
-    bairroPj,
-    municipioPj,
-    estadoPj,
-    cepPj,
-    situacaoPj,
-    telefonePj,
-    emailPj,
-    testemunhaSenai
+//  localStorage.setItem('dadosContrato', JSON.stringify({
+  localStorage.setItem('nome', nome);
+  localStorage.setItem('cpf',cpf);
+  localStorage.setItem('nasc',nasc);
+    localStorage.setItem('logradouroPf,
+    localStorage.setItem('numPf,
+    localStorage.setItem('bairroPf,
+    localStorage.setItem('cidadePf,
+    localStorage.setItem('estadoPf,
+    localStorage.setItem('cep,
+    localStorage.setItem('telefone,
+    localStorage.setItem('email,
+    localStorage.setItem('STecSenai,
+    localStorage.setItem('cnpjPj,
+    localStorage.setItem('razaoPj,
+    localStorage.setItem('fantasiaPj,
+    localStorage.setItem('logradouroPj,
+    localStorage.setItem('numPj,
+    localStorage.setItem('bairroPj,
+    localStorage.setItem('municipioPj,
+    localStorage.setItem('estadoPj,
+    localStorage.setItem('cepPj,
+    localStorage.setItem('situacaoPj,
+    localStorage.setItem('telefonePj,
+    localStorage.setItem('emailPj,
+    localStorage.setItem('testemunhaSenai',testemunhaSenai)
   }));
 
 // ---------------------------------------------------------------------------------- 
