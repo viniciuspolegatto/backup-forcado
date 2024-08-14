@@ -11,200 +11,63 @@ const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 // ********************************************************************
 document.getElementById('botaoAdicionarDados').addEventListener('click', async function() {
-// Coleta os dados dos campos
-  const nome = document.getElementById('nomeCon').value;
+  const cepDigitado = document.getElementById('cepCon').value;
+  const cnpjDigitado = document.getElementById('cnpj').value;
+  const nomeCliente = document.getElementById('nomeCon').value;
   const cpf = document.getElementById('cpfCon').value;
+  const numeroResidencia = document.getElementById('numCon').value;
   const telefone = document.getElementById('telCon').value;
   const email = document.getElementById('emailCon').value;
-  const numPf = document.getElementById('numCon').value;
-  const cep = document.getElementById('cepCon').value;
-  const nasc = document.getElementById('nascCon').value;
-  const cnpj = document.getElementById('cnpj').value;
-  const STecSenai = document.getElementById('servicosSebraetecSenai').value;
-  const testemunhaSenai = document.getElementById('testemunhaSTecSenai').value;
-
-  const cepDigitado = document.getElementById('cep').value;
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-// Valida se nome, cpf e telefone estão preenchidos
-    if (!nome || !cpf || !telefone) {
-      alert("Preencha Nome, CPF e Telefone");
-      return; // Impede o envio dos dados
-    }
-
-// Coleta os dados das APIs, Verificando se CEP e CNPJs existem
-    let cnpjData = {};
-    let cepData = {};
+  const servico = document.getElementById('servicosSebraetecSenai').value;
 
   try {
-    let resCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    let cepData = await resCep.json();
+    let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
+    let dataCep = await resCep.json();
 
-    if (cepData.erro) {
+    if (dataCep.erro) {
       throw new Error("CEP não encontrado");
     }
 
-    let resCnpj = await fetch(`/cnpj/${cnpj}`);
-    let cnpjData = await resCnpj.json();
+    let resCnpj = await fetch(`/cnpj/${cnpjDigitado}`);
+    let dataCnpj = await resCnpj.json();
 
-// *** Preenchendo a tabela = levando para o HTML antigo após coleta da API
-  // document.getElementById('cnpj-td').textContent = cnpj;
-  // document.getElementById('razao-social-td').textContent = cnpjData.nome;
+    // Preenchendo a tabela
+    document.getElementById('cnpj-td').textContent = cnpjDigitado;
+    document.getElementById('razao-social-td').textContent = dataCnpj.nome;
+    document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
+    document.getElementById('empresa-nome-fantasia').textContent = dataCnpj.fantasia;
+    document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
+    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
+    document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
+    document.getElementById('telefone-td').textContent = dataCnpj.telefone;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
+    document.getElementById('cep-td').textContent = cepDigitado;
+    document.getElementById('nome-cliente-td').textContent = nomeCliente;
+    document.getElementById('cpf-td').textContent = cpf;
+    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
+    document.getElementById('telefone-contato-td').textContent = telefone;
+    document.getElementById('email-td').textContent = email;
+    document.getElementById('servico-td').textContent = servico;
 
     document.getElementById('data-table').style.display = 'block';
 
-    // ********** Salva os dados no localStorage  ******
-    localStorage.setItem('dadosCnpj', JSON.stringify(cnpjData));
-    localStorage.setItem('cepDigitado', JSON.stringify(cepData)); // Armazenar dados do CEP como JSON
-    localStorage.setItem('nome', nome);
+    // Armazenar os dados no localStorage
+    localStorage.setItem('dadosCnpj', JSON.stringify(dataCnpj));
+    localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
+    localStorage.setItem('nomeCliente', nomeCliente);
     localStorage.setItem('cpf', cpf);
-    localStorage.setItem('numPf', numPf);
+    localStorage.setItem('numeroResidencia', numeroResidencia);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
-    localStorage.setItem('STecSenai', STecSenai);
-    localStorage.setItem('testemunhaSenai', testemunhaSenai)
+    localStorage.setItem('servico', servico);
 
   } catch (error) {
     console.error(error);
     alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
   }
-
-  // Constrói a lista com os dados coletados
-  // Para puxar dados de uma lista let fruta = {cor: "azul", sementes:true}, usa-se apenas fruta.cor
-  // Para puxar dados de uma array let lista = [true, 1, "texto", {cor:"azul",sementes:true}], usa-se lista[4].cor
-
-    let logradouroPf = cepData.logradouro;
-    let bairroPf = cepData.bairro;
-    let cidadePf = cepData.localidade;
-    let estadoPf = cepData.uf;
-  
-    let cnpjPj  = cnpjData.cnpj
-    let razaoPj = cnpjData.nome;
-    let atividadePj = cnpjData.atividade_principal[0].text;
-    let logradouroPj = cnpjData.logradouro;
-    let numPj = cnpjData.numero;
-    let municipioPj = cnpjData.municipio;
-    let bairroPj = cnpjData.bairro;
-    let estadoPj = cnpjData.uf;
-    let cepPj = cnpjData.cep;
-    let situacaoPj = cnpjData.situacao;
-
-  
-  // Função para obter o nome fantasia da PJ -------------------------------------------------
-  function obterNomeFantasia() {
-    // Coleta o valor de dadosCnpj.fantasia
-    let fantasiaPj = cnpjData.fantasia;
-
-    // Verifica se o fantasiaPj é vazio ou nulo e ajusta o valor
-    if (!fantasiaPj || fantasiaPj === "") {
-      fantasiaPj = "não atribuído";
-    } else {
-      fantasiaPj = cnpjData.fantasia;
-    }
-     return fantasiaPj;
-  } // Obtém o nome fantasia
-  let fantasiaPj = obterNomeFantasia();
-
-// Função para obtar o Telefone e E-mail da PJ--------------------------------------------------
-  
-  function obterTelefonePj () {
-    let telefonePj = cnpjData.telefone;
-    if (!telefonePj || telefonePj === "") {
-      telefonePj = "não atribuído";
-    } else {telefonePj = cnpjData.telefone;}
-     return telefonePj;}
-  let telefonePj = obterTelefonePj();
-  
-  function obterEmailPj () {
-    let emailPj = cnpjData.email;
-    if (!emailPj || emailPj === "") {
-      emailPj = "não atribuído";
-    } else {emailPj = cnpjData.email;}
-     return emailPj;}
-  let emailPj = obterEmailPj();
-  
-  function obterQsaPj () {
-    let socioPj = cnpjData.qsa[0]
-    if (!socioPj || socioPj === "") {
-      socioPj = "não atribuído";
-    } else {socioPj = cnpjData.qsa[0].nome;}
-     return socioPj;}
-  let socioPj = obterQsaPj();
-  
-  // -------------------------------------------------------------------------------  
-    const listaDeDados = [
-        `Serviço: ${STecSenai}`,
-        `Nome: ${nome}`,
-        `Data de Nacimento: ${nasc}`,
-        `CPF: ${cpf}`,
-        `Telefone: ${telefone}`,
-        `E-mail cadastrado: ${email}`,
-        `Endereço cadastrado: ${logradouroPf} - nº ${numPf}, ${bairroPf}, ${cidadePf} - ${estadoPf}, CEP: ${cep}`,
-        `Data de Nacimento: ${nasc}`,
-        `RAZÃO SOCIAL: ${razaoPj}`,
-        `NOME FANTASIA: ${fantasiaPj}`,
-        `ATIVIDADE PRINCIPAL: ${atividadePj}`,
-        `SÓCIO: ${socioPj}`,
-        `SITUAÇÃO: ${situacaoPj}`,
-        `ENDEREÇO: ${logradouroPj} - nº ${numPj}, ${bairroPj}, ${municipioPj} - ${estadoPj}, CEP: ${cepPj}`,
-    ];
-  
-  
-
-    // Constrói o HTML da lista
-    let futuroValorInnerHTML = "";
-    for (let i = 0; i < listaDeDados.length; i++) {
-        futuroValorInnerHTML += "<li>" + listaDeDados[i] + "</li>";
-    }
-
-    listaMontada.innerHTML = futuroValorInnerHTML;
-
-    // Exibe o botão Gerar Contrato
-    botaoGerarContrato.style.display = 'block';
-
-
-
-    // Envia os dados para o servidor
-    const data = {
-        nome: nome,
-        cpf: cpf,
-        email: email,
-        tel: telefone,
-        logradouroPj: cnpjPj
-    };
-
-    fetch('/addData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(text => {
-        console.log('Resposta do servidor:', text);
-        if (text.includes("Dados adicionados ao banco de dados")) {
-            alert("Cadastro realizado com sucesso!");
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert("Erro ao realizar o cadastro: " + error.message);
-    });
 });
+
+/* ************************************************** */
 
 botaoLimparDados.addEventListener("click", function() {
     listaMontada.innerHTML = "";
@@ -228,7 +91,36 @@ botaoGerarContrato.addEventListener("click", function() {
     window.location.href = "STecSenai-contrato.html";
 });
 
+/* ********************* EXTRA - VARIÁVEIS ******************
 
+// Coleta os dados dos campos
+  const nome = document.getElementById('nomeCon').value;
+  const cpf = document.getElementById('cpfCon').value;
+  const telefone = document.getElementById('telCon').value;
+  const email = document.getElementById('emailCon').value;
+  const numPf = document.getElementById('numCon').value;
+  const cep = document.getElementById('cepCon').value;
+  const nasc = document.getElementById('nascCon').value;
+  const cnpj = document.getElementById('cnpj').value;
+  const STecSenai = document.getElementById('servicosSebraetecSenai').value;
+  const testemunhaSenai = document.getElementById('testemunhaSTecSenai').value;
+
+  const cepDigitado = document.getElementById('cep').value;
+  
+    // ********** Salva os dados no localStorage  ******
+    localStorage.setItem('dadosCnpj', JSON.stringify(cnpjData));
+    localStorage.setItem('cepDigitado', JSON.stringify(cepData)); // Armazenar dados do CEP como JSON
+    localStorage.setItem('nome', nome);
+    localStorage.setItem('cpf', cpf);
+    localStorage.setItem('numPf', numPf);
+    localStorage.setItem('telefone', telefone);
+    localStorage.setItem('email', email);
+    localStorage.setItem('STecSenai', STecSenai);
+    localStorage.setItem('testemunhaSenai', testemunhaSenai)
+
+
+
+*********************************************************** */
 /* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir
