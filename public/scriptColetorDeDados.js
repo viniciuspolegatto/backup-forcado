@@ -12,42 +12,19 @@ const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 // ********************************************************************
 document.getElementById('botaoAdicionarDados').addEventListener('click', async function() {
 // Coleta os dados dos campos
-  const cepDigitado = document.getElementById('cep').value;
-  const cnpjDigitado = document.getElementById('cnpj').value;
-  const nomeCliente = document.getElementById('nomeCliente').value;
-  const cpf = document.getElementById('cpf').value;
-  const numeroResidencia = document.getElementById('numeroResidencia').value;
-  const telefone = document.getElementById('telefone').value;
-  const email = document.getElementById('email').value;
-  const servico = document.getElementById('servicos').value;
-  const cpf = document.getElementById('cpf').value;
-  const cpf = document.getElementById('cpf').value;
-  const cpf = document.getElementById('cpf').value;
-  const cpf = document.getElementById('cpf').value;
-  const cpf = document.getElementById('cpf').value;
-  const cpf = document.getElementById('cpf').value;
+  const nome = document.getElementById('nomeCon').value;
+  const cpf = document.getElementById('cpfCon').value;
+  const telefone = document.getElementById('telCon').value;
+  const email = document.getElementById('emailCon').value;
+  const numPf = document.getElementById('numCon').value;
+  const cep = document.getElementById('cep').value;
+  const nasc = document.getElementById('nascCon').value;
   
-  const nome = entradaDeNome.value.trim();
-  const cpf = entradaDeCpf.value.trim();
-  const telefone = entradaDeTel.value.trim();
-  const email = entradaDeEmail.value.trim();
-  const numPf = entradaDeNum.value.trim();
-  const cep = entradaDeCep.value.trim();
-  const cnpj = entradaDeCnpj.value.trim();
-  const nasc = entradaDeNasc.value.trim();
-  const STecSenai = entradaServicoSTecSenai.value.trim();
-  const testemunhaSenai = entradaTestemunha.value.trim();
+  const cnpj = document.getElementById('cnpj').value;
+  const STecSenai = document.getElementById('servicosSebraetecSenai').value;
+  const testemunhaSenai = document.getElementById('testemunhaSTecSenai').value;
 
-const entradaDeNome = document.querySelector("#nomeCon");
-const entradaDeCpf = document.querySelector("#cpfCon");
-const entradaDeEmail = document.querySelector("#emailCon");
-const entradaDeTel = document.querySelector("#telCon");
-const entradaDeNum = document.querySelector("#numCon");
-const entradaDeCep = document.querySelector("#cep");
-const entradaDeCnpj = document.querySelector("#cnpj");
-const entradaDeNasc = document.querySelector("#nascCon");
-const entradaServicoSTecSenai = document.querySelector("#servicosSebraetecSenai")
-const entradaTestemunha = document.querySelector("#testemunhaSTecSenai")
+
 
 
 
