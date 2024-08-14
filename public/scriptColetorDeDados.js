@@ -2,23 +2,15 @@
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir */
 
-const botaoAddDados = document.querySelector("#botaoImpressaoCnpj");
-const listaMontada = document.querySelector("#listaVisualDeDados");
-const botaoLimparDados = document.querySelector("#botaoLimparDados");
-const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
-const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
-
-
-// ********************************************************************
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
-  const cepDigitado = document.getElementById('cepCon').value;
+  const cepDigitado = document.getElementById('cep').value;
   const cnpjDigitado = document.getElementById('cnpj').value;
-  const nomeCliente = document.getElementById('nomeCon').value;
-  const cpf = document.getElementById('cpfCon').value;
-  const numeroResidencia = document.getElementById('numCon').value;
-  const telefone = document.getElementById('telCon').value;
-  const email = document.getElementById('emailCon').value;
-  const servico = document.getElementById('servicosSebraetecSenai').value;
+  const nomeCliente = document.getElementById('nomeCliente').value;
+  const cpf = document.getElementById('cpf').value;
+  const numeroResidencia = document.getElementById('numeroResidencia').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const servico = document.getElementById('servicos').value;
 
   try {
     let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
@@ -65,30 +57,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     console.error(error);
     alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
   }
-});
-
-/* ************************************************** */
-
-botaoLimparDados.addEventListener("click", function() {
-    listaMontada.innerHTML = "";
-    botaoGerarContrato.style.display = 'none'; // Oculta o botão quando a lista é limpa
-});
-
-botaoBuscarCadastro.addEventListener("click", function() {
-    const senha = prompt("Digite a senha para acessar a busca de cadastro:");
-    const senhaCorreta = "Sebrae@123";
-
-    if (senha === senhaCorreta) {
-        window.location.href = "buscaCadastro.html";
-    } else {
-        alert("Senha incorreta. Acesso negado.");
-    }
-});
-
-// Adiciona o evento de clique para o botão Gerar Contrato
-botaoGerarContrato.addEventListener("click", function() {
-    // Redireciona para a página de contrato
-    window.location.href = "STecSenai-contrato.html";
 });
 
 /* ********************* EXTRA - VARIÁVEIS ******************

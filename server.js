@@ -10,19 +10,6 @@ const mysql = require('mysql');
 const app = express();
 const PORT = process.env.PORT || 3306;
 
-// Configuração do banco de dados
-const db = mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASS,
-  database: process.env.MYSQL_DB
-});
-
-
-db.connect((err) => {
-  if (err) throw err;
-  console.log("Database connected!");
-});
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,6 +38,20 @@ app.get('/cnpj/:cnpj', (req, res) => {
 
   apiReq.on('error', (e) => { res.status(500).send(e.message); });
   apiReq.end();
+});
+
+// Configuração do banco de dados
+const db = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASS,
+  database: process.env.MYSQL_DB
+});
+
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log("Database connected!");
 });
 
 // Rota principal
