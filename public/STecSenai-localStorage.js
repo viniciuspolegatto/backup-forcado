@@ -12,40 +12,48 @@
 ********************************************************* */
 
 document.addEventListener("DOMContentLoaded", function () {
+  const cpf = localStorage.getItem("cpf");
+  const nome = localStorage.getItem("nome");
+  const telefone = localStorage.getItem("telefone");
+  const email = localStorage.getItem("email");
+  const logradouroPf = localStorage.getItem("logradouroPf");
+  const numPf = localStorage.getItem("numPf");
+  const bairroPf = localStorage.getItem("bairroPf");
+  const cidadePf = localStorage.getItem("cidadePf");
+  const estadoPf = localStorage.getItem("estadoPf");
+  const cep = localStorage.getItem("cep");
+  
   const cnpjPj = localStorage.getItem("cnpjPj");
   const razaoPj = localStorage.getItem("razaoPj");
   const fantasiaPj = localStorage.getItem("fantasiaPj");
-  const nome = localStorage.getItem("nome");
-  const logradouroPf = localStorage.getItem("logradouroPf");
-  const nomeCliente = localStorage.getItem("nomeCliente");
-  const numeroResidencia = localStorage.getItem("numeroResidencia");
-  const telefone = localStorage.getItem("telefone");
-  const emailpessoal = localStorage.getItem("email");
-  const cpf = localStorage.getItem("cpf");
-  const servicos = localStorage.getItem("servico");
+  const cepPj = localStorage.getItem("cepPj");
+  const telefonePj = localStorage.getItem("telefonePj");
+  const emailPj = localStorage.getItem("emailPj");
+  const logradouroPj = localStorage.getItem("logradouroPj");
+  const numPj = localStorage.getItem("numPj");
+  const bairroPj = localStorage.getItem("bairroPj");
+  const cidadePj = localStorage.getItem("cidadePj");
+  const estadoPj = localStorage.getItem("estadoPj");
+ 
+  const STecSenai = localStorage.getItem("STecSenai");
   
 
   // Função para obter o nome fantasia -------------------------------------------------
   function obterNomeFantasia() {
     // Coleta o valor de dadosCnpj.fantasia
-    let nomeFantasia = fantasiaPj;
-    
+    let nomeFantasia = fantasiaPj;   
     // Verifica se o nomeFantasia é vazio ou nulo e ajusta o valor
     if (!nomeFantasia || nomeFantasia.trim() === "") {
       nomeFantasia = ", nome fantasia não atribuído";
     } else {
       nomeFantasia = ", nome fantasia " + fantasiaPj;
-    }
-    
-    return nomeFantasia;
-  }
-
+    } return nomeFantasia;}
   // Obtém o nome fantasia
   const nomeFantasia = obterNomeFantasia();
 // -------------------------------------------------------------------------------------
    
    
-  if (!dadosCnpj || !cepDigitado) {
+  if (!cnpjPj || !cep) {
     alert(
       "Verifique se o CNPJ ou o CEP são apenas números e se estão corretos. Por favor, volte e preencha os dados novamente."
     );
