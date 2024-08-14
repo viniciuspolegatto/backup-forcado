@@ -17,20 +17,14 @@ document.getElementById('botaoAdicionarDados').addEventListener('click', async f
   const telefone = document.getElementById('telCon').value;
   const email = document.getElementById('emailCon').value;
   const numPf = document.getElementById('numCon').value;
-  const cep = document.getElementById('cep').value;
+  const cep = document.getElementById('cepCon').value;
   const nasc = document.getElementById('nascCon').value;
   const cnpj = document.getElementById('cnpj').value;
   const STecSenai = document.getElementById('servicosSebraetecSenai').value;
   const testemunhaSenai = document.getElementById('testemunhaSTecSenai').value;
 
   const cepDigitado = document.getElementById('cep').value;
-  const cnpjDigitado = document.getElementById('cnpj').value;
-  const nomeCliente = document.getElementById('nomeCliente').value;
-  const cpf = document.getElementById('cpf').value;
-  const numeroResidencia = document.getElementById('numeroResidencia').value;
-  const telefone = document.getElementById('telefone').value;
-  const email = document.getElementById('email').value;
-  const servico = document.getElementById('servicos').value;
+
 
   
   
