@@ -23,6 +23,28 @@ document.getElementById('botaoAdicionarDados').addEventListener('click', async f
   const STecSenai = document.getElementById('servicosSebraetecSenai').value;
   const testemunhaSenai = document.getElementById('testemunhaSTecSenai').value;
 
+  const cepDigitado = document.getElementById('cep').value;
+  const cnpjDigitado = document.getElementById('cnpj').value;
+  const nomeCliente = document.getElementById('nomeCliente').value;
+  const cpf = document.getElementById('cpf').value;
+  const numeroResidencia = document.getElementById('numeroResidencia').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const servico = document.getElementById('servicos').value;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 // Valida se nome, cpf e telefone estão preenchidos
     if (!nome || !cpf || !telefone) {
       alert("Preencha Nome, CPF e Telefone");

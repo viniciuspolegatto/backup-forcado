@@ -35,6 +35,7 @@ app.get('/cnpj/:cnpj', (req, res) => {
   const options = {
     method: 'GET',
     hostname: 'receitaws.com.br',
+    port: null,
     path: `/v1/cnpj/${cnpj}`,
     headers: { Accept: 'application/json' }
   };
