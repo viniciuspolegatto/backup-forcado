@@ -1,6 +1,59 @@
 /* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
-STecSenai-contrato e STecSenai-consumir*/
+STecSenai-contrato e STecSenai-consumir */
+
+const botaoAddDados = document.querySelector("#botaoAdicionarDados");
+const listaMontada = document.querySelector("#listaVisualDeDados");
+const botaoLimparDados = document.querySelector("#botaoLimparDados");
+const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
+const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
+
+
+// ********************************************************************
+document.getElementById('botaoAdicionarDados').addEventListener('click', async function() {
+// Coleta os dados dos campos
+  const cepDigitado = document.getElementById('cep').value;
+  const cnpjDigitado = document.getElementById('cnpj').value;
+  const nomeCliente = document.getElementById('nomeCliente').value;
+  const cpf = document.getElementById('cpf').value;
+  const numeroResidencia = document.getElementById('numeroResidencia').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const servico = document.getElementById('servicos').value;
+  const cpf = document.getElementById('cpf').value;
+  const cpf = document.getElementById('cpf').value;
+  const cpf = document.getElementById('cpf').value;
+  const cpf = document.getElementById('cpf').value;
+  const cpf = document.getElementById('cpf').value;
+  const cpf = document.getElementById('cpf').value;
+  
+  const nome = entradaDeNome.value.trim();
+  const cpf = entradaDeCpf.value.trim();
+  const telefone = entradaDeTel.value.trim();
+  const email = entradaDeEmail.value.trim();
+  const numPf = entradaDeNum.value.trim();
+  const cep = entradaDeCep.value.trim();
+  const cnpj = entradaDeCnpj.value.trim();
+  const nasc = entradaDeNasc.value.trim();
+  const STecSenai = entradaServicoSTecSenai.value.trim();
+  const testemunhaSenai = entradaTestemunha.value.trim();
+
+const entradaDeNome = document.querySelector("#nomeCon");
+const entradaDeCpf = document.querySelector("#cpfCon");
+const entradaDeEmail = document.querySelector("#emailCon");
+const entradaDeTel = document.querySelector("#telCon");
+const entradaDeNum = document.querySelector("#numCon");
+const entradaDeCep = document.querySelector("#cep");
+const entradaDeCnpj = document.querySelector("#cnpj");
+const entradaDeNasc = document.querySelector("#nascCon");
+const entradaServicoSTecSenai = document.querySelector("#servicosSebraetecSenai")
+const entradaTestemunha = document.querySelector("#testemunhaSTecSenai")
+
+
+
+/* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
+STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
+STecSenai-contrato e STecSenai-consumir
 
 const botaoAddDados = document.querySelector("#botaoAdicionarDados");
 const listaMontada = document.querySelector("#listaVisualDeDados");
@@ -251,3 +304,4 @@ botaoGerarContrato.addEventListener("click", function() {
     // Redireciona para a página de contrato
     window.location.href = "STecSenai-contrato.html";
 });
+*/
