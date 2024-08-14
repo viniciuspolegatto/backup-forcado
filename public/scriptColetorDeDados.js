@@ -2,12 +2,12 @@
 STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
 STecSenai-contrato e STecSenai-consumir */
 
-// Valores declarados em função dos botões existentes na STecSenai
+// Valores declarados em função dos botões existentes na STecSenai-dadosContrato.html
 const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
-const botaoAddBd = document.querySelector("#botaoImpressaoCnpj");
 
 
+// Ação de coleta e armazenagem de dados da página STecSenai-dadosContrato.html
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   const cepDigitado = document.getElementById('cep').value;
   const cnpjDigitado = document.getElementById('cnpj').value;
@@ -17,6 +17,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
   const servico = document.getElementById('servicos').value;
+  const testemunhaSenai = document.getElementById('testemunhaSenai');
 
   try {
     let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
