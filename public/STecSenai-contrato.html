@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEBRAETEC SENAI - ESCRITÓRIO REGIONAL DE BARRETOS</title>
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="STecSenai-localStorage.js" defer></script>
+    <script src="scriptSebraetec.js" defer></script>
  
   </head>
 
-  
-<body>
+  <body>
     <div>
       <table class="printer-table">
         <thead>
@@ -57,22 +56,7 @@
                   <h4 style="text-align: justify; font-weight: bold">
                     1. Contratante - EMPRESA
                   </h4>
-                  
-                  
-<!-- *** Código para trazer o trecho gerado no STecSenai-localSotrage.js ** -->
-    <div id="textoContrato" style="text-align: justify;"></div>
-
-    <script type="module">
-        import { gerarTextoContrato } from './STecSenai-localStorage.js';
-
-        // Executa a função para gerar e exibir o texto do contrato diretamente
-        const textoContrato = gerarTextoContrato();
-        document.getElementById('textoContrato').innerHTML = textoContrato;
-    </script>
-
-  <!-- *** Código para trazer o trecho gerado no STecSenai-localSotrage.js ** -->
-                  
-                  
+                  <div id="report"></div>
                   <h4 style="text-align: justify; font-weight: bold">
                     2. Contratada - SEBRAE-SP
                   </h4>
@@ -120,18 +104,7 @@
                   </p>
                   <br>
 
-<!-- *** Código para trazer o trecho gerado no STecSenai-localSotrage.js ** -->
-    <div id="produtoSTecSenai" style="text-align: justify;"></div>
-
-    <script type="module">
-        import { trazerSTecSenai } from './STecSenai-localStorage.js';
-
-        // Executa a função para gerar e exibir o texto do contrato diretamente
-        const produtoSTecSenai = trazerSTecSenai();
-        document.getElementById('produtoSTecSenai').textContent = produtoSTecSenai;
-    </script>
-
-  <!-- *** Código para trazer o trecho gerado no STecSenai-localSotrage.js ** -->
+                  <div id="reportProduto"></div>
                   
                   <br>
 
@@ -262,21 +235,7 @@
                     <div class="assinatura">
                       <p><strong>ASSINANTE</strong></p>
                       <div class="info">
-                        
-  <!-- *** Código para trazer o trecho gerado no STecSenai-localStorage.js ** -->
-    <div id="contratante" style="text-align: justify; font-size: 18px;"></div>
-
-    <script type="module">
-        import { assinanteContratante } from './STecSenai-localStorage.js';
-
-        // Executa a função para gerar e exibir o texto do contrato diretamente
-        const contratante = assinanteContratante();
-        document.getElementById('contratante').innerHTML = contratante;
-    </script>
-
-    <!-- *** Código para trazer o trecho gerado no STecSenai-localStorage.js ** -->
-                        
-                        
+                        <div id="clienteAssinante"></div>
                       </div>
                     </div>
                   </div>
@@ -310,21 +269,9 @@
                           <p>CPF: 337.132.218-12</p>
                         </div>
                         <div class="nome">
-
-
-<!-- *** Código para trazer o trecho gerado no STecSenai-localStorage.js ** -->
-    <div id="testemunhaContrSTecSenai" style="text-align: justify; font-size: 18px;"></div>
-
-    <script type="module">
-        import { testemunhaDoContratoSenai } from './STecSenai-localStorage.js';
-
-        // Executa a função para gerar e exibir o texto do contrato diretamente
-        const testemunhaContrSTecSenai = testemunhaDoContratoSenai();
-        document.getElementById('testemunhaContrSTecSenai').innerHTML = testemunhaContrSTecSenai;
-    </script>
-<!-- *** Código para trazer o trecho gerado no STecSenai-localStorage.js ** -->
-
-                          
+                          <p><b>Guilherme Pelegrini Brianez</b></p>
+                          <p>Consultor de Negócios - SEBRAE</p>
+                          <p>CPF: 312.036.408-89</p>
                         </div>
                       </div>
                       <div style="height: 10px"></div>
@@ -339,11 +286,8 @@
         </tbody>
       </table>
     </div>
-
-
-<!-- *** Rodapé ** -->
-  <nav>
-    <a href="index.html" id="voltar">HOME</a>
-  </nav>
-</body>
+    <nav>
+      <a href="index.html" id="voltar">Voltar</a>
+    </nav>
+  </body>
 </html>

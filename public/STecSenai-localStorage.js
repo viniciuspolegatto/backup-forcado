@@ -32,57 +32,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const logradouroPj = localStorage.getItem("logradouroPj");
   const numPj = localStorage.getItem("numPj");
   const bairroPj = localStorage.getItem("bairroPj");
-  const cidadePj = localStorage.getItem("cidadePj");
+  const municipioPj = localStorage.getItem("municipioPj");
   const estadoPj = localStorage.getItem("estadoPj");
+ 
+  const enderecoPf = `${logradouroPf} - nº ${numPf}, ${bairroPf}, ${cidadePf} - ${estadoPf}, CEP: ${cep}`;
+  const enderecoPj = `${logradouroPj} - nº ${numPj}, bairro: ${bairroPj}, no município de ${municipioPj} - ${estadoPj}, CEP: ${cepPj}`;
  
   const STecSenai = localStorage.getItem("STecSenai");
   
 
-  // Função para obter o nome fantasia -------------------------------------------------
-  function obterNomeFantasia() {
-    // Coleta o valor de dadosCnpj.fantasia
-    let nomeFantasia = fantasiaPj;   
-    // Verifica se o nomeFantasia é vazio ou nulo e ajusta o valor
-    if (!nomeFantasia || nomeFantasia.trim() === "") {
-      nomeFantasia = ", nome fantasia não atribuído";
-    } else {
-      nomeFantasia = ", nome fantasia " + fantasiaPj;
-    } return nomeFantasia;}
-  // Obtém o nome fantasia
-  const nomeFantasia = obterNomeFantasia();
-// -------------------------------------------------------------------------------------
-   
-   
-  if (!cnpjPj || !cep) {
-    alert(
-      "Verifique se o CNPJ ou o CEP são apenas números e se estão corretos. Por favor, volte e preencha os dados novamente."
-    );
-    window.location.href = "/index.html";
-    return;
-  }
-
   const reportDiv = document.getElementById("report");
   reportDiv.innerHTML = `
     <p style="text-align: justify;">
-      ${dadosCnpj.nome}${nomeFantasia}, inscrita no CNPJ nº ${dadosCnpj.cnpj}, localizada na ${dadosCnpj.logradouro}, ${dadosCnpj.numero},
-      bairro ${dadosCnpj.bairro}, no município de ${dadosCnpj.municipio} - SP, CEP: ${dadosCnpj.cep}, telefone(s) ${dadosCnpj.telefone},
-      e-mail ${dadosCnpj.email}, empresa neste ato representada por ${nomeCliente}, brasileiro(a), Empresário(a)/Autônomo(a) com 
-      inscrição no CPF nº ${cpf}, residente à ${cepDigitado.logradouro}, nº ${numeroResidencia}, bairro ${cepDigitado.bairro},
-      CEP ${cepDigitado.cep}, na comarca de ${cepDigitado.localidade} - ${cepDigitado.uf}, telefone de contato ${telefone} e e-mail
-      pessoal ${emailpessoal}, denominado(a) como <b>CONTRATANTE</b>
-    </p>`;
+        ${razaoPj}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${cnpjPj}, localizada na ${enderecoPj}
+        , telefone(s) ${telefonePj}, e-mail ${emailPj}, empresa neste ato representada por ${nome}, brasileiro(a), Empresário(a)/Autônomo(a)
+        com inscrição no CPF nº ${cpf}, residente à ${enderecoPf}, telefone(s) de contato ${telefone} e e-mail ${email}
+        , denominado(a) como <b>CONTRATANTE</b>`;
 
   const reportProduto = document.getElementById("reportProduto");
   reportProduto.innerHTML = `
     <p style="text-align: justify;">
-    Produto específico da prestação dos serviços: ${servicos}
+    Produto específico da prestação dos serviços: ${STecSenai}
     </p>`;
   
   const clienteAssinante = document.getElementById("clienteAssinante");
   clienteAssinante.innerHTML = `
     <h3 style="text-align: justify;">
     <b>CONTRATANTE / EMPRESA</b><br>
-    <b>${nomeCliente}<b><br>
+    <b>${nome}<b><br>
     <b>${cpf}<b>
     </p>`;
 
