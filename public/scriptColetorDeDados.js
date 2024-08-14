@@ -10,7 +10,7 @@ const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 
 // ********************************************************************
-document.getElementById('botaoAddDados').addEventListener('click', async function() {
+document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   const cepDigitado = document.getElementById('cepCon').value;
   const cnpjDigitado = document.getElementById('cnpj').value;
   const nomeCliente = document.getElementById('nomeCon').value;
