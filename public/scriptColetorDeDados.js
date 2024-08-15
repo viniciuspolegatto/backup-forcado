@@ -97,7 +97,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
     document.getElementById('data-table').style.display = 'block';
 
-    // Armazenar os dados no localStorage
+// Armazenar os dados no localStorage
     localStorage.setItem('dadosCnpj', JSON.stringify(dataCnpj));
     localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
     localStorage.setItem('nomeCliente', nomeCliente);
@@ -111,7 +111,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('emailPj',emailPj);
 
   
-
   } catch (error) {
     console.error(error);
     alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
