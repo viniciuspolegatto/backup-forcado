@@ -61,14 +61,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+
 // Rota para adicionar dados ao banco de dados
 app.post('/addData', (req, res) => {
-  const { nome, cpf, email, tel, logradouroPj } = req.body;
+  const { info01, info02, info03, info04, info05 } = req.body; // variáveis da String "data" no scriptColetorDeDados.js
   const query = 'INSERT INTO ClientesSEBRAE (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
   
-  console.log('Dados recebidos:', { nome, cpf, email, tel, logradouroPj });
+  console.log('Dados recebidos:', { info01, info02, info03, info04, info05 });
 
-  db.query(query, [nome, cpf, email, tel, logradouroPj], (err, result) => {
+  db.query(query, [info01, info02, info03, info04, info05], (err, result) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       res.status(500).send('Erro ao inserir dados: ' + err.message);
@@ -78,6 +79,7 @@ app.post('/addData', (req, res) => {
     res.send('Dados adicionados ao banco de dados');
   });
 });
+
 
 // Rota para buscar todos os cadastros
 app.get('/buscarCadastro', (req, res) => {

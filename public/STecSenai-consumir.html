@@ -3,6 +3,7 @@
 
 <head>
     <title>Busca Cadastro</title>
+  
     <style>
         #resultados {
             max-height: 300px; /* Ajuste a altura conforme necessário */
@@ -59,7 +60,7 @@
 
     <p />
 
-    <!-- Área para mostrar os dados existentes -->
+<!-- Área para mostrar os dados existentes -->
     <div id="listaDados" class="tabela-container">
         <h2>Dados Cadastrados:</h2>
     </div>
@@ -101,7 +102,7 @@
                 .catch(error => console.error('Error ao carregar dados:', error));
         }
 
-        // Carregar dados ao iniciar a página
+// Carregar dados ao iniciar a página
         carregarDados();
 
         document.querySelector("#botaoPesquisar").addEventListener("click", function () {
