@@ -106,11 +106,10 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
     localStorage.setItem('servico', servico);
-    
-    
-    
-    
-    
+    localStorage.setItem('fantasiaPj',fantasiaPj);
+    localStorage.setItem('telefonePj',telefonePj);
+    localStorage.setItem('emailPj',emailPj);
+
   
 
   } catch (error) {
