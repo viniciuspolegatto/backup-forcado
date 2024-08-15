@@ -29,51 +29,40 @@
   </header>
 
   <body class="idbody">
-    <h1>Dados para Contrato</h1>
-    <br />
     <div>
-      <p>
-        <label for="cnpj">CNPJ <b>Apenas Números</b>:</label>
-        <input type="text" id="cnpj" placeholder="Digite o CNPJ" />
-      </p>
+      <h1>Lista de Dados - SEBRAETEC SENAI</h1>
     </div>
-    <div>
-      <br />
-      <h3>Informações Pessoais</h3>
-    </div>
+  
+    <div><br>
+      <text style="font-size:25px"><b>DADOS DA EMPRESA</b></text>
+    <hr><p />
+    <label><b>CNPJ: </b></label>
+    <input type="text" id="cnpj" placeholder="Apenas Números" /><p />
 
-    <div>
-      <p>
-        <label for="nomeCliente">Nome do Cliente:</label>
-        <input type="text" id="nomeCliente" placeholder="Digite o Nome do Cliente"/>
-      </p>
-      <p>
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" placeholder="Digite o CPF" />
-      </p>
-      <p>
-        <label for="cep">CEP: <b>Apenas Números</b></label>
-        <input type="text" id="cep" placeholder="Digite o CEP" />
-      </p>
-      <p>
-        <label for="numeroResidencia">Número da Residência:</label>
-        <input
-          type="text" id="numeroResidencia" placeholder="Digite o Número da Residência"/>
-      </p>
-      <p>
-        <label for="telefone">Telefone de Contato:</label>
-        <input type="text" id="telefone" placeholder="Digite o Telefone de Contato"/>
-      </p>
-      <p>
-        <label for="email">E-mail Pessoal:</label>
-        <input type="email" id="email" placeholder="Digite o E-mail Pessoal" />
-      </p>
-    </div>
-    <br />
-    <h3>Serviço a ser realizado:</h3>
-    <br />
+    <br>
+      <text style="font-size:25px"><b>DADOS PESSOAIS</b></text>
+    <hr><p />
+    <label><b>NOME COMPLETO: </b></label>
+    <input type="text" id="nomeCliente" placeholder="Insira Aqui o Nome" /><p />
+    <label><b>TEL. CONTATO: </b></label>
+    <input type="text" id="telefone" placeholder="DDD + Número" /><p />
+    <label><b>E-MAIL: </b></label>
+    <input type="text" id="email" placeholder="e-mail" /><p />
+    <label><b>CPF: </b></label>
+    <input type="text" id="cpf" placeholder="CPF" /><p />
+    <label><b>DATA NASC.: </b></label>
+    <input type="text" id="nascimento" placeholder="DD/MM/AAAA" /><p />
+    <label><b>CEP DA RUA: </b></label>
+    <input type="text" id="cep" placeholder="_____-___" /><p />
+    <label><b>Nº DA RESID.: </b></label>
+    <input type="text" id="numeroResidencia" placeholder="" /><p />
+  </div>
+  
+   <br>
+      <text style="font-size:25px"><b>SERVIÇO A SER REALIZADO</b></text>
+    <hr><p />
+  
     <label for="servicos">Serviços:</label>
-
     <select id="servicos">
       <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 04H - PRESENCIAL - Framework OKR para otimização de processos - Código RAE 4727.">Presencial - Senai - OKR</option>
       <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 120H - PRESENCIAL - Adequação à norma ABNT NBR ISO 9001:2015 – Sistema de Gestão da Qualidade - Código RAE 4712.">Presencial - Senai - ISO 9001</option>
@@ -83,10 +72,18 @@
       <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICOA 100H - REMOTO - Branding - Código RAE 4685">Remoto - Senai - Branding</option>
       <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 140H - REMOTO - Desenvolvimento de Aplicativos - Código RAE 4689">Remoto - Senai - Aplicativo, Desenvolvimento</option>
     </select>
+  
+  <br><br>
+    <label for="testemunhaSTecSenai">Testemunha:</label>
+      <select id="testemunhaSTecSenai">
+        <option value="<b>Guilherme Pelegrini Brianez</b> <p /> Consultor de Negócios - SEBRAE <p /> CPF: 312.036.408-89">SEBRAE - Guilherme Pelegrini Brianez</option>
+        <option value="<b>Marcelo de Souza Santos</b> <p /> Consultor de Negócios - SEBRAE <p /> CPF: 159.318.258">SEBRAE - Marcelo de Souza Santos</option>
+        <option value="<b>Thiago Topasso Claro da Silva</b> <p /> Especialista Técnico - SENAI <p /> CPF: 344.601.558-26">SENAI - Thiago Topasso Claro da Silva</option>
+      </select>
+    
 
-    <button id="botaoImpressaoCnpj" style="background-color: #00008b; color: white; font-size: 1.2em;">
-      <b>Enviar</b>
-    </button>
+    
+    <button id="botaoImpressaoCnpj" style="background-color: #00008b; color: white; font-size: 1.2em;"><b>Enviar</b></button>
     <button id="botaoBuscarCadastro">Buscar Cadastro</button>
     <br><br>
 
@@ -119,48 +116,43 @@
         </tr>
 
         <tr>
-          <th>CNPJ</th>
-          <td id="cnpj-td"></td>
+          <th>Razão Social</th> <td id="razao-social-td"></td>
         </tr>
         <tr>
-          <th>Razão Social</th>
-          <td id="razao-social-td"></td>
+          <th>Número CNPJ</th> <td id="cnpj-td"></td>
         </tr>
         <tr>
-          <th>Nome Fantasia</th>
-          <td id="empresa-nome-fantasia"></td>
+          <th>Nome Fantasia</th> <td id="empresa-nome-fantasia"></td>
         </tr>
         <tr>
-          <th>Atividade Principal</th>
-          <td id="empresa-atividade-principal"></td>
+          <th>Situação CNPJ</th> <td id="empresa-situacao"></td>
         </tr>
         <tr>
-          <th>Logradouro</th>
-          <td id="empresa-logradouro"></td>
+          <th>Sócio/Propr.</th> <td id="qsa-td"></td>
         </tr>
         <tr>
-          <th>Município</th>
-          <td id="empresa-municipio"></td>
+          <th>Atividade Principal</th> <td id="empresa-atividade-principal"></td>
         </tr>
         <tr>
-          <th>Situação da Empresa</th>
-          <td id="empresa-situacao"></td>
+          <th>Logradouro</th> <td id="empresa-logradouro"></td>
         </tr>
         <tr>
-          <th>Telefone</th>
-          <td id="telefone-td"></td>
+          <th>Município</th> <td id="empresa-municipio"></td>
+        </tr>
+        <tr>
+          <th>Telefone</th> <td id="telefone-td"></td>
         </tr>
         <tr>
           <th>-------</th>
           <td></td>
         </tr>
         <tr>
-          <th>CEP Pessoal</th>
-          <td id="cep-td"></td>
+          <th>Serviço</th>
+          <td id="servico-td"></td>
         </tr>
         <tr>
-          <th>Endereço Pessoal</th>
-          <td id="endereco-td"></td>
+          <th>-------</th>
+          <td></td>
         </tr>
         <tr>
           <th>Nome do Cliente</th>
@@ -169,6 +161,14 @@
         <tr>
           <th>CPF</th>
           <td id="cpf-td"></td>
+        </tr>
+        <tr>
+          <th>CEP Pessoal</th>
+          <td id="cep-td"></td>
+        </tr>
+        <tr>
+          <th>Endereço Pessoal</th>
+          <td id="endereco-td"></td>
         </tr>
         <tr>
           <th>Número da Residência</th>
@@ -181,10 +181,6 @@
         <tr>
           <th>E-mail Pessoal</th>
           <td id="email-td"></td>
-        </tr>
-        <tr>
-          <th>Serviço</th>
-          <td id="servico-td"></td>
         </tr>
       </tbody>
     </table>
