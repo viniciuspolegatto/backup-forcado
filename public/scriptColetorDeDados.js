@@ -158,7 +158,7 @@ botaoBuscarCadastro.addEventListener("click", function() {
     const senhaCorreta = "Sebrae@123";
 
     if (senha === senhaCorreta) {
-        window.location.href = "STecSenai-pickCliente.html";
+        window.location.href = "STecSenai-consumir.html";
     } else {
         alert("Senha incorreta. Acesso negado.");
     }
