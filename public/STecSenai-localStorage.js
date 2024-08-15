@@ -8,34 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailpessoal = localStorage.getItem("email");
   const cpf = localStorage.getItem("cpf");
   const servicos = localStorage.getItem("servico");
-  
-  // Função para obter o nome fantasia
-  function obterNomeFantasia() {
-    // Coleta o valor de dadosCnpj.fantasia
-    let nomeFantasia = dadosCnpj.fantasia;
-    
-    // Verifica se o nomeFantasia é vazio ou nulo e ajusta o valor
-    if (!nomeFantasia || nomeFantasia.trim() === "") {
-      nomeFantasia = ", nome fantasia não atribuído";
-    } else {
-      nomeFantasia = ", nome fantasia " + dadosCnpj.fantasia;
-    }
-    
-    return nomeFantasia;
-  }
+  const fantasiaPj
 
-  // Obtém o nome fantasia
-  const nomeFantasia = obterNomeFantasia();
-
-   
-   
-  if (!dadosCnpj || !cepDigitado) {
-    alert(
-      "Verifique se o CNPJ ou o CEP são apenas números e se estão corretos. Por favor, volte e preencha os dados novamente."
-    );
-    window.location.href = "/index.html";
-    return;
-  }
 
   const reportDiv = document.getElementById("report");
   reportDiv.innerHTML = `

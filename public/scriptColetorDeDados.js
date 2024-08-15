@@ -73,11 +73,12 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
      return socioPj;}
   let socioPj = obterQsaPj();
   
-  // ----------------------------------------
+  // ---------------------------------------- fantasiaPj telefonePj emailPj socioPj
     
 
 // Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
     document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
+    document.getElementById('qsa-td').textContent = socioPj;
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
