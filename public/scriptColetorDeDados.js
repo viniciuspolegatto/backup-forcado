@@ -17,8 +17,9 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
   const servico = document.getElementById('servicos').value;
-  const testemunhaSTecSenai = document.getElementById('testemunhaSTecSenai');
-
+  const servico2Element = document.getElementById("servicos2");
+  const servico2Value = servico2Element.value; // Obtém o valor selecionado
+  
 // Valida se nome, cpf e telefone estão preenchidos
     if (!nomeCliente || !cpf || !telefone) {
       alert("Preencha Nome, CPF e Telefone");
@@ -71,10 +72,9 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     } else {socioPj = dataCnpj.qsa[0].nome;}
      return socioPj;}
   let socioPj = obterQsaPj();
-  
-  // ----------------------------------------
-    
 
+
+// ----------------------------------------
 // Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
     document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
     document.getElementById('qsa-td').textContent = socioPj;
@@ -93,6 +93,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
     document.getElementById('servico-td').textContent = servico;
+    document.getElementById("servico2-td").textContent = servico2Value;
 
     document.getElementById('data-table').style.display = 'block';
 
@@ -108,6 +109,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('fantasiaPj',fantasiaPj);
     localStorage.setItem('telefonePj',telefonePj);
     localStorage.setItem('emailPj',emailPj);
+    localStorage.setItem('servico2',servico2Value);
   
   } catch (error) {
     console.error(error);
@@ -120,36 +122,33 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
         info01: nomeCliente,
         info02: cpf,
         info03: email,
-        info04: telefone,
+        info04: servico2Value,
         info05: servico
     };
 
-      try {
-            const response = await fetch('/addData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                    // Outros cabeçalhos podem ser necessários, como tokens de autenticação
-                },
-                body: JSON.stringify(data)
-            });
-        
-           console.log('Resposta do servidor:', response);
-
-            if (!response.ok) {
-                throw new Error('Erro ao tentar salvar os dados: ' + response.statusText);
-            }
-
-            const result = await response.json();
-            console.log('Dados salvos com sucesso:', result);
-            alert('Dados salvos com sucesso!');
-        } catch (error) {
-            console.error('Erro ao fazer POST:', error);
-            alert('DADOS SALVOS !');
+// *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
+  
+    fetch('/addData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(text => {
+        console.log('Resposta do servidor:', text);
+        if (text.includes("Dados adicionados ao banco de dados")) {
+            alert("Cadastro realizado com sucesso!");
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Erro ao realizar o cadastro: " + error.message);
+    });
+  
 
 //-----------------------------------------------------------
-  
 }); // FIM DO ADD EVENT LISTENER
 
 
