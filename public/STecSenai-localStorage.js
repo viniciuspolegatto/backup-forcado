@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const fantasiaPj = localStorage.getItem("fantasiaPj");
   const emailPj = localStorage.getItem("emailPj");
   const telefonePj = localStorage.getItem("telefonePj");
+  
+  const servicos2 = localStorage.getItem("servico2");
+  const partesTestemunha = servicos2.split(" / ");
+  const nomeTestemunhaSTecSenai = partesTestemunha[0];
+  const cargoTestemunhaSTecSenai = partesTestemunha[1];
+  const cpfTestemunhaSTecSenai = partesTestemunha[2];
+  
 
 
   const reportDiv = document.getElementById("report");
@@ -34,32 +41,19 @@ document.addEventListener("DOMContentLoaded", function () {
   
   const clienteAssinante = document.getElementById("clienteAssinante");
   clienteAssinante.innerHTML = `
-    <h3 style="text-align: justify;">
-    <b>CONTRATANTE / EMPRESA</b><br>
-    <b>${nomeCliente}<b><br>
-    <b>${cpf}<b>
-    </p>
+    <p style="margin: 0.15em 0;">CONTRATANTE / EMPRESA</p>
+    <p style="margin: 0.15em 0;">${nomeCliente}</p>
+    <p style="margin: 0.15em 0;">${cpf}</p>
   `;
 
+  const testemunhaAssinante = document.getElementById("testemunhaAssinante");
+  testemunhaAssinante.innerHTML = `
+     <p style="margin: 0.15em 0;">${nomeTestemunhaSTecSenai}</p>
+      <p style="margin: 0.15em 0;">${cargoTestemunhaSTecSenai}</p>
+      <p style="margin: 0.15em 0;">${cpfTestemunhaSTecSenai}</p>
+  `;
   
   document.getElementById("voltar").addEventListener("click", function () {
     window.location.href = "/index.html";
   });
 });
-
-
-
-
-/* /************************************************************************
-// Função para gerar o texto do contrato com base nos dados do localStorage
-/* ******************** OPÇÕES DE DADOS DO LOCAL STORAGE PARA FUNçÂO getItem ****
-    
-    nome,                estadoPf          estadoPj          cnpjPj              testemunhaSenai,
-    cpf,                 cep               cepPj             razaoPj
-    nasc,                telefone          situacaoPj        fantasiaPj
-    logradouroPf,        email             telefonePj        logradouroPj
-    numPf,               STecSenai         emailPj           numPj
-    bairroPf,            cidadePf,         municipioPj       bairroPj
-   
-********************************************************* 
-*/
