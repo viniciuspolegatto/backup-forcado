@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// Rota para busca de CNPJ
+// ************************** Rota para busca de CNPJ *************************
 app.get('/cnpj/:cnpj', (req, res) => {
   const cnpj = req.params.cnpj;
   const options = {
@@ -42,7 +42,7 @@ app.get('/cnpj/:cnpj', (req, res) => {
 });
 
 
-// Configuração do banco de dados
+// ******************** Configuração do banco de dados - Acesso *****************
 const db = mysql.createConnection({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -56,13 +56,13 @@ db.connect((err) => {
 });
 
 
-// Rota principal
+// ***************** Rota principal - Primeira página a ser aberta **************
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 
-// Rota para adicionar dados ao banco de dados
+// ************** Rota para adicionar dados ao banco de dados *******************
 app.post('/addData', (req, res) => {
   const { info01, info02, info03, info04, info05 } = req.body; // variáveis da String "data" no scriptColetorDeDados.js
   const query = 'INSERT INTO ClientesSEBRAE (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
@@ -81,7 +81,7 @@ app.post('/addData', (req, res) => {
 });
 
 
-// Rota para buscar todos os cadastros
+// ************************** Rota para buscar todos os cadastros ***************
 app.get('/buscarCadastro', (req, res) => {
   const query = 'SELECT nome, cpf, telefone FROM ClientesSEBRAE';
   
@@ -96,7 +96,7 @@ app.get('/buscarCadastro', (req, res) => {
   });
 });
 
-// Rota para buscar dados por CPF
+// *********************** Rota para buscar dados por CPF **********************
 app.get('/buscarPorCpf/:cpf', (req, res) => {
   const cpf = req.params.cpf;
   const query = 'SELECT * FROM ClientesSEBRAE WHERE cpf = ?';

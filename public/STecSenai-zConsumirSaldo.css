@@ -1,0 +1,54 @@
+/* Arquivo CSS para formatação da tabela de usuários cadastrados para consumo de saldo */
+
+/*  Tabela de estruturação de dados  */
+#resultados {
+    max-height: 300px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 10px;
+}
+
+#listaDados {
+    max-height: 300px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 10px;
+}
+
+.tabela-container {
+    position: relative;
+    max-height: 300px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    position: relative;
+    z-index: 1;
+}
+
+th, td {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+tbody {
+    display: block;
+    height: 200px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}

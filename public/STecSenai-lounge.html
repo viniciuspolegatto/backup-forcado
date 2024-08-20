@@ -1,4 +1,4 @@
-<!-- Arquivo STecSenai-lounge.html, usado como tela de boas vindas para um visitante
+''<!-- Arquivo STecSenai-lounge.html, usado como tela de boas vindas para um visitante
   que deseje obter informações sobre o SEBRAETEC SENAI e gerar contratos -->
 
 <!DOCTYPE html>
@@ -19,18 +19,33 @@
         <button><a href="index.html">VOLTAR</a></button>
         <button><a href="STecSenai-dadosContrato.html">FAZER CONTRATO</a></button>
         <button id="consumirSaldoButton">CONSUMIR SALDO</button>
-    </div>
+    </div><br>
 
-    <h2>Dados Disponíveis</h2>
+    <h2>ATENDIMENTOS PRESENCIAIS</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Campo</th>
-                <th>Valor</th>
-            </tr>
+    <table style="border: 1px solid black; border-collapse: collapse; width:100%">
+      <thead>
+        <tr>
+          <th style="border: 1px solid black; padding: 1rem; background-color: red; color: white; text-align: center">TÍTULO</th>
+          <th style="border: 1px solid black; padding: 1rem; background-color: red; color: white; text-align: center">LINK Ficha Técnica</th>
+          <th style="border: 1px solid black; padding: 1rem; background-color: red; color: white; text-align: center">C.Hor.</th>
+          <th style="border: 1px solid black; padding: 1rem; background-color: red; color: white; text-align: center">PÙBLICO</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px">REMOTO - Caderno de Tendências</td>
+          <td style="border: 1px solid black; padding: 8px"><a href="https://datasebrae.com.br/wp-content/uploads/2020/04/Caderno-de-Tend%C3%AAncias-DS24003-3.pdf">Ficha - Caderno de Tendências</a></td>
+          <td style="border: 1px solid black; padding: 8px">40</td>
+          <td style="border: 1px solid black; padding: 8px; text-align: center">ME / EPP</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px">REMOTO - Desenvolvimento de App</td>
+          <td style="border: 1px solid black; padding: 8px"><a href="https://folha.uol.com.br">Ficha - APP</a></td>
+          <td style="border: 1px solid black; padding: 8px">120</td>
+          <td style="border: 1px solid black; padding: 8px; text-align: center">ME / EPP</td>
+        </tr>
         </thead>
     </table>
+  
 
     <script>
         // Função para solicitar senha antes de redirecionar
