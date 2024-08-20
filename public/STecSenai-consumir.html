@@ -1,66 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Busca Cadastro</title>
-  
-    <style>
-        #resultados {
-            max-height: 300px; /* Ajuste a altura conforme necessário */
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        #listaDados {
-            max-height: 300px; /* Ajuste a altura conforme necessário */
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        .tabela-container {
-            position: relative;
-            max-height: 300px; /* Ajuste a altura conforme necessário */
-            overflow-y: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            position: relative;
-            z-index: 1;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-        tbody {
-            display: block;
-            height: 200px; /* Ajuste a altura conforme necessário */
-            overflow-y: auto;
-        }
-        thead, tbody tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="STecSenai-zConsumirSaldo.css">
 </head>
-
 <body>
     <h1>Buscar Cadastro</h1>
 
     <input type="text" id="cpfBusca" placeholder="Digite o CPF" />
     <button id="botaoPesquisar">PESQUISAR</button>
 
-    <p />
+    <p>Quantidade de pessoas chamadas "WALTER VICENTE FERREIRA": <span id="contadorNome">0</span></p>
 
-<!-- Área para mostrar os dados existentes -->
+    <!-- Área para mostrar os dados existentes -->
     <div id="listaDados" class="tabela-container">
         <h2>Dados Cadastrados:</h2>
     </div>
@@ -69,6 +21,7 @@
         // Função para carregar dados existentes
         function carregarDados() {
             console.log("Carregando dados cadastrados...");
+            
             fetch('/buscarCadastro')
                 .then(response => response.json())
                 .then(data => {
@@ -98,11 +51,15 @@
                         </table>
                     `;
                     document.querySelector("#listaDados").innerHTML = html;
+                    
+                    // Atualiza o contador de nomes
+                    const contadorNome = data.filter(item => item.nome === "WALTER VICENTE FERREIRA").length;
+                    document.querySelector("#contadorNome").textContent = contadorNome;
                 })
                 .catch(error => console.error('Error ao carregar dados:', error));
         }
 
-// Carregar dados ao iniciar a página
+        // Carregar dados ao iniciar a página
         carregarDados();
 
         document.querySelector("#botaoPesquisar").addEventListener("click", function () {
@@ -113,5 +70,4 @@
     </script>
 
 </body>
-
 </html>
