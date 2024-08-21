@@ -36,6 +36,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
     let resCnpj = await fetch(`/cnpj/${cnpjDigitado}`);
     let dataCnpj = await resCnpj.json();
+    console.log("retorno do script coletor de dados do dataCnpj" + dataCnpj)
   
 // Função para corrigir o nome fantasia, telefone Email e QSA da PJ caso não tenha -------------------------------------------------
 
@@ -73,6 +74,14 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
      return socioPj;}
   let socioPj = obterQsaPj();
 
+  function obterComplementoPj () {
+    let complementoPj = dataCnpj.complemento
+    if (!complementoPj || complementoPj === "") {
+      complementoPj = "";
+    } else {complementoPj = ", complemento "+dataCnpj.complemento;}
+     return complementoPj;}
+  let complementoPj = obterComplementoPj();
+  
 
 // ----------------------------------------
 // Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
@@ -106,24 +115,21 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
     localStorage.setItem('servico', servico);
+    localStorage.setItem('complementoPj', complementoPj);
     localStorage.setItem('fantasiaPj',fantasiaPj);
     localStorage.setItem('telefonePj',telefonePj);
     localStorage.setItem('emailPj',emailPj);
     localStorage.setItem('servico2',servico2Value);
-  
-  } catch (error) {
-    console.error(error);
-    alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
-  }
-  
+   
 
+  
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
     const data = {
         info01: nomeCliente,
         info02: cpf,
         info03: email,
         info04: servico2Value,
-        info05: servico
+        info05: fantasiaPj
     };
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
@@ -147,6 +153,11 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
         alert("Erro ao realizar o cadastro: " + error.message);
     });
   
+  
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
+  }
 
 //-----------------------------------------------------------
 }); // FIM DO ADD EVENT LISTENER

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cpf = localStorage.getItem("cpf");
   const servicos = localStorage.getItem("servico");
   const fantasiaPj = localStorage.getItem("fantasiaPj");
+  const complementoPj = localStorage.getItem("complementoPj");
   const emailPj = localStorage.getItem("emailPj");
   const telefonePj = localStorage.getItem("telefonePj");
   
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const reportDiv = document.getElementById("report");
   reportDiv.innerHTML = `
     <p style="text-align: justify;">
-      ${dadosCnpj.nome}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${dadosCnpj.cnpj}, localizada na ${dadosCnpj.logradouro}, ${dadosCnpj.numero},
+      ${dadosCnpj.nome}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${dadosCnpj.cnpj}, localizada na ${dadosCnpj.logradouro}, ${dadosCnpj.numero}${complementoPj},
       bairro ${dadosCnpj.bairro}, no município de ${dadosCnpj.municipio} - SP, CEP: ${dadosCnpj.cep}, telefone(s) ${telefonePj},
       e-mail ${emailPj}, empresa neste ato representada por ${nomeCliente}, brasileiro(a), Empresário(a)/Autônomo(a) com 
       inscrição no CPF nº ${cpf}, residente à ${cepDigitado.logradouro}, nº ${numeroResidencia}, bairro ${cepDigitado.bairro},
