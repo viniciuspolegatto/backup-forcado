@@ -63,6 +63,8 @@ app.get('/', (req, res) => {
 
 
 // ************** Rota para adicionar dados ao banco de dados *******************
+//
+//   
 app.post('/addData', (req, res) => {
   const { info01, info02, info03, info04, info05 } = req.body; // variáveis da String "data" no scriptColetorDeDados.js
   const query = 'INSERT INTO ClientesSEBRAE (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
@@ -96,6 +98,7 @@ app.get('/buscarCadastro', (req, res) => {
   });
 });
 
+
 // *********************** Rota para buscar dados por CPF **********************
 app.get('/buscarPorCpf/:cpf', (req, res) => {
   const cpf = req.params.cpf;
@@ -111,6 +114,7 @@ app.get('/buscarPorCpf/:cpf', (req, res) => {
     res.json(results);
   });
 });
+
 
 // Inicia o servidor
 app.listen(PORT, () => {

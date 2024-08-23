@@ -2,7 +2,7 @@ let endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiSebraetec
 
 let elementoParaInserirProdutos = document.getElementById('tabela_produtos');
 
-let produtos = [];
+//let produtos = [];
 
 // Chama a função diretamente
 buscarProdutos();
@@ -29,9 +29,9 @@ function exibirProdutosNaTela(produtos) {
     elementoParaInserirProdutos.innerHTML += `
         <tr>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.familia}</td>
-          <td style="border: 1px solid black; padding: 8px"><a href="https://datasebrae.com.br/wp-content/uploads/2020/04/Caderno-de-Tend%C3%AAncias-DS24003-3.pdf">Ficha - Caderno de Tendências</a></td>
+          <td style="border: 1px solid black; padding: 8px"><a href="${produtoUnico.linkFicha}">Ficha Técnica - link</a></td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.titulo}</td>
-          <td style="border: 1px solid black; padding: 8px; text-align: center">ME / EPP</td>
+          <td style="border: 1px solid black; padding: 8px; text-align: center">${produtoUnico.tipoEntrega}</td>
         </tr>
     `;
   });

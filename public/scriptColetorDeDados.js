@@ -9,23 +9,56 @@ const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 // Ação de coleta e armazenagem de dados da página STecSenai-dadosContrato.html
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
-  const cepDigitado = document.getElementById('cep').value;
-  const cnpjDigitado = document.getElementById('cnpj').value;
+  let cepBruto = document.getElementById('cep').value;
+  let cnpjBruto = document.getElementById('cnpj').value;
   const nomeCliente = document.getElementById('nomeClienteForm').value;
-  const cpf = document.getElementById('cpf').value;
+  const cpfBruto = document.getElementById('cpf').value;
   const numeroResidencia = document.getElementById('numeroResidencia').value;
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
-  const servico = document.getElementById('servicos').value;
-  const servico2Element = document.getElementById("servicos2");
-  const servico2Value = servico2Element.value; // Obtém o valor selecionado
+  const servicoSelecionado = document.getElementById('listaDeServicos').value;
+  const testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
+  const testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
   
-// Valida se nome, cpf e telefone estão preenchidos
-    if (!nomeCliente || !cpf || !telefone) {
+  
+// Valida se nome, cpf e telefone estão preenchidos *******************************
+    if (!nomeCliente || !cpfBruto || !telefone) {
       alert("Preencha Nome, CPF e Telefone");
       return; // Impede o envio dos dados
     }
+
+// Função para eliminar caracteres do CNPJ, CEP e CPF que não sáo números *********
+  function limparCnpj(cnpjBruto){
+    return cnpjBruto.replace(/\D/g, '');
+  } let cnpjDigitado = limparCnpj(cnpjBruto);
   
+  function limparCep(cepBruto){
+    return cepBruto.replace(/\D/g, '');
+  } let cepDigitado = limparCep(cepBruto);
+  
+  function limparCpf(cpfBruto){
+    return cpfBruto.replace(/\D/g, '');
+  } let cpf = limparCpf(cpfBruto)
+  
+  
+// SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
+  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
+  const testemunhaNome = testemunhaDetalhes[0];
+  const testemunhaCargo = testemunhaDetalhes[1];
+  const testemunhaCpf = testemunhaDetalhes[2];
+//------------------------------------------------- 
+  const servicoDetalhes = servicoSelecionado.split(" | "); // formato apresentado em STecSenai-scrApiProd.js
+  const servicoFamilia = servicoDetalhes[0];
+  const servicoTitulo = servicoDetalhes[1];  
+  const servicoRae = servicoDetalhes[2];
+  const servicoRM = servicoDetalhes[3];
+  const servicoValor = servicoDetalhes[4];
+  const servicoTipo = servicoDetalhes[5];
+  const servicoQhora = servicoDetalhes[6];
+  const servicoModalidade = servicoDetalhes[7];
+  
+
+// ELEMENTO PARA COLETAR INFORMAÇÕES DE CNPJ e CEP
   try {
     let resCep = await fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`);
     let dataCep = await resCep.json();
@@ -38,7 +71,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     let dataCnpj = await resCnpj.json();
     console.log("retorno do script coletor de dados do dataCnpj" + dataCnpj)
   
-// Função para corrigir o nome fantasia, telefone Email e QSA da PJ caso não tenha -------------------------------------------------
+// Função para corrigir o nome fantasia, telefone, Email, complemento e QSA da PJ caso não tenha -------------------------------------------------
 
   function obterNomeFantasia() {
     let fantasiaPj = dataCnpj.fantasia;
@@ -101,8 +134,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
-    document.getElementById('servico-td').textContent = servico;
-    document.getElementById("servico2-td").textContent = servico2Value;
+    document.getElementById('servico-td').textContent = `${servicoTitulo} - ${servicoQhora} H - ${servicoModalidade}`;
+    document.getElementById("testemunha-td").textContent = testemunhaNome;
 
     document.getElementById('data-table').style.display = 'block';
 
@@ -114,21 +147,39 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('numeroResidencia', numeroResidencia);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
-    localStorage.setItem('servico', servico);
+
     localStorage.setItem('complementoPj', complementoPj);
     localStorage.setItem('fantasiaPj',fantasiaPj);
     localStorage.setItem('telefonePj',telefonePj);
     localStorage.setItem('emailPj',emailPj);
-    localStorage.setItem('servico2',servico2Value);
-   
+    
+    localStorage.setItem('servicoFamilia', servicoFamilia);
+    localStorage.setItem('servicoTitulo', servicoTitulo);
+    localStorage.setItem('servicoRae', servicoRae);
+    localStorage.setItem('servicoRM', servicoRM);
+    localStorage.setItem('servicoValor', servicoValor);
+    localStorage.setItem('servicoTipo', servicoTipo);
+    localStorage.setItem('servicoQhora', servicoQhora);
+    localStorage.setItem('servicoModalidade', servicoModalidade);
+    
+    localStorage.setItem('testemunhaNome', testemunhaNome);
+    localStorage.setItem('testemunhaCargo', testemunhaCargo);
+    localStorage.setItem('testemunhaCpf', testemunhaCpf);
+    
 
-  
+/*  
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
+CLIENTE: nomeCliente, cpf, nasc., cep, num., muni, bairro, telef, 
+PRODUTO: RM, RAE, nomeProd, Valor, CHor,
+GESTAO: numPasta, numProcStarTec, nomeTest, cpfTmunha, cargoTmunha, especialista, telEspec., Inicio
+CNPJ: razSoc, nomFant, cepPj, numPj, muniPj, bairroPj, telPj */
+       
+ 
     const data = {
         info01: nomeCliente,
         info02: cpf,
         info03: email,
-        info04: servico2Value,
+        info04: dataCnpj.cnpj,
         info05: fantasiaPj
     };
 

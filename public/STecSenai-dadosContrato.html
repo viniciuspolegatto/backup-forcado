@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisa de CNPJ para Contrato</title>
     <script src="scriptColetorDeDados.js" defer></script>
+    <script src="STecSenai-scrApiProd.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   
@@ -62,28 +63,21 @@
       <text style="font-size:25px"><b>SERVIÇO A SER REALIZADO</b></text>
     <hr><p />
   
-    <label for="servicos">Serviços:</label>
-    <select id="servicos">
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 04H - PRESENCIAL - Framework OKR para otimização de processos - Código RAE 4727.">Presencial - Senai - OKR</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 120H - PRESENCIAL - Adequação à norma ABNT NBR ISO 9001:2015 – Sistema de Gestão da Qualidade - Código RAE 4712.">Presencial - Senai - ISO 9001</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 40H - REMOTO - Implantação de Loja Virtual - Código RAE 4700."> Remoto - Senai - Loja Virtual, Desenvolvimento</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 40H - REMOTO - Desenvolvimento de Mídias Digitais de Comunicação - Código RAE 4690."> Remoto - Senai - Mídias Digitais de Comunicação, Desenvolvimento</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 45H - REMOTO - Planejamento para presença digital e links patrocinados - Código RAE 4708."> Remoto - Senai - Pres. Digital e Links Patrocinado</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 45H - REMOTO - Inserção Digital - Desenvolvimento de Website - Código RAE 4704.">Remoto - Senai - WebSite, Desenvolvimento</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICOA 100H - REMOTO - Branding - Código RAE 4685">Remoto - Senai - Branding</option>
-      <option value="SEBRAETEC SENAI - CONSULTORIA TECNOLÓGICA 140H - REMOTO - Desenvolvimento de Aplicativos - Código RAE 4689">Remoto - Senai - Aplicativo, Desenvolvimento</option>
+    <label for="listaDeServicos">Serviços:</label>
+    <select id="listaDeServicos">
+    <!-- VALOR PREENCHIDO PELA API NO ARQUIVO STecSenai-scrApiProd.js ************ -->
     </select>
   
 
   <br><br>
-    <label for="servicos2">Testemunha:</label>
-    <select id="servicos2">
-      <option value="Guilherme Pelegrini Brianez / Consultor de Negócios - SEBRAE / CPF: 312.036.408-89">SEBRAE - Guilherme Pelegrini Brianez</option>
-      <option value="Marcelo de Souza Santos / Consultor de Negócios - SEBRAE / CPF: 159.318.258-94">SEBRAE - Marcelo de Souza Santos</option>
-      <option value="Margareth Kavaguiti / Analista de Negócios - SEBRAE / CPF: 092.007.268-28">SEBRAE - Margareth Kavaguti</option>
-      <option value="Ariadne Hoiara Zanin / Consultora de Negócios - SEBRAE / CPF: 003.614.189-09">SEBRAE - Ariadne Zanin</option>
-      <option value="Igor Juliano Ferro / Especialista Técnico - SENAI / CPF: 430.591.758-02">SENAI - Igor Juliano Ferro</option>
-      <option value="Thiago Topasso Claro da Silva / Especialista Técnico - SENAI / CPF: 344.601.558-26">SENAI - Thiago Topasso Claro da Silva</option>    
+    <label for="listaDeTestemunhas">Testemunha:</label>
+    <select id="listaDeTestemunhas">
+      <option value="Ariadne Hoiara Zanin | Consultora de Negócios - SEBRAE | CPF: 003.614.189-09">SEBRAE - Ariadne Zanin</option>
+      <option value="Guilherme Pelegrini Brianez | Consultor de Negócios - SEBRAE | CPF: 312.036.408-89">SEBRAE - Guilherme Pelegrini Brianez</option>
+      <option value="Marcelo de Souza Santos | Consultor de Negócios - SEBRAE | CPF: 159.318.258-94">SEBRAE - Marcelo de Souza Santos</option>
+      <option value="Margareth Kavaguiti | Analista de Negócios - SEBRAE | CPF: 092.007.268-28">SEBRAE - Margareth Kavaguti</option>
+      <option value="Igor Juliano Ferro | Especialista Técnico - SENAI | CPF: 430.591.758-02">SENAI - Igor Juliano Ferro</option>
+      <option value="Thiago Topasso Claro da Silva | Especialista Técnico - SENAI | CPF: 344.601.558-26">SENAI - Thiago Topasso Claro da Silva</option>    
     </select>
     
 
@@ -156,7 +150,7 @@
         </tr>
         <tr>
           <th>Testemunha</th>
-          <td id="servico2-td"></td>
+          <td id="testemunha-td"></td>
         </tr>
         
         
