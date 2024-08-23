@@ -219,7 +219,7 @@ botaoBuscarCadastro.addEventListener("click", function() {
     const senhaCorreta = "Sebrae@123";
 
     if (senha === senhaCorreta) {
-        window.location.href = "STecSenai-consumir.html";
+        window.location.href = "STecSenai-pickCliente.html";
     } else {
         alert("Senha incorreta. Acesso negado.");
     }
