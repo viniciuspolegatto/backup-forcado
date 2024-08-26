@@ -85,7 +85,7 @@ app.post('/addData', (req, res) => {
 
 // ************************** Rota para buscar todos os cadastros ***************
 app.get('/buscarCadastro', (req, res) => {
-  const query = 'SELECT NomePfSenaiST, CpfPfSenaiST, municipioPfSenaiST, telefonePfSenaiST, razaoPj, fantasiaPj, municipioPj, telefonePj, emailPfSenaiST  FROM ClienteSebraetecSenai';
+  const query = 'SELECT ID, NomePfSenaiST, CpfPfSenaiST, municipioPfSenaiST, telefonePfSenaiST, razaoPj, fantasiaPj, municipioPj, telefonePj, emailPfSenaiST  FROM ClienteSebraetecSenai';
   
   db.query(query, (err, results) => {
     if (err) {
