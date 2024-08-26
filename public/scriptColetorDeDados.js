@@ -3,23 +3,24 @@ STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage
 STecSenai-contrato e STecSenai-consumir */
 
 // Valores declarados em função dos botões existentes na STecSenai-dadosContrato.html
-const botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
-const botaoGerarContrato = document.querySelector("#botaoGerarContrato");
+let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
+let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 
 // Ação de coleta e armazenagem de dados da página STecSenai-dadosContrato.html
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   let cepBruto = document.getElementById('cep').value;
   let cnpjBruto = document.getElementById('cnpj').value;
-  const nomeCliente = document.getElementById('nomeClienteForm').value;
-  const cpfBruto = document.getElementById('cpf').value;
-  const numeroResidencia = document.getElementById('numeroResidencia').value;
-  const telefone = document.getElementById('telefone').value;
-  const email = document.getElementById('email').value;
-  const servicoSelecionado = document.getElementById('listaDeServicos').value;
-  const testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
-  const testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
-  
+  let nomeCliente = document.getElementById('nomeClienteForm').value;
+  let nascimentoCliente = document.getElementById('nascimento').value;
+  let cpfBruto = document.getElementById('cpf').value;
+  let numeroResidencia = document.getElementById('numeroResidencia').value;
+  let telefone = document.getElementById('telefone').value;
+  let email = document.getElementById('email').value;
+  let servicoSelecionado = document.getElementById('listaDeServicos').value;
+  let testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
+  let testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
+
   
 // Valida se nome, cpf e telefone estão preenchidos *******************************
     if (!nomeCliente || !cpfBruto || !telefone) {
@@ -39,7 +40,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   function limparCpf(cpfBruto){
     return cpfBruto.replace(/\D/g, '');
   } let cpf = limparCpf(cpfBruto)
-  
+
   
 // SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
   const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
@@ -56,7 +57,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const servicoTipo = servicoDetalhes[5];
   const servicoQhora = servicoDetalhes[6];
   const servicoModalidade = servicoDetalhes[7];
-  
+
+
 
 // ELEMENTO PARA COLETAR INFORMAÇÕES DE CNPJ e CEP
   try {
@@ -114,7 +116,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     } else {complementoPj = ", complemento "+dataCnpj.complemento;}
      return complementoPj;}
   let complementoPj = obterComplementoPj();
-  
+
+
 
 // ----------------------------------------
 // Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
@@ -167,20 +170,90 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('testemunhaCpf', testemunhaCpf);
     
 
-/*  
+
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
-CLIENTE: nomeCliente, cpf, nasc., cep, num., muni, bairro, telef, 
-PRODUTO: RM, RAE, nomeProd, Valor, CHor,
-GESTAO: numPasta, numProcStarTec, nomeTest, cpfTmunha, cargoTmunha, especialista, telEspec., Inicio
-CNPJ: razSoc, nomFant, cepPj, numPj, muniPj, bairroPj, telPj */
-       
- 
+/*
+CLIENTE: ----------------------------------------------
+nomeCliente, NomePfSenaiST
+cpf,CpfPfSenaiST
+nascimentoCliente,nascimentoPfSenaiST
+telefone,telefonePfSenaiST
+email,emailPfSenaiST
+dataCep.cep,cepPfSenaiST
+dataCep.logradouro,logradouroPfSenaiST
+numeroResidencia,numeroResidenciaPfSenaiST
+dataCep.bairro,bairroPfSenaiST
+dataCep.localidade,municipioPfSenaiST
+
+TESTEMUNHA: ----------------------------------------------
+testemunhaNome,testemunhaNomeSenaiST
+testemunhaCargo,testemunhaCargoSenaiST
+testemunhaCpf,testemunhaCpfSenaiST
+
+SERVIÇO:  ----------------------------------------------
+servicoFamilia,ServFamiliaSenaiST
+servicoTitulo,servTituloSenaiST
+servicoRae,servRaeSenaiST
+servicoRM,servRMSenaiST
+servicoValor,servValorSenaiST
+servicoTipo,servTipoSenaiST
+servicoQhora,servQhoraSenaiST
+servicoModalidade,servModalidadeSenaiST
+
+CNPJ: ----------------------------------------------
+dataCnpj.cnpj,
+dataCnpj.nome,
+fantasiaPj,
+dataCnpj.atividade_principal[0].text;
+telefonePj,
+emailPj,
+socioPj,
+dataCnpj.situacao,
+dataCnpj.logradouro,
+dataCnpj.numero,
+complementoPj
+dataCnpj.brairro,
+dataCnpj.municipio,
+------------------------------------------------------ */ 
+
     const data = {
         info01: nomeCliente,
         info02: cpf,
-        info03: email,
-        info04: dataCnpj.cnpj,
-        info05: fantasiaPj
+        info03: nascimentoCliente,
+        info04: telefone,
+        info05: email,
+        info06: dataCep.cep,
+        info07: dataCep.logradouro,
+        info08: numeroResidencia,
+        info09: dataCep.bairro,
+        info10: dataCep.localidade,
+
+        info11: testemunhaNome,
+        info12: testemunhaCargo,
+        info13: testemunhaCpf,
+
+        info14: servicoFamilia,
+        info15: servicoTitulo,
+        info16: servicoRae,
+        info17: servicoRM,
+        info18: servicoValor,
+        info19: servicoTipo,
+        info20: servicoQhora,
+        info21: servicoModalidade,
+
+        info22: dataCnpj.cnpj,
+        info23: dataCnpj.nome,
+        info24: fantasiaPj,
+        info25: dataCnpj.atividade_principal[0].text,
+        info26: telefonePj,
+        info27: emailPj,
+        info28: socioPj,
+        info29: dataCnpj.situacao,
+        info30: dataCnpj.logradouro,
+        info31: dataCnpj.numero,
+        info32: complementoPj,
+        info33: dataCnpj.bairro,
+        info34: dataCnpj.municipio
     };
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
