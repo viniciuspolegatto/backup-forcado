@@ -32,7 +32,13 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>CPF</th>
+                                    <th>Município</th>
                                     <th>Telefone</th>
+                                    <th>Razão Social</th>
+                                    <th>Nome Fantasia</th>
+                                    <th>Município PJ</th>
+                                    <th>Telefone PJ</th>
+                                    <th>E-mail Pessoal</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,9 +46,15 @@
                     data.forEach(item => {
                         html += `
                             <tr>
-                                <td>${item.nome}</td>
-                                <td>${item.cpf}</td>
-                                <td>${item.telefone}</td>
+                                <td>${item.NomePfSenaiST}</td>
+                                <td>${item.CpfPfSenaiST}</td>
+                                <td>${item.municipioPfSenaiST}</td>
+                                <td>${item.telefonePfSenaiST}</td>
+                                <td>${item.razaoPj}</td>
+                                <td>${item.fantasiaPj}</td>
+                                <td>${item.municipioPj}</td>
+                                <td>${item.telefonePj}</td>
+                                <td>${item.emailPfSenaiST}</td>
                             </tr>
                         `;
                     });

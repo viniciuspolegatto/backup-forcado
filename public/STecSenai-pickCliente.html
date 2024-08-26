@@ -26,7 +26,7 @@
                 console.log("Detalhes recebidos:", data);
                 let html = "<ul>";
                 data.forEach(item => {
-                    html += `<li>Nome: ${item.nome}, CPF: ${item.cpf}, E-mail: ${item.email}, Telefone: ${item.telefone}, Endereço: ${item.endereco}</li>`;
+                    html += `<li>Nome: ${item.NomePfSenaiST}, CPF: ${item.CpfPfSenaiST}, Data de Nasc.: ${item.nascimentoPfSenaiST}, Telefone: ${item.telefonePfSenaiST}, E-mail: ${item.emailPfSenaiST} </li>`;
                 });
                 html += "</ul>";
                 document.querySelector("#resultados").innerHTML = html;

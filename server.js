@@ -66,12 +66,12 @@ app.get('/', (req, res) => {
 //
 //   
 app.post('/addData', (req, res) => {
-  const { info01, info02, info03, info04, info05 } = req.body; // variáveis da String "data" no scriptColetorDeDados.js
-  const query = 'INSERT INTO ClientesSEBRAE (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
+  const { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34} = req.body; // variáveis da String "data" no scriptColetorDeDados.js
+  const query = 'INSERT INTO ClienteSebraetecSenai (NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, bairroPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, cnpjPj, razaoPj, fantasiaPj, atividadePj, telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   
-  console.log('Dados recebidos:', { info01, info02, info03, info04, info05 });
+  console.log('Dados recebidos:', { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34 });
 
-  db.query(query, [info01, info02, info03, info04, info05], (err, result) => {
+  db.query(query, [info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34], (err, result) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       res.status(500).send('Erro ao inserir dados: ' + err.message);
@@ -85,7 +85,7 @@ app.post('/addData', (req, res) => {
 
 // ************************** Rota para buscar todos os cadastros ***************
 app.get('/buscarCadastro', (req, res) => {
-  const query = 'SELECT nome, cpf, telefone FROM ClientesSEBRAE';
+  const query = 'SELECT NomePfSenaiST, CpfPfSenaiST, municipioPfSenaiST, telefonePfSenaiST, razaoPj, fantasiaPj, municipioPj, telefonePj, emailPfSenaiST  FROM ClienteSebraetecSenai';
   
   db.query(query, (err, results) => {
     if (err) {
@@ -102,7 +102,7 @@ app.get('/buscarCadastro', (req, res) => {
 // *********************** Rota para buscar dados por CPF **********************
 app.get('/buscarPorCpf/:cpf', (req, res) => {
   const cpf = req.params.cpf;
-  const query = 'SELECT * FROM ClientesSEBRAE WHERE cpf = ?';
+  const query = 'SELECT * FROM ClientesSEBRAE WHERE CpfPfSenaiST = ?';
   
   db.query(query, [cpf], (err, results) => {
     if (err) {
