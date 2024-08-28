@@ -25,30 +25,46 @@ table {
     width: 100%;
     border-collapse: collapse;
     position: relative;
-    z-index: 1;
+    z-index: 0;
 }
 
-th, td {
+td {
     border: 1px solid rgb(221, 221, 221);
     padding: 8px;
     text-align: left;
+    z-index: 0;
 }
 
 th {
-    background-color: #f4f4f4;
-    position: sticky;
+    background-color: black;
+    position: sticky; /* fixed */
     top: 0;
     z-index: 2;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    opacity: 1; /* Garantia de cor sólida e sem transparência */    
 }
 
 tbody {
     display: block;
-    height: 200px; /* Ajuste a altura conforme necessário */
+    height: 600px; /* Ajuste a altura conforme necessário */
     overflow-y: auto;
 }
 
-thead, tbody tr {
+thead {
     display: table;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    table-layout: fixed;
+    z-index: 2;
+    text-align: center;
+}
+body tr {
+    display: table;
+    position: sticky;
+    top: 0;
     width: 100%;
     table-layout: fixed;
 }

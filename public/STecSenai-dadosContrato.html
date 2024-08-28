@@ -41,7 +41,7 @@
     <input type="text" id="cnpj" placeholder="Apenas Números" /><p />
 
     <br>
-      <text style="font-size:25px"><b>DADOS PESSOAIS</b></text>
+      <text style="font-size:25px"><b>DADOS PESSOAIS - CLIENTE</b></text>
     <hr><p />
     <label><b>NOME COMPLETO: </b></label>
     <input type="text" id="nomeClienteForm" placeholder="Insira Aqui o Nome" /><p />
@@ -79,7 +79,11 @@
       <option value="Igor Juliano Ferro | Especialista Técnico - SENAI | CPF: 430.591.758-02">SENAI - Igor Juliano Ferro</option>
       <option value="Thiago Topasso Claro da Silva | Especialista Técnico - SENAI | CPF: 344.601.558-26">SENAI - Thiago Topasso Claro da Silva</option>    
     </select>
-    
+  
+  <br><br>
+    <label>Solicitante: </label>
+    <input type="text" id="nomeSolicitanteForm" placeholder="Insira Aqui seu Nome" /><p />
+  <br>
 
     <button id="botaoImpressaoCnpj" style="background-color: #00008b; color: white; font-size: 1.2em;"><b>Enviar</b></button>
     <button id="botaoBuscarCadastro">Buscar Cadastro</button>
@@ -152,7 +156,10 @@
           <th>Testemunha</th>
           <td id="testemunha-td"></td>
         </tr>
-        
+        <tr>
+          <th>Solicitante</th>
+          <td id="solicitante-td"></td>
+        </tr>
         
         <tr>
           <th>-------</th>
