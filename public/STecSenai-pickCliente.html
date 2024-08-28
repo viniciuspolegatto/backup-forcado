@@ -3,39 +3,29 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Resultados</title>
-</head>
-<body>
+    <script src="STecSenai-scrPickCliente.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
     <h1>Resultados da Pesquisa</h1>
+    <br />
+
+    <label id="CconsumirSTecSenai">ID do Contrato</label>
+    <input type="text" id="consumirSTecSenai" placeholder="ID_Contrato" />
+    <button id="consumirPickCliente">CONSUMIR SALDO</button>
+    <br /><br />
+    <hr style="border: 1px solid black" />
+    <br />
     <div id="resultados"></div>
+    <br />
+    <hr style="border: 1px solid black" />
+    <br />
 
-    <script>
-        // Função para obter os parâmetros da URL
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-        
-        const cpf = getQueryParam('cpf');
-        console.log("Pesquisando detalhes para CPF:", cpf);
-
-        fetch(`/buscarPorCpf/${cpf}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log("Detalhes recebidos:", data);
-                let html = "<ul>";
-                data.forEach(item => {
-                    html += `<li>Nome: ${item.NomePfSenaiST}, CPF: ${item.CpfPfSenaiST}, Data de Nasc.: ${item.nascimentoPfSenaiST}, Telefone: ${item.telefonePfSenaiST}, E-mail: ${item.emailPfSenaiST} </li>`;
-                });
-                html += "</ul>";
-                document.querySelector("#resultados").innerHTML = html;
-            })
-            .catch(error => console.error('Error ao buscar detalhes:', error));
-    </script>
-  
-  <button>
-    <a href="index.html">VOLTAR</a>
-  </button>
-</body>
+    <button>
+      <a href="index.html">VOLTAR</a>
+    </button>
+  </body>
 </html>

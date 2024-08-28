@@ -20,6 +20,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   let servicoSelecionado = document.getElementById('listaDeServicos').value;
   let testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
   let testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
+  let solicitanteSTecSenai = document.getElementById('nomeSolicitanteForm').value;
 
   
 // Valida se nome, cpf e telefone estão preenchidos *******************************
@@ -139,6 +140,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('email-td').textContent = email;
     document.getElementById('servico-td').textContent = `${servicoTitulo} - ${servicoQhora} H - ${servicoModalidade}`;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
+    document.getElementById("solicitante-td").textContent = solicitanteSTecSenai;
 
     document.getElementById('data-table').style.display = 'block';
 
@@ -189,6 +191,7 @@ TESTEMUNHA: ----------------------------------------------
 testemunhaNome,testemunhaNomeSenaiST
 testemunhaCargo,testemunhaCargoSenaiST
 testemunhaCpf,testemunhaCpfSenaiST
+solicitanteSTecSenai, solicitanteSenaiST
 
 SERVIÇO:  ----------------------------------------------
 servicoFamilia,ServFamiliaSenaiST
@@ -253,7 +256,10 @@ dataCnpj.municipio,
         info31: dataCnpj.numero,
         info32: complementoPj,
         info33: dataCnpj.bairro,
-        info34: dataCnpj.municipio
+        info34: dataCnpj.municipio,
+        info35: solicitanteSTecSenai,
+        info36: "VAR1",
+        info37: "VAR2"
     };
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
