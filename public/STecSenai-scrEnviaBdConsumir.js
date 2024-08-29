@@ -20,7 +20,13 @@ let emailPfSenaiSTVar;
 let cnpjPjVar;
 let razaoPjVar;
 let servRMSenaiSTVar;
-let CpfPfSenaiSTVar
+let CpfPfSenaiSTVar;
+let testemunhaCargoSenaiSTVar;
+let testemunhaCpfSenaiSTVar;
+let servValorSenaiSTVar;
+let servTipoSenaiSTVar;
+let servQhoraSenaiSTVar;
+
 
 fetch(`/buscarPorIdContrato/${idContrato}`)
   .then((response) => response.json())
@@ -32,15 +38,22 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
       const item = data[0]; // Considera o primeiro item (ou ajuste conforme a lógica desejada)
 
       idContratoVar = item.ID_Contrato;
-      CpfPfSenaiSTVar = item.CpfPfSenaiST;
-      testemunhaNomeSenaiSTVar = item.testemunhaNomeSenaiST;
-      servRaeSenaiSTVar = item.servRaeSenaiST;
-      servRMSenaiSTVar = item.servRMSenaiST;
-      servTituloSenaiSTVar = item.servTituloSenaiST;
       nomePfSenaiSTVar = item.NomePfSenaiST;
+      CpfPfSenaiSTVar = item.CpfPfSenaiST;
       municipioPfSenaiSTVar = item.municipioPfSenaiST;
       telefonePfSenaiSTVar = item.telefonePfSenaiST;
       emailPfSenaiSTVar = item.emailPfSenaiST;
+      
+      testemunhaNomeSenaiSTVar = item.testemunhaNomeSenaiST;
+      testemunhaCargoSenaiSTVar = item.testemunhaCargoSenaiST;
+      testemunhaCpfSenaiSTVar = item.testemunhaCpfSenaiST;
+      servTituloSenaiSTVar = item.servTituloSenaiST;      
+      servRaeSenaiSTVar = item.servRaeSenaiST;
+      servRMSenaiSTVar = item.servRMSenaiST;
+      servValorSenaiSTVar = item.servValorSenaiST;
+      servTipoSenaiSTVar = item.servTipoSenaiST;
+      servQhoraSenaiSTVar = item.servQhoraSenaiST;
+      
       cnpjPjVar = item.cnpjPj;
       razaoPjVar = item.razaoPj;
       
@@ -82,26 +95,26 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
     const data = {
         info01: nomePfSenaiSTVar,
         info02: CpfPfSenaiSTVar,
-        info03: servRaeSenaiSTVar,
-        info04: servRMSenaiSTVar,
-        info05: "Teste",
+        info03: "Teste",
+        info04: telefonePfSenaiSTVar,
+        info05: emailPfSenaiSTVar,
         info06: "Teste",
         info07: "Teste",
         info08: "Teste",
         info09: "Teste",
-        info10: "Teste",
+        info10: municipioPfSenaiSTVar,
 
-        info11: "Teste",
-        info12: "Teste",
-        info13: "Teste",
+        info11: testemunhaNomeSenaiSTVar,
+        info12: testemunhaCargoSenaiSTVar,
+        info13: testemunhaCpfSenaiSTVar,
 
         info14: "Teste",
-        info15: "Teste",
-        info16: "Teste",
-        info17: "Teste",
-        info18: "Teste",
-        info19: "Teste",
-        info20: "Teste",
+        info15: servTituloSenaiSTVar,
+        info16: servRaeSenaiSTVar,
+        info17: servRMSenaiSTVar,
+        info18: servValorSenaiSTVar,
+        info19: servTipoSenaiSTVar,
+        info20: servQhoraSenaiSTVar,
         info21: "Teste",
 
         info22: "Teste",
@@ -121,24 +134,33 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
   
-    fetch('/addCliente', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(text => {
-        console.log('Resposta do servidor:', text);
-        if (text.includes("Dados adicionados ao banco de dados")) {
-            alert("Cadastro realizado com sucesso!");
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert("Erro ao realizar o cadastro: " + error.message);
+fetch('/addCliente', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.text())
+.then(text => {
+    console.log('Resposta do servidor:', text);
+    if (text.includes("Dados adicionados ao banco de dados")) {
+        // Use SweetAlert para mostrar a mensagem centralizada
+        swal("Cadastro realizado com sucesso!", {
+            icon: "success",
+        }).then(() => {
+            // Redireciona para a página index.html após o usuário clicar em OK
+            window.location.href = "index.html";
+        });
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+    swal("Erro ao realizar o cadastro: " + error.message, {
+        icon: "error",
     });
+});
+
   
 //-----------------------------------------------------------
 }); // FIM DO ADD EVENT LISTENER
