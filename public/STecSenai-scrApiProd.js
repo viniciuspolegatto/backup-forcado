@@ -49,39 +49,10 @@ function exibirProdutosNaLista(produtos) {
     produtos.forEach(produtoUnicoLista => {
       // Ajuste os nomes das propriedades conforme necessário
       elementoParaListarProdutos.innerHTML += `
-        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | 
-        ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.tipoEntrega} | 
-        ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}"
-        >${produtoUnicoLista.tipoEntrega} - ${produtoUnicoLista.tagProduto}</option>
+        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.tipoEntrega} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tipoEntrega} - ${produtoUnicoLista.tagProduto}</option>
       `;
     });
   } else {
     console.error('O formato dos dados recebidos não é um array');
   }
 }
-
-
-/* **********************************************************************
-const fetch = require('node-fetch'); // Importa o módulo node-fetch apenas para rodar no desenvolvimento
-let endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiSebraetecSenaiSp/main/produtosSebraetec.json';
-let produtos = [];
-
-buscarProdutos();
-
-async function buscarProdutos() {
-  try {
-    let res = await fetch(endpoint);
-    if (!res.ok) {
-      // Se a resposta não for bem-sucedida, lança um erro
-      throw new Error('Network response was not ok');
-    } else {
-      // Se a resposta for bem-sucedida
-      let produtos = await res.json();
-      console.log(produtos);
-    }
-  } catch (error) {
-    // Trata qualquer erro que ocorra durante a execução
-    console.error('Failed to fetch produtos:', error);
-  }
-}
-********************************************************************* */

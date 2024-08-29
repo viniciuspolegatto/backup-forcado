@@ -46,11 +46,7 @@ function carregarDados() {
                     `;
       document.querySelector("#listaDados").innerHTML = html;
 
-      // Atualiza o contador de nomes
-      const contadorNome = data.filter(
-        (item) => item.nomePfSenaiST === "WALTER VICENTE FERREIRA"
-      ).length;
-      document.querySelector("#contadorNome").textContent = contadorNome;
+
     })
     .catch((error) => console.error("Error ao carregar dados:", error));
 }

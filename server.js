@@ -121,7 +121,7 @@ app.get('/buscarContrato', (req, res) => {
 
 // ************************** Rota para buscar todos os CLIENTES CONSUMIDORES SEBRAETEC ***************
 app.get('/buscarCadastroClientes', (req, res) => {
-  const query = 'SELECT ID, NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, razaoPj, fantasiaPj, municipioPj, telefonePj, emailPfSenaiST  FROM ClienteSebraetecSenai';
+  const query = 'SELECT ID, NomePfSenaiST, CpfPfSenaiST, telefonePfSenaiST, emailPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servQhoraSenaiST, cnpjPj  FROM ClienteSebraetecSenai';
   
   db.query(query, (err, results) => {
     if (err) {
