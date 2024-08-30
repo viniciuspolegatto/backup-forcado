@@ -3,7 +3,6 @@ let endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiSebraetec
 
 let elementoParaListarProdutos = document.getElementById('listaDeServicos');
 
-//let produtos = [];
 
 // Chama a função diretamente
 buscarProdutos();
@@ -50,7 +49,7 @@ function exibirProdutosNaLista(produtos) {
     produtos.forEach(produtoUnicoLista => {
       // Ajuste os nomes das propriedades conforme necessário
       elementoParaListarProdutos.innerHTML += `
-        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.publico} | ${produtoUnicoLista.setorAtendido} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tipoEntrega} - ${produtoUnicoLista.tagProduto}</option>
+        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.publico} | ${produtoUnicoLista.setorAtendido} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.publico} - ${produtoUnicoLista.tagProduto}</option>
       `;
     });
   } else {
