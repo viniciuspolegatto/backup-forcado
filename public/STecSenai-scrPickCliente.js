@@ -33,20 +33,3 @@ document.querySelector("#consumirPickCliente").addEventListener("click", functio
   
     window.location.href = `/STecSenai-enviaBdConsumir.html?id_contrato=${idContrato}`;
 });
-
-
-
-/*
-document.querySelector("#consumirPickCliente").addEventListener("click", function () {
-    const id_consumir = document.querySelector("#consumirSTecSenai").value;
-    console.log("Pesquisando ID do contrato a consumir:", id_consumir);
-    window.location.href = `/STecSenai-enviaBdConsumir.html?id_consumir=${id_consumir}`;
-
-
-  
-<!--  NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, 
-  bairroPfSenaiST, , , testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, , 
-  , servRMSenaiST, servValorSenaiST, servTipoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, , , fantasiaPj, atividadePj, 
-  telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj -->
-  
-  */

@@ -168,11 +168,6 @@ app.get('/buscarPorIdContrato/:idContrato', (req, res) => {
 });
 
 
-
-
-
-
-
 // Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
