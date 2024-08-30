@@ -39,7 +39,36 @@ function carregarDados() {
 
       const contador40869 = data.filter(
         (item) => item.servRMSenaiST === "40869"
-      ).length;    
+      ).length;
+  
+      const contador40863R = data.filter(
+        (item) => item.servRMSenaiST === "40863-"
+      ).length;
+
+      const contador41123R = data.filter(
+        (item) => item.servRMSenaiST === "41123-"
+      ).length;
+  
+      const contador40864R = data.filter(
+        (item) => item.servRMSenaiST === "40864-"
+      ).length;
+
+      const contador42570R = data.filter(
+        (item) => item.servRMSenaiST === "42570-"
+      ).length;
+
+      const contador40865R = data.filter(
+        (item) => item.servRMSenaiST === "40865-"
+      ).length;
+    
+      const contador40867R = data.filter(
+        (item) => item.servRMSenaiST === "40867-"
+      ).length;
+
+      const contador40869R = data.filter(
+        (item) => item.servRMSenaiST === "40869-"
+      ).length; 
+
     
       // Do contador é substituído o saldo inicial
       let total42567 = 55 - contador42567;
@@ -50,7 +79,14 @@ function carregarDados() {
       let total42569 = 6 - contador42569;
       let total40867 = 0 - contador40867;
       let total40868 = 6 - contador40868;
-      let total40869 = 0 - contador40869;
+      let total40869 = 0 - contador40869;    
+      let total40863R = 55 - contador40863R;
+      let total41123R = 10 - contador41123R;
+      let total40864R = 0 - contador40864R;
+      let total42570R = 0 - contador42570R;
+      let total40865R = 0 - contador40865R;
+      let total40867R = 0 - contador40867R;
+      let total40869R = 0 - contador40869R;   
 
     
       // Atualiza os elementos HTML ou armazena em variáveis conforme necessário
@@ -63,6 +99,13 @@ function carregarDados() {
       document.querySelector("#contadorNome40867").textContent = total40867;
       document.querySelector("#contadorNome40868").textContent = total40868; 
       document.querySelector("#contadorNome40869").textContent = total40869;
+      document.querySelector("#contadorNome40863R").textContent = total40863R;
+      document.querySelector("#contadorNome41123R").textContent = total41123R;
+      document.querySelector("#contadorNome40864R").textContent = total40864R;
+      document.querySelector("#contadorNome42570R").textContent = total42570R;
+      document.querySelector("#contadorNome40865R").textContent = total40865R;
+      document.querySelector("#contadorNome40867R").textContent = total40867R;
+      document.querySelector("#contadorNome40869R").textContent = total40869R;
  
       // Armazenar os dados no localStorage para ser usado na nova janela de contrato
       localStorage.setItem('total42567', total42567);
@@ -74,6 +117,14 @@ function carregarDados() {
       localStorage.setItem('total40867', total40867);
       localStorage.setItem('total40868', total40868);
       localStorage.setItem('total40869', total40869);
+      localStorage.setItem('total40863R', total40863R);
+      localStorage.setItem('total41123R', total41123R);
+      localStorage.setItem('total40864R', total40864R);
+      localStorage.setItem('total42570R', total42570R);    
+      localStorage.setItem('total40865R', total40865R);
+      localStorage.setItem('total40867R', total40867R);
+      localStorage.setItem('total40869R', total40869R);
+    
   
     })
     .catch((error) => console.error("Erro ao carregar dados:", error));
