@@ -80,13 +80,13 @@ function carregarDados() {
       let total40867 = 0 - contador40867;
       let total40868 = 6 - contador40868;
       let total40869 = 0 - contador40869;    
-      let total40863R = 55 - contador40863R;
-      let total41123R = 10 - contador41123R;
+      let total40863R = 13 - contador40863R;
+      let total41123R = 18 - contador41123R;
       let total40864R = 0 - contador40864R;
-      let total42570R = 0 - contador42570R;
-      let total40865R = 0 - contador40865R;
-      let total40867R = 0 - contador40867R;
-      let total40869R = 0 - contador40869R;   
+      let total42570R = 4 - contador42570R;
+      let total40865R = 3 - contador40865R;
+      let total40867R = 3 - contador40867R;
+      let total40869R = 5 - contador40869R;   
 
     
       // Atualiza os elementos HTML ou armazena em variáveis conforme necessário
