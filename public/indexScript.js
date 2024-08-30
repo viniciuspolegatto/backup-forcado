@@ -29,13 +29,28 @@ function carregarDados() {
         (item) => item.servRMSenaiST === "42569"
       ).length;
     
+      const contador40867 = data.filter(
+        (item) => item.servRMSenaiST === "40867"
+      ).length;
+
+      const contador40868 = data.filter(
+        (item) => item.servRMSenaiST === "40868"
+      ).length;
+
+      const contador40869 = data.filter(
+        (item) => item.servRMSenaiST === "40869"
+      ).length;    
+    
       // Do contador é substituído o saldo inicial
-      let total42567 = 40 - contador42567;
+      let total42567 = 55 - contador42567;
       let total42568 = 10 - contador42568;
-      let total40864 = 10 - contador40864;
+      let total40864 = 0 - contador40864;
       let total40865 = 0 - contador40865;
-      let total40866 = 10 - contador40866;
-      let total42569 = 10 - contador42569;
+      let total40866 = 0 - contador40866;
+      let total42569 = 6 - contador42569;
+      let total40867 = 0 - contador40867;
+      let total40868 = 6 - contador40868;
+      let total40869 = 0 - contador40869;
 
     
       // Atualiza os elementos HTML ou armazena em variáveis conforme necessário
@@ -45,7 +60,9 @@ function carregarDados() {
       document.querySelector("#contadorNome40865").textContent = total40865;
       document.querySelector("#contadorNome40866").textContent = total40866;
       document.querySelector("#contadorNome42569").textContent = total42569;
-
+      document.querySelector("#contadorNome40867").textContent = total40867;
+      document.querySelector("#contadorNome40868").textContent = total40868; 
+      document.querySelector("#contadorNome40869").textContent = total40869;
  
       // Armazenar os dados no localStorage para ser usado na nova janela de contrato
       localStorage.setItem('total42567', total42567);
@@ -54,8 +71,10 @@ function carregarDados() {
       localStorage.setItem('total40865', total40865);
       localStorage.setItem('total40866', total40866);
       localStorage.setItem('total42569', total42569);
+      localStorage.setItem('total40867', total40867);
+      localStorage.setItem('total40868', total40868);
+      localStorage.setItem('total40869', total40869);
   
-
     })
     .catch((error) => console.error("Erro ao carregar dados:", error));
 }
