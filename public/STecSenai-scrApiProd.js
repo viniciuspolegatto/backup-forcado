@@ -34,7 +34,8 @@ async function buscarProdutos() {
 "codigoRae": 4727,
 "codigoRm": 42567,
 "valorSTecSenai": 770.00,
-"tipoEntrega": "ME / EPP",
+"publico": "ME / EPP",
+"setorAtendido": "Ind./Com./Serv.",
 "cargaHoraria": 4,
 "modalidade": "PRESENCIAL"
 *********************************************************** */
@@ -49,7 +50,7 @@ function exibirProdutosNaLista(produtos) {
     produtos.forEach(produtoUnicoLista => {
       // Ajuste os nomes das propriedades conforme necessário
       elementoParaListarProdutos.innerHTML += `
-        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.tipoEntrega} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tipoEntrega} - ${produtoUnicoLista.tagProduto}</option>
+        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.publico} | ${produtoUnicoLista.setorAtendido} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tipoEntrega} - ${produtoUnicoLista.tagProduto}</option>
       `;
     });
   } else {
