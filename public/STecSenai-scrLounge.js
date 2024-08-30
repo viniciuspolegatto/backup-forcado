@@ -25,7 +25,6 @@ async function buscarProdutos() {
   }
 }
 
-  
 
  function exibirProdutosNaTela(produtos) {
     produtos.forEach(produtoUnico => {
@@ -59,6 +58,27 @@ async function buscarProdutos() {
         case 40869:
           saldo = localStorage.getItem("total40869") || '';
           break;
+        case "40863-":
+          saldo = localStorage.getItem("total40863R") || '';
+          break;
+        case "41123-":
+          saldo = localStorage.getItem("total41123R") || '';
+          break;
+        case "40864-":
+          saldo = localStorage.getItem("total40864R") || '';
+          break;
+        case "42570-":
+          saldo = localStorage.getItem("total42570R") || '';
+          break;
+        case "40865-":
+          saldo = localStorage.getItem("total40865R") || '';
+          break;
+        case "40867-":
+          saldo = localStorage.getItem("total40867R") || '';
+          break;
+        case "40869-":
+          saldo = localStorage.getItem("total40869R") || '';
+          break;
         default:
           saldo = '';
       }
@@ -67,17 +87,17 @@ async function buscarProdutos() {
       // Monta a linha da tabela com os dados do produto
       elementoParaInserirProdutos.innerHTML += `
         <tr>
+          <td style="border: 1px solid black; padding: 8px">${saldo}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.titulo}</td>
+          <td style="border: 1px solid black; padding: 8px">${produtoUnico.cargaHoraria}</td>
+          <td style="border: 1px solid black; padding: 8px">${produtoUnico.modalidade}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px"><a href="${produtoUnico.linkFicha}">Ficha Técnica - link</a></td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.codigoRm}</td>
-          <td style="border: 1px solid black; padding: 8px">${produtoUnico.cargaHoraria}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.valorSTecSenai}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.publico}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.setorAtendido}</td>
-          <td style="border: 1px solid black; padding: 8px">${saldo}</td>
         </tr>
       `;
     });
   }
 });
-  
