@@ -2,22 +2,30 @@
 
 /*  Tabela de estruturação de dados  */
 #resultados {
-    max-height: 300px; /* Ajuste a altura conforme necessário */
+    max-height: 750px; /* Ajuste a altura conforme necessário */
     overflow-y: auto;
     border: 1px solid rgb(221, 221, 221);
     padding: 10px;
 }
 
 #listaDados {
-    max-height: 300px; /* Ajuste a altura conforme necessário */
+    max-height: 800px; /* Ajuste a altura conforme necessário */
     overflow-y: auto;
     border: 1px solid rgb(221, 221, 221);
     padding: 10px;
 }
 
+#listaClientes {
+    max-height: 800px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 10px;
+}
+
+
 .tabela-container {
     position: relative;
-    max-height: 300px; /* Ajuste a altura conforme necessário */
+    max-height: 750px; /* Ajuste a altura conforme necessário */
     overflow-y: auto;
 }
 

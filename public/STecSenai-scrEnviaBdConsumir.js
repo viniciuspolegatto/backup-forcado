@@ -26,6 +26,7 @@ let testemunhaCpfSenaiSTVar;
 let servValorSenaiSTVar;
 let servTipoSenaiSTVar;
 let servQhoraSenaiSTVar;
+let fantasiaPjVar;
 
 
 fetch(`/buscarPorIdContrato/${idContrato}`)
@@ -56,6 +57,7 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
       
       cnpjPjVar = item.cnpjPj;
       razaoPjVar = item.razaoPj;
+      fantasiaPjVar = item.fantasiaPj;
       
       
       // Exibir informações na página, se necessário
@@ -93,45 +95,47 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
 
     const data = {
-        info01: nomePfSenaiSTVar,
+        info01: nomePfSenaiSTVar, 
         info02: CpfPfSenaiSTVar,
-        info03: "Teste",
+        info03: "Teste", //nascimentoPfSenaiSTVar
         info04: telefonePfSenaiSTVar,
         info05: emailPfSenaiSTVar,
-        info06: "Teste",
-        info07: "Teste",
-        info08: "Teste",
-        info09: "Teste",
+        info06: "Teste", //cepPfSenaiSTVar
+        info07: "Teste", //logradouroPfSenaiSTVar
+        info08: "Teste", //numeroResidenciaPfSenaiSTVar
+        info09: "Teste", //bairroPfSenaiSTVar
         info10: municipioPfSenaiSTVar,
 
         info11: testemunhaNomeSenaiSTVar,
         info12: testemunhaCargoSenaiSTVar,
         info13: testemunhaCpfSenaiSTVar,
 
-        info14: "Teste",
+        info14: "Teste", //ServFamiliaSenaiSTVar
         info15: servTituloSenaiSTVar,
         info16: servRaeSenaiSTVar,
         info17: servRMSenaiSTVar,
         info18: servValorSenaiSTVar,
         info19: servTipoSenaiSTVar,
         info20: servQhoraSenaiSTVar,
-        info21: "Teste",
+        info21: "Teste", //servModalidadeSenaiSTVar
 
-        info22: "Teste",
-        info23: "Teste",
-        info24: "Teste",
-        info25: "Teste",
-        info26: "Teste",
-        info27: "Teste",
-        info28: "Teste",
-        info29: "Teste",
-        info30: "Teste",
-        info31: "Teste",
-        info32: "Teste",
-        info33: "Teste",
-        info34: "Teste"
+        info22: cnpjPjVar,
+        info23: razaoPjVar,
+        info24: fantasiaPjVar,
+        info25: "Teste", //atividadePj
+        info26: "Teste", //telefonePj
+        info27: "Teste", //emailPj
+        info28: "Teste", //socioPj
+        info29: "Teste", //situacaoPj
+        info30: "Teste", //logradouroPj
+        info31: "Teste", //numeroPj
+        info32: "Teste", //complementoPj
+        info33: "Teste", //bairroPj
+        info34: "Teste"  //municipioPj
     };
 
+  
+  
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
   
 fetch('/addCliente', {
