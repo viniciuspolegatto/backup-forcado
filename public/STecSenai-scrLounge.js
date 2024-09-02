@@ -91,6 +91,7 @@ async function buscarProdutos() {
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.titulo}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.cargaHoraria}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.modalidade}</td>
+          <td style="border: 1px solid black; padding: 8px"><a href="STecSenai-dadosContrato.html">CONTRATAR</a></td>
           <td style="border: 1px solid black; text-align: left; padding: 8px"><a href="${produtoUnico.linkFicha}">Ficha Técnica - link</a></td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.codigoRm}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.valorSTecSenai}</td>

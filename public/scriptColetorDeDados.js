@@ -275,7 +275,13 @@ dataCnpj.municipio,
     .then(text => {
         console.log('Resposta do servidor:', text);
         if (text.includes("Dados adicionados ao banco de dados")) {
-            alert("Cadastro realizado com sucesso!");
+        // Use SweetAlert para mostrar a mensagem centralizada
+        swal("CONFIRA OS DADOS ABAIXO PARA GERAR O CONTRATO", {
+            icon: "success",
+        }).then(() => {
+            // Redireciona para a página index.html após o usuário clicar em OK
+            //window.location.href = "index.html";
+        });
         }
     })
     .catch(error => {
