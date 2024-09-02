@@ -66,12 +66,12 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
           <li>ID_Contrato: ${idContratoVar}</li>
           <li>CLIENTE: ${nomePfSenaiSTVar}</li>
           <li>SERVIÇO: ${servTituloSenaiSTVar}</li>
-          <li>RAZÃO SOCIAL: ${servQhoraSenaiSTVar}</li>
+          <li>PÚBLICO: ${servQhoraSenaiSTVar}</li>
           <li>TELEFONE PF: ${telefonePfSenaiSTVar}</li>
           <li>E-MAIL: ${emailPfSenaiSTVar}</li>
           <li>MUNICÍPIO: ${municipioPfSenaiSTVar}</li>
           <li>CNPJ: ${cnpjPjVar}</li>   
-          <li>CNPJ: ${razaoPjVar}</li>
+          <li>RAZÃO SOCIAL: ${razaoPjVar}</li>
           <li>TESTEMUNHA: ${testemunhaNomeSenaiSTVar}</li>
           <li>RAE: ${servRaeSenaiSTVar}</li>
         </ul>
