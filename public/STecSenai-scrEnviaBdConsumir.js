@@ -64,15 +64,16 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
       let html = `
         <ul>
           <li>ID_Contrato: ${idContratoVar}</li>
-          <li>TESTEMUNHA: ${testemunhaNomeSenaiSTVar}</li>
-          <li>RAE: ${servRaeSenaiSTVar}</li>
-          <li>SERVIÇO: ${servTituloSenaiSTVar}</li>
           <li>CLIENTE: ${nomePfSenaiSTVar}</li>
-          <li>MUNICÍPIO: ${municipioPfSenaiSTVar}</li>
+          <li>SERVIÇO: ${servTituloSenaiSTVar}</li>
+          <li>RAZÃO SOCIAL: ${servQhoraSenaiSTVar}</li>
           <li>TELEFONE PF: ${telefonePfSenaiSTVar}</li>
           <li>E-MAIL: ${emailPfSenaiSTVar}</li>
-          <li>CNPJ: ${cnpjPjVar}</li>
-          <li>RAZÃO SOCIAL: ${razaoPjVar}</li>
+          <li>MUNICÍPIO: ${municipioPfSenaiSTVar}</li>
+          <li>CNPJ: ${cnpjPjVar}</li>   
+          <li>CNPJ: ${razaoPjVar}</li>
+          <li>TESTEMUNHA: ${testemunhaNomeSenaiSTVar}</li>
+          <li>RAE: ${servRaeSenaiSTVar}</li>
         </ul>
       `;
       document.querySelector("#informacoes").innerHTML = html;
