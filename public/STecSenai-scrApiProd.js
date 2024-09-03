@@ -49,7 +49,7 @@ function exibirProdutosNaLista(produtos) {
     produtos.forEach(produtoUnicoLista => {
       // Ajuste os nomes das propriedades conforme necessário
       elementoParaListarProdutos.innerHTML += `
-        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.publico} | ${produtoUnicoLista.setorAtendido} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tagProduto} - ${produtoUnicoLista.publico} - ${produtoUnicoLista.cargaHoraria}H</option>
+        <option value="${produtoUnicoLista.familia} | ${produtoUnicoLista.titulo} | ${produtoUnicoLista.codigoRae} | ${produtoUnicoLista.codigoRm} | ${produtoUnicoLista.valorSTecSenai} | ${produtoUnicoLista.publico} | ${produtoUnicoLista.setorAtendido} | ${produtoUnicoLista.cargaHoraria} | ${produtoUnicoLista.modalidade}">${produtoUnicoLista.tagProduto} - ${produtoUnicoLista.publico} - ${produtoUnicoLista.cargaHoraria}H - ${produtoUnicoLista.modalidade}</option>
       `;
     });
   } else {
