@@ -49,15 +49,17 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   const testemunhaCargo = testemunhaDetalhes[1];
   const testemunhaCpf = testemunhaDetalhes[2];
 //------------------------------------------------- 
+//{familia} {titulo} {codigoRae} {codigoRm} {valorSTecSenai} {publico} {setorAtendido} {cargaHoraria} {modalidade}
   const servicoDetalhes = servicoSelecionado.split(" | "); // formato apresentado em STecSenai-scrApiProd.js
   const servicoFamilia = servicoDetalhes[0];
   const servicoTitulo = servicoDetalhes[1];  
   const servicoRae = servicoDetalhes[2];
   const servicoRM = servicoDetalhes[3];
   const servicoValor = servicoDetalhes[4];
-  const servicoTipo = servicoDetalhes[5];
-  const servicoQhora = servicoDetalhes[6];
-  const servicoModalidade = servicoDetalhes[7];
+  const servicoPublico = servicoDetalhes[5];
+  const servicoTipo = servicoDetalhes[6];
+  const servicoQhora = servicoDetalhes[7];
+  const servicoModalidade = servicoDetalhes[8];
 
 
 
@@ -130,6 +132,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
     document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
+    document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
     document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
@@ -163,6 +166,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('servicoRae', servicoRae);
     localStorage.setItem('servicoRM', servicoRM);
     localStorage.setItem('servicoValor', servicoValor);
+    localStorage.setItem('servicoPublico', servicoPublico);
     localStorage.setItem('servicoTipo', servicoTipo);
     localStorage.setItem('servicoQhora', servicoQhora);
     localStorage.setItem('servicoModalidade', servicoModalidade);
@@ -240,26 +244,26 @@ dataCnpj.municipio,
         info16: servicoRae,
         info17: servicoRM,
         info18: servicoValor,
-        info19: servicoTipo,
-        info20: servicoQhora,
-        info21: servicoModalidade,
+        info19: servicoPublico,
+        info20: servicoTipo,
+        info21: servicoQhora,
+        info22: servicoModalidade,
 
-        info22: dataCnpj.cnpj,
-        info23: dataCnpj.nome,
-        info24: fantasiaPj,
-        info25: dataCnpj.atividade_principal[0].text,
-        info26: telefonePj,
-        info27: emailPj,
-        info28: socioPj,
-        info29: dataCnpj.situacao,
-        info30: dataCnpj.logradouro,
-        info31: dataCnpj.numero,
-        info32: complementoPj,
-        info33: dataCnpj.bairro,
-        info34: dataCnpj.municipio,
-        info35: solicitanteSTecSenai,
-        info36: "VAR1",
-        info37: "VAR2"
+        info23: dataCnpj.cnpj,
+        info24: dataCnpj.nome,
+        info25: fantasiaPj,
+        info26: dataCnpj.atividade_principal[0].text,
+        info27: telefonePj,
+        info28: emailPj,
+        info29: socioPj,
+        info30: dataCnpj.situacao,
+        info31: dataCnpj.logradouro,
+        info32: dataCnpj.numero,
+        info33: complementoPj,
+        info34: dataCnpj.bairro,
+        info35: dataCnpj.municipio,
+        info36: solicitanteSTecSenai,
+        info37: dataCnpj.porte
     };
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
