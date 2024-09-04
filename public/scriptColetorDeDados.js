@@ -137,7 +137,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
-    document.getElementById('cpf-td').textContent = cpf;
+    document.getElementById('cpf-td').textContent = cpfBruto;
     document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
@@ -151,7 +151,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('dadosCnpj', JSON.stringify(dataCnpj));
     localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
     localStorage.setItem('nomeCliente', nomeCliente);
-    localStorage.setItem('cpf', cpf);
+    localStorage.setItem('cpfBruto', cpfBruto);
     localStorage.setItem('numeroResidencia', numeroResidencia);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
