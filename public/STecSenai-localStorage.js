@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const numeroResidencia = localStorage.getItem("numeroResidencia");
   const telefone = localStorage.getItem("telefone");
   const emailpessoal = localStorage.getItem("email");
-  const cpf = localStorage.getItem("cpf");
+  const cpfBruto = localStorage.getItem("cpfBruto");
   const servicos = localStorage.getItem("servico");
   const fantasiaPj = localStorage.getItem("fantasiaPj");
   const complementoPj = localStorage.getItem("complementoPj");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ${dadosCnpj.nome}, nome fantasia ${fantasiaPj}, inscrita no CNPJ nº ${dadosCnpj.cnpj}, localizada à ${dadosCnpj.logradouro}, nº ${dadosCnpj.numero}${complementoPj},
       bairro ${dadosCnpj.bairro}, no município de ${dadosCnpj.municipio} - SP, CEP: ${dadosCnpj.cep}, telefone(s) ${telefonePj},
       e-mail ${emailPj}, empresa neste ato representada por ${nomeCliente}, brasileiro(a), Empresário(a)/Autônomo(a) com 
-      inscrição no CPF nº ${cpf}, residente à ${cepDigitado.logradouro}, nº ${numeroResidencia}, bairro ${cepDigitado.bairro},
+      inscrição no CPF nº ${cpfBruto}, residente à ${cepDigitado.logradouro}, nº ${numeroResidencia}, bairro ${cepDigitado.bairro},
       CEP ${cepDigitado.cep}, na cidade de ${cepDigitado.localidade} - ${cepDigitado.uf}, telefone de contato ${telefone} e e-mail
       pessoal ${emailpessoal}, denominado(a) como <b>CONTRATANTE</b>
     </p>
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clienteAssinante.innerHTML = `
     <p style="margin: 0.15em 0;">CONTRATANTE / EMPRESA</p>
     <p style="margin: 0.15em 0;">${nomeCliente}</p>
-    <p style="margin: 0.15em 0;">${cpf}</p>
+    <p style="margin: 0.15em 0;">${cpfBruto}</p>
   `;
 
   const testemunhaAssinante = document.getElementById("testemunhaAssinante");

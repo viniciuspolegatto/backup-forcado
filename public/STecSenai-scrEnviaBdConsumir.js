@@ -183,7 +183,10 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
         info33: numeroPjVar,
         info34: complementoPjVar,
         info35: bairroPjVar,
-        info36: municipioPjVar
+        info36: municipioPjVar,
+        info37: "preencher",
+        info38: "preencher",
+        info39: "preencher"
     };
 
   
