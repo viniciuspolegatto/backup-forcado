@@ -51,11 +51,29 @@ function carregarDados() {
     .catch((error) => console.error("Error ao carregar dados:", error));
 }
 
-// Carregar dados ao iniciar a página
+// Carregar dados ao iniciar a página 
 carregarDados();
 
+document.querySelector("#botaoPesquisar").addEventListener("click", function () {
+    const nomeCliente = document.querySelector("#nomeBusca").value;
+
+    // Verifica se o comprimento do nomeCliente é pelo menos 3 caracteres
+    if (nomeCliente.length < 3) {
+        alert("A busca deve conter pelo menos 3 caracteres.");
+        return; // Impede a navegação para a nova página
+    }
+
+    // Caso o nomeCliente tenha 3 ou mais caracteres, continua com a navegação
+    window.location.href = `/STecSenai-pickCliente.html?nomeCliente=${encodeURIComponent(nomeCliente)}`;
+});
+
+
+
+/* *********************** Rota para buscar por CPF - Edite no Server.js e no STecSenai - scrPickCliente.js também ***********
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
     const cpf = document.querySelector("#cpfBusca").value;
   
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
   });
+
+***************************************************************************************************************** */

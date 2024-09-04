@@ -56,9 +56,7 @@ app.get('/', (req, res) => {
 // ************** Rota para adicionar dados ao banco de dados dos CONTRATOS *******************  
 app.post('/addData', (req, res) => {
   const { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34, info35, info36, info37 } = req.body;
-  const query = 'INSERT INTO ContratoSebraetecSenai (NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, bairroPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, cnpjPj, razaoPj, fantasiaPj, atividadePj, telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj, solicitanteSenaiST, VAR1, VAR2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-  console.log('Dados recebidos:', { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34, info35, info36, info37 });
+  const query = 'INSERT INTO ContratoSebraetecSenai (NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, bairroPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servPublicoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, cnpjPj, razaoPj, fantasiaPj, atividadePj, telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj, solicitanteSenaiST, VAR1) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
   db.query(query, [info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34, info35, info36, info37], (err, result) => {
     if (err) {
@@ -73,12 +71,10 @@ app.post('/addData', (req, res) => {
 
 // ************** Rota para adicionar dados ao banco de dados dos CLIENTES *******************  
 app.post('/addCliente', (req, res) => {
-  const { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34 } = req.body;
-  const query = 'INSERT INTO ClienteSebraetecSenai (NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, bairroPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, cnpjPj, razaoPj, fantasiaPj, atividadePj, telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34, info35, info36 } = req.body;
+  const query = 'INSERT INTO ClienteSebraetecSenai (ID_contrato, NomePfSenaiST, CpfPfSenaiST, nascimentoPfSenaiST, telefonePfSenaiST, emailPfSenaiST, cepPfSenaiST, logradouroPfSenaiST, numeroResidenciaPfSenaiST, bairroPfSenaiST, municipioPfSenaiST, testemunhaNomeSenaiST, testemunhaCargoSenaiST, testemunhaCpfSenaiST, ServFamiliaSenaiST, servTituloSenaiST, servRaeSenaiST, servRMSenaiST, servValorSenaiST, servTipoSenaiST, servPublicoSenaiST, servQhoraSenaiST, servModalidadeSenaiST, cnpjPj, razaoPj, fantasiaPj, atividadePj, telefonePj, emailPj, socioPj, situacaoPj, logradouroPj, numeroPj, complementoPj, bairroPj, municipioPj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-  console.log('Dados recebidos:', { info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34 });
-
-  db.query(query, [info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34], (err, result) => {
+  db.query(query, [info01, info02, info03, info04, info05, info06, info07, info08, info09, info10, info11, info12, info13, info14, info15, info16, info17, info18, info19, info20, info21, info22, info23, info24, info25, info26, info27, info28, info29, info30, info31, info32, info33, info34, info35, info36 ], (err, result) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       res.status(500).send('Erro ao inserir dados: ' + err.message);
@@ -119,7 +115,29 @@ app.get('/buscarCadastroClientes', (req, res) => {
   });
 });
 
-// *********************** Rota para buscar dados por CPF **********************
+
+// *********************** Rota para buscar dados por nome do cliente **********************
+app.get('/buscarPorNome/:nomeCliente', (req, res) => {
+  const nomeCliente = req.params.nomeCliente;
+  // Use % para buscar um trecho do nome
+  const query = 'SELECT * FROM ContratoSebraetecSenai WHERE NomePfSenaiST LIKE ?';
+
+  // Adiciona % antes e depois do nomeCliente para busca parcial
+  const searchParam = `%${nomeCliente}%`;
+
+  db.query(query, [searchParam], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar dados:', err);
+      res.status(500).send('Erro ao buscar dados: ' + err.message);
+      return;
+    }
+    console.log('Dados encontrados:', results);
+    res.json(results);
+  });
+});
+
+
+/* *********************** Rota para buscar dados por CPF ** - Edite no STecSenai - scrConsumir.js e no STecSenai - scrPickCliente.js
 app.get('/buscarPorCpf/:cpf', (req, res) => {
   const cpf = req.params.cpf;
   const query = 'SELECT * FROM ContratoSebraetecSenai WHERE CpfPfSenaiST = ?';
@@ -134,6 +152,7 @@ app.get('/buscarPorCpf/:cpf', (req, res) => {
     res.json(results);
   });
 });
+*/
 
 // ******************** Rota para buscar dados por ID_Contrato ***************** 
 app.get('/buscarPorIdContrato/:idContrato', (req, res) => {
