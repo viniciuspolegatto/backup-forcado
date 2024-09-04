@@ -115,7 +115,29 @@ app.get('/buscarCadastroClientes', (req, res) => {
   });
 });
 
-// *********************** Rota para buscar dados por CPF **********************
+
+// *********************** Rota para buscar dados por nome do cliente **********************
+app.get('/buscarPorNome/:nomeCliente', (req, res) => {
+  const nomeCliente = req.params.nomeCliente;
+  // Use % para buscar um trecho do nome
+  const query = 'SELECT * FROM ContratoSebraetecSenai WHERE NomePfSenaiST LIKE ?';
+
+  // Adiciona % antes e depois do nomeCliente para busca parcial
+  const searchParam = `%${nomeCliente}%`;
+
+  db.query(query, [searchParam], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar dados:', err);
+      res.status(500).send('Erro ao buscar dados: ' + err.message);
+      return;
+    }
+    console.log('Dados encontrados:', results);
+    res.json(results);
+  });
+});
+
+
+/* *********************** Rota para buscar dados por CPF ** - Edite no STecSenai - scrConsumir.js e no STecSenai - scrPickCliente.js
 app.get('/buscarPorCpf/:cpf', (req, res) => {
   const cpf = req.params.cpf;
   const query = 'SELECT * FROM ContratoSebraetecSenai WHERE CpfPfSenaiST = ?';
@@ -130,6 +152,7 @@ app.get('/buscarPorCpf/:cpf', (req, res) => {
     res.json(results);
   });
 });
+*/
 
 // ******************** Rota para buscar dados por ID_Contrato ***************** 
 app.get('/buscarPorIdContrato/:idContrato', (req, res) => {

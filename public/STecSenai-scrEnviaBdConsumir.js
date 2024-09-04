@@ -31,6 +31,22 @@ let servModalidadeSenaiSTVar;
 let fantasiaPjVar;
 let portePjVar;
 let atividadePjVar;
+let telefonePjVar;
+let emailPjVar;
+let socioPjVar;
+let situacaoPjVar;
+let logradouroPjVar;
+let numeroPjVar;
+let complementoPjVar;
+let bairroPjVar;
+let municipioPjVar;
+let ServFamiliaSenaiSTVar;
+let cepPfSenaiSTVar;
+let logradouroPfSenaiSTVar
+let numeroResidenciaPfSenaiSTVar;
+let bairroPfSenaiSTVar;
+let nascimentoPfSenaiSTVar;
+
 
 
 fetch(`/buscarPorIdContrato/${idContrato}`)
@@ -65,7 +81,22 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
       razaoPjVar = item.razaoPj;
       fantasiaPjVar = item.fantasiaPj;
       portePjVar = item.VAR1;
-      atividadePjVar = item.atividadePj;
+      atividadePjVar = item.atividadePjVar = item.atividadePj;
+      telefonePjVar = item.telefonePj
+      emailPjVar = item.emailPj;
+      socioPjVar = item.socioPj;
+      situacaoPjVar = item.situacaoPj;
+      logradouroPjVar = item.logradouroPj;
+      numeroPjVar = item.numeroPj;
+      complementoPjVar = item.complementoPj;
+      bairroPjVar = item.bairroPj;
+      municipioPjVar = item.municipioPj;
+      ServFamiliaSenaiSTVar = item.ServFamiliaSenaiST;
+      cepPfSenaiSTVar = item.cepPfSenaiST;
+      logradouroPfSenaiSTVar = item.logradouroPfSenaiST;
+      numeroResidenciaPfSenaiSTVar = item.numeroResidenciaPfSenaiST;
+      bairroPfSenaiSTVar = item.bairroPfSenaiST;
+      nascimentoPfSenaiSTVar = item.nascimentoPfSenaiST;
       
       
       // Exibir informações na página, se necessário
@@ -76,8 +107,7 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
           <li>CPF: ${CpfPfSenaiSTVar}</li>
           <li>TELEFONE PF: ${telefonePfSenaiSTVar}</li>
           <li>E-MAIL: ${emailPfSenaiSTVar}</li>
-          <li>MUNICÍPIO: ${municipioPfSenaiSTVar}</li>
-          
+          <li>MUNICÍPIO: ${municipioPfSenaiSTVar}</li>     
           <li> --------------------------------------------------------------</li>
           <li>SERVIÇO: ${servTituloSenaiSTVar}</li>
           <li>TESTEMUNHA: ${testemunhaNomeSenaiSTVar}</li>
@@ -87,8 +117,7 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
           <li>RM: ${servRMSenaiSTVar}</li>
           <li>VALOR: R$ ${servValorSenaiSTVar}</li>
           <li>PÚBLICO: ${servPublicoSenaiSTVar}</li> 
-          <li>PARA PORTES: ${servTipoSenaiSTVar}</li> 
-          
+          <li>PARA PORTES: ${servTipoSenaiSTVar}</li>      
           <li> --------------------------------------------------------------</li>
           <li>CNPJ: ${cnpjPjVar}</li>
           <li>PORTE: ${portePjVar}</li>
@@ -100,6 +129,7 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
       document.querySelector("#informacoes").innerHTML = html;
     } else {
       console.log("Nenhum dado encontrado para o ID_Contrato fornecido.");
+      alert("Nenhum dado encontrado para o ID_Contrato fornecido.");
     }
   })
   .catch((error) => console.error("Error ao buscar detalhes:", error));
@@ -112,28 +142,26 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
   let ID_Contrato = idContratoVar
 
 
-
-
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
 
     const data = {
         info01: idContratoVar,
         info02: nomePfSenaiSTVar, 
         info03: CpfPfSenaiSTVar,
-        info04: "Teste", //nascimentoPfSenaiSTVar
+        info04: nascimentoPfSenaiSTVar,
         info05: telefonePfSenaiSTVar,
         info06: emailPfSenaiSTVar,
-        info07: "Teste", //cepPfSenaiSTVar
-        info08: "Teste", //logradouroPfSenaiSTVar
-        info09: "Teste", //numeroResidenciaPfSenaiSTVar
-        info10: "Teste", //bairroPfSenaiSTVar
+        info07: cepPfSenaiSTVar,
+        info08: logradouroPfSenaiSTVar,
+        info09: numeroResidenciaPfSenaiSTVar,
+        info10: bairroPfSenaiSTVar,
         info11: municipioPfSenaiSTVar,
 
         info12: testemunhaNomeSenaiSTVar,
         info13: testemunhaCargoSenaiSTVar,
         info14: testemunhaCpfSenaiSTVar,
 
-        info15: "Teste", //ServFamiliaSenaiSTVar
+        info15: ServFamiliaSenaiSTVar,
         info16: servTituloSenaiSTVar,
         info17: servRaeSenaiSTVar,
         info18: servRMSenaiSTVar,
@@ -146,16 +174,16 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
         info24: cnpjPjVar,
         info25: razaoPjVar,
         info26: fantasiaPjVar,
-        info27: "Teste", //atividadePj
-        info28: "Teste", //telefonePj
-        info29: "Teste", //emailPj
-        info30: "Teste", //socioPj
-        info31: "Teste", //situacaoPj
-        info32: "Teste", //logradouroPj
-        info33: "Teste", //numeroPj
-        info34: "Teste", //complementoPj
-        info35: "Teste", //bairroPj
-        info36: "Teste"  //municipioPj
+        info27: atividadePjVar,
+        info28: telefonePjVar,
+        info29: emailPjVar,
+        info30: socioPjVar,
+        info31: situacaoPjVar,
+        info32: logradouroPjVar,
+        info33: numeroPjVar,
+        info34: complementoPjVar,
+        info35: bairroPjVar,
+        info36: municipioPjVar
     };
 
   
