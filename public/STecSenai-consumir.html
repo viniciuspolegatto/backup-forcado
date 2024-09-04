@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca Cadastro</title>
     <link rel="stylesheet" type="text/css" href="STecSenai-zConsumirSaldo.css">
     <script src="STecSenai-scrConsumir.js" defer></script>
 </head>
-  
 <body>
-    <h1>Buscar Cadastro</h1>
-
-    <input type="text" id="nomeBusca" placeholder="Digite o Nome do Cliente" />
-    <button id="botaoPesquisar">PESQUISAR</button>
-
-    <p><b>LISTA DE TODOS OS CONTRATOS FEITOS - ASSINADOS E NÃO ASSINADOS:</b></p>
-
-    <!-- Área para mostrar os dados existentes -->
-    <div id="listaDados" class="tabela-container">
-        <h2>Dados Cadastrados:</h2>
+    <div id="conteudo" style="display: none;">
+        <h1>Buscar Cadastro</h1>
+        <input type="text" id="nomeBusca" placeholder="Digite o Nome do Cliente" />
+        <button id="botaoPesquisar">PESQUISAR</button>
+        <p><b>LISTA DE TODOS OS CONTRATOS FEITOS - ASSINADOS E NÃO ASSINADOS:</b></p>
+        <div id="listaDados" class="tabela-container">
+            <h2>Dados Cadastrados:</h2>
+        </div>
+    </div>
+    <div id="mensagem" style="display: none;">
+        <p>Por favor, digite a senha para acessar o conteúdo.</p>
     </div>
 </body>
-
 </html>
