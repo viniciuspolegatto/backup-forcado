@@ -184,9 +184,9 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
         info34: complementoPjVar,
         info35: bairroPjVar,
         info36: municipioPjVar,
-        info37: "preencher",
-        info38: "preencher",
-        info39: "preencher"
+        info37: "Implantar",
+        info38: "Não Definia",
+        info39: "Implantar no StarTEC"
     };
 
   
