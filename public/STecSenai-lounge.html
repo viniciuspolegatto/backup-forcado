@@ -21,7 +21,7 @@
     <div>
         <button><a href="index.html">VOLTAR</a></button>
         <button><a href="STecSenai-dadosContrato.html">FAZER CONTRATO</a></button>
-        <button id="consumirSaldoButton">CONSUMIR SALDO</button>
+        <button><a href="STecSenai-consumir.html">CONSUMIR SALDO</a></button>
         <button><a href="STecSenai-gestao.html">GESTÃO</a></button>
     </div><br>
 
@@ -45,19 +45,6 @@
       
     </table>
   <br>
-
-    <script>
-        document.getElementById('consumirSaldoButton').addEventListener('click', function(event) {
-            const senhaCorreta = 'Sebrae@123'; // A senha deve ser a mesma do scriptColetorDeDados.js ou do arquivo .env
-            const senhaDigitada = prompt('Digite a senha para acessar a página de consumo de saldo:');
-            
-            if (senhaDigitada === senhaCorreta) {
-                window.location.href = 'STecSenai-consumir.html';
-            } else {
-                alert('Senha incorreta. Acesso negado.');
-            }
-        });
-    </script>
   
 </body>
 </html>
