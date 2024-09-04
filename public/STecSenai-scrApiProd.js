@@ -43,6 +43,11 @@ async function buscarProdutos() {
 function exibirProdutosNaLista(produtos) {
   // Limpa o conteúdo existente
   elementoParaListarProdutos.innerHTML = '';
+  
+  // Adiciona a opção "----------" como a primeira opção
+  elementoParaListarProdutos.innerHTML += `
+    <option value="" disabled selected>-----</option>
+  `;
 
   // Verifica se a estrutura dos dados é um array
   if (Array.isArray(produtos)) {
