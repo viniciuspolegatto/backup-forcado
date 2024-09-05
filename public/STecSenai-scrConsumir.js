@@ -22,19 +22,21 @@ function carregarDados() {
         .then((data) => {
             console.log("Dados recebidos:", data);
             let html = `
+              <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th style="width: 050px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">ID_Contrato</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Nome</th>
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">CPF</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Município</th>
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Telefone</th>
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Razão Social</th>
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Nome Fantasia</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Município PJ</th>
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Telefone PJ</th>
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">E-mail Pessoal</th>
+                          <th>ID Contrato</th>
+                          <th>Nome</th>
+                          <th>CPF</th>
+                          <th>Município</th>
+                          <th>Telefone</th>
+                          <th>Razão Social</th>
+                          <th>Nome Fantasia</th>
+                          <th>Município PJ</th>
+                          <th>Telefone PJ</th>
+                          <th>E-mail Pessoal</th>                        
+
                         </tr>
                     </thead>
                     <tbody>
@@ -42,22 +44,23 @@ function carregarDados() {
             data.forEach((item) => {
                 html += `
                     <tr>
-                        <td style="width: 050px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.ID_Contrato}</td>                           
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.NomePfSenaiST}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.CpfPfSenaiST}</td>
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.municipioPfSenaiST}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.telefonePfSenaiST}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.razaoPj}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.fantasiaPj}</td>
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.municipioPj}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.telefonePj}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.emailPfSenaiST}</td>
-                    </tr>
+                      <td>${item.ID_Contrato}</td>
+                      <td>${item.NomePfSenaiST}</td>
+                      <td>${item.CpfPfSenaiST}</td>
+                      <td>${item.municipioPfSenaiST}</td>
+                      <td>${item.telefonePfSenaiST}</td>
+                      <td>${item.razaoPj}</td>
+                      <td>${item.fantasiaPj}</td>
+                      <td>${item.municipioPj}</td>
+                      <td>${item.telefonePj}</td>
+                      <td>${item.emailPfSenaiST}</td>
+                     </tr>
                 `;
             });
             html += `
                 </tbody>
             </table>
+            </div>
             `;
             document.querySelector("#listaDados").innerHTML = html;
         })

@@ -25,42 +25,44 @@ function carregarDados() {
         .then((data) => {
             console.log("Dados recebidos:", data);
             let html = `
+              <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th style="width: 050px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">ID_CLIENTE</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Nome</th>
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">CPF</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">CNPJ</th>
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Razão Social</th>                      
-                            <th style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Serviço Contratado</th>
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Testemunha Contrato</th>                
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">STARTEC Nº</th>
-                            <th style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">Nº PASTA</th>
-                            <th style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">STATUS</th>
+                          <th>ID CLIENTE</th>
+                          <th>Nome</th>
+                          <th>CPF</th>
+                          <th>CNPJ</th>
+                          <th>Razão Social</th>
+                          <th>Serviço Contratado</th>
+                          <th>Testemunha Contrato</th>
+                          <th>STARTEC Nº</th>
+                          <th>Nº PASTA</th>
+                          <th>STATUS</th>
                         </tr>
-                    </thead>
+                      </thead>
                     <tbody>
             `;
             data.forEach((item) => {
                 html += `
                     <tr>
-                        <td style="width: 050px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.ID}</td>
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.NomePfSenaiST}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.CpfPfSenaiST}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.cnpjPj}</td>
-                        <td style="width: 120px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.razaoPj}</td>
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.servTituloSenaiST}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.testemunhaNomeSenaiST}</td>
-                        <td style="width: 100px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.procStarTec}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.numeroPasta}</td>
-                        <td style="width: 150px; max-height: 50px; text-align: left; word-wrap: break-word;white-space: pre-wrap; overflow: hidden;">${item.statusSTecSenai}</td>
+                      <th>${item.ID}</td>
+                      <th>${item.NomePfSenaiST}</td>
+                      <th>${item.CpfPfSenaiST}</td>
+                      <th>${item.cnpjPj}</td>
+                      <th>${item.razaoPj}</td>
+                      <th>${item.servTituloSenaiST}</td>
+                      <th>${item.testemunhaNomeSenaiST}</td>
+                      <th>${item.procStarTec}</td>
+                      <th>${item.numeroPasta}</td>
+                      <th>${item.statusSTecSenai}</td>
                     </tr>
                 `;
             });
             html += `
                     </tbody>
                 </table>
+              </div>
             `;
             document.querySelector("#listaClientes").innerHTML = html;
 

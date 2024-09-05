@@ -1,78 +1,42 @@
-/* Arquivo CSS para formatação da tabela de usuários cadastrados para consumo de saldo */
-
-/*  Tabela de estruturação de dados  */
-#resultados {
-    max-height: 750px; /* Ajuste a altura conforme necessário */
-    overflow-y: auto;
-    border: 1px solid rgb(221, 221, 221);
-    padding: 10px;
+/* Contêiner da tabela */
+.table-container {
+    width: 97%;
+    height: 600px;
+    border: 1px solid blue; /* Contorno azul */
+    border-collapse: collapse; /* Remove espaços entre as células */
+    padding: 0px;
+    overflow: auto; /* Adiciona rolagem se o conteúdo exceder o tamanho do contêiner */
+    margin-left: auto; /* Centraliza o contêiner horizontalmente */
+    margin-right: auto;
+    position: absolute; /* Posiciona o contêiner na tela */
+    left: 10px; /* Distância da borda esquerda da tela */
+    right: 10px;
 }
 
-#listaDados {
-    max-height: 800px; /* Ajuste a altura conforme necessário */
-    overflow-y: auto;
-    border: 1px solid rgb(221, 221, 221);
-    padding: 10px;
-}
-
-#listaClientes {
-    max-height: 800px; /* Ajuste a altura conforme necessário */
-    overflow-y: auto;
-    border: 1px solid rgb(221, 221, 221);
-    padding: 10px;
-}
-
-
-.tabela-container {
-    position: relative;
-    max-height: 750px; /* Ajuste a altura conforme necessário */
-    overflow-y: auto;
-}
-
+/* Estilo da tabela */
 table {
-    width: 100%;
+    width: 100%; /* Faz a tabela ocupar 100% da largura do contêiner */
+    height: 100%; /* Faz a tabela ocupar 100% da altura do contêiner */
     border-collapse: collapse;
-    position: relative;
-    z-index: 0;
+    table-layout: auto; /* Ajusta a largura das colunas ao conteúdo */
 }
 
-td {
-    border: 1px solid rgb(221, 221, 221);
+/* Estilo dos cabeçalhos e células */
+th, td {
+    border: 1px solid black;
     padding: 8px;
     text-align: left;
-    z-index: 0;
+    width: auto; /* Permite que a largura da célula se ajuste ao conteúdo */
+    word-wrap: break-word; /* Permite a quebra de palavras longas */
 }
 
-th {
+/* Estilo dos cabeçalhos fixos */
+thead th {
+    position: sticky;
+    top: 0;
     background-color: black;
-    position: sticky; /* fixed */
-    top: 0;
-    z-index: 2;
-    padding: 10px;
-    text-align: center;
     color: white;
-    opacity: 1; /* Garantia de cor sólida e sem transparência */    
-}
-
-tbody {
-    display: block;
-    height: 600px; /* Ajuste a altura conforme necessário */
-    overflow-y: auto;
-}
-
-thead {
-    display: table;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    table-layout: fixed;
-    z-index: 2;
     text-align: center;
-}
-body tr {
-    display: table;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    table-layout: fixed;
+    z-index: 1; /* Garante que os cabeçalhos fiquem sobre o conteúdo */
+    border: 0px solid white; /* Contorno branco dos cabeçalhos */
 }
