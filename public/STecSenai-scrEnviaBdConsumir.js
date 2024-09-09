@@ -124,6 +124,13 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
           <li>RAZÃO SOCIAL: ${razaoPjVar}</li>
           <li>NOME FANTASIA: ${fantasiaPjVar}</li>
           <li>ATIVIDADE PRINCIPAL: ${atividadePjVar}</li>
+          <li></li>
+          <li> ---------------- <b>ESCOLAS SENAI PARA ATENDIMENTO</b> --------------</li>
+          <li>Morro Agudo = SENAI RIBEIRÃO PRETO = Contato: Maria_Helena/Victor (13) 98181-3280 </li>
+          <li>Guaíra | Ipuã = SENAI FRANCA = Contato: Walter/Filipe (16) 99718-2473 </li>
+          <li>Bebedouro | Jaborandi | Monte Az. Pta | Pirangi | Taiaçu | Taiúva | Taquaral | Terra Roxa | Viradouro = SENAI SERTÃOZINHO = Contato: Marta/Caio: (16) 99975-0447</li>
+          <li>Altair | Ariranha | Barretos | Cajobi | Colina | Colômbia | Embaúba | Guaraci | Icém | Paraíso | Severínia = SENAI SÃO JOSÉ DO RIO PRETO = Contato: Robson (17) 99658-5954</li>
+
         </ul>
       `;
       document.querySelector("#informacoes").innerHTML = html;
