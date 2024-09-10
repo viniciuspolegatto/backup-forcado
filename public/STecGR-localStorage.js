@@ -38,12 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   `;
 
-  const reportProduto = document.getElementById("reportProduto");
+/*  const reportProduto = document.getElementById("reportProduto");
   reportProduto.innerHTML = `
     <p style="text-align: justify;">
     Produto específico da prestação dos serviços: ${servicoSTecSenaiFamilia} - ${servicoSTecSenaiTitulo} - RAE Nº ${servicoSTecSenaiRae}
     </p>
   `;
+*/
   
   const clienteAssinante = document.getElementById("clienteAssinante");
   clienteAssinante.innerHTML = `
@@ -80,14 +81,14 @@ const dataFormatadaInicio = `${diaInicio}/${mesInicio}/${anoInicio}`;
 const dataFormatadaFim = `${diaFim}/${mesFim}/${anoFim}`;
 
 
-  const descritivoSebraetecAgro = document.getElementById("descritivoSebraetecAgro");
+  const descritivoSebraetecAgro = document.getElementById("descritivoSebraetecGR");
   descritivoSebraetecAgro.innerHTML = `
-    <p style="margin: 0.15em 0;">SERVIÇO: SEBRAETEC - Consultoria Tecnológica - Presencial</p>
+    <p style="margin: 0.15em 0;">SERVIÇO: SEBRAETEC - Consultoria Tecnológica - REMOTA</p>
     <p style="margin: 0.15em 0;">Descritivo do serviço: ${servicoSTecSenaiTitulo}</p>
     <p style="margin: 0.15em 0;">Produto: RAE ${servicoSTecSenaiRae} - ${servicoSTecSenaiFamilia}</p>
     <p style="margin: 0.15em 0;">Carga Horária: ${servicoSTecSenaiQhora} h</p>
     <p style="margin: 0.15em 0;">Período: Início em ${dataFormatadaInicio} e fim estimado em ${dataFormatadaFim}</p>
-    <p style="margin: 0.15em 0;">Local: Presencial</p>
+    <p style="margin: 0.15em 0;">Local: Remoto</p>
   `;
   
   
