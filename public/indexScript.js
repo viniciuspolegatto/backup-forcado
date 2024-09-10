@@ -83,7 +83,7 @@ function carregarDados() {
       let total40863R = 13 - contador40863R;
       let total41123R = 18 - contador41123R;
       let total40864R = 0 - contador40864R;
-      let total42570R = 4 - contador42570R;
+      let total42570R = 8 - contador42570R;
       let total40865R = 3 - contador40865R;
       let total40867R = 3 - contador40867R;
       let total40869R = 5 - contador40869R;   
