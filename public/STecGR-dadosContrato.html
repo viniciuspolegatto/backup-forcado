@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisa de CNPJ para Contrato</title>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="scriptColetorDeDados.js" defer></script>
-    <script src="STecSenai-scrApiProd.js" defer></script>
+    <script src="STecGR-scriptColetorDados.js" defer></script>
+    <script src="STecGR-scrApiProd.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   
-  <header style="position: fixed; top: 0; width: 100%; z-index: 1000; background-color: red; height: 70px; display: flex; justify-content: space-between; align-items: center;">
+  <header style="position: fixed; top: 0; width: 100%; z-index: 1000; background-color: blue; height: 70px; display: flex; justify-content: space-between; align-items: center;">
     <nav style="width: 100%; display: flex; justify-content: space-around">
       <ul style="list-style: none; margin: 0; padding: 0">
         <li style="display: inline">
-          <a href="STecSenai-lounge.html" style="color: white; text-decoration: none">VOLTAR</a>
+          <a href="STecGR-lounge.html" style="color: white; text-decoration: none">VOLTAR</a>
         </li>
       </ul>
       <ul style="list-style: none; margin: 0; padding: 0">
         <li style="display: inline">
-          <a href="STecSenai-consumir.html" style="color: white; text-decoration: none">PESQUISAR CLIENTE</a>
+          <a href="" style="color: white; text-decoration: none">PESQUISAR CLIENTE</a>
         </li>
       </ul>
        <ul style="list-style: none; margin: 0; padding: 0">
         <li style="display: inline">
-          <a href="STecSenai-consumir.html" style="color: white; text-decoration: none">CONSUMIR SALDO</a>
+          <a href="" style="color: white; text-decoration: none">CONSUMIR SALDO</a>
         </li>
       </ul>
     </nav>
@@ -33,7 +33,7 @@
 
   <body class="idbody">
     <div>
-      <h1>Lista de Dados - SEBRAETEC SENAI</h1>
+      <h1>Lista de Dados - SEBRAETEC GANHOS RÁPIDOS</h1>
     </div><br>
 
   <div>
@@ -89,7 +89,7 @@
   
    <br>
 
-    <button id="botaoImpressaoCnpj" style="background-color: #00008b; color: white; font-size: 1.2em;"><b>CADASTRAR PEDIDO</b></button>
+    <button id="botaoImpressaoCnpj" style="background-color: blue; color: white; font-size: 1.2em;"><b>CADASTRAR PEDIDO</b></button>
     <br><br>
 
     <table id="data-table" style="display: none">
@@ -97,10 +97,10 @@
         <!-- Primeira linha com uma nova tabela -->
         <tr>
           <td colspan="2">
-            <table  style="border: 1px solid black; background-color: #e0e0e0;">
+            <table  style="border: 1px solid black;">
               <tr>
                 <td>
-                  <a href="/STecSenai-contrato.html">GERAR CONTRATO SEBRAETEC SENAI</a>
+                 <a href="/STecGR-contrato.html"><button>GERAR CONTRATO SEBRAETEC GANHOS RÁPIDOS</button></a>
                 </td>
                 <td>|</td>
               </tr>
