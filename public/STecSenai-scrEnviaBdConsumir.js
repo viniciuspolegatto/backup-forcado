@@ -8,6 +8,7 @@ function getQueryParam(param) {
 const idContrato = getQueryParam("id_contrato");
 console.log("Buscando detalhes para ID_Contrato:", idContrato);
 
+
 // Variáveis para armazenar os dados
 let idContratoVar;
 let testemunhaNomeSenaiSTVar;
@@ -148,6 +149,9 @@ fetch(`/buscarPorIdContrato/${idContrato}`)
 document.getElementById('confirmarConsumo').addEventListener('click', async function() {
   let ID_Contrato = idContratoVar
 
+  let NoProcStarTec = document.getElementById('NoProcStarTec').value;
+  let NoPastaServidor = document.getElementById('NoPastaServidor').value;
+  let StatusSTecSenaiStartec = document.getElementById('StatusSTecSenaiStartec').value;
 
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
 
@@ -191,12 +195,13 @@ document.getElementById('confirmarConsumo').addEventListener('click', async func
         info34: complementoPjVar,
         info35: bairroPjVar,
         info36: municipioPjVar,
-        info37: "Implantar",
-        info38: "Não Definida",
-        info39: "Implantar no StarTEC"
+        info37: NoProcStarTec,
+        info38: NoPastaServidor,
+        info39: StatusSTecSenaiStartec
+
     };
 
-  
+
   
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
   

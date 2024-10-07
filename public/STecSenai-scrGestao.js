@@ -31,14 +31,14 @@ function carregarDados() {
                         <tr>
                           <th>ID CLIENTE</th>
                           <th>Nome</th>
-                          <th>CPF</th>
-                          <th>CNPJ</th>
-                          <th>Razão Social</th>
                           <th>Serviço Contratado</th>
-                          <th>Testemunha Contrato</th>
                           <th>STARTEC Nº</th>
                           <th>Nº PASTA</th>
                           <th>STATUS</th>
+                          <th>CPF</th>
+                          <th>CNPJ</th>
+                          <th>Razão Social</th>
+                          <th>Testemunha Contrato</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -48,14 +48,14 @@ function carregarDados() {
                     <tr>
                       <th>${item.ID}</td>
                       <th>${item.NomePfSenaiST}</td>
-                      <th>${item.CpfPfSenaiST}</td>
-                      <th>${item.cnpjPj}</td>
-                      <th>${item.razaoPj}</td>
                       <th>${item.servTituloSenaiST}</td>
-                      <th>${item.testemunhaNomeSenaiST}</td>
                       <th>${item.procStarTec}</td>
                       <th>${item.numeroPasta}</td>
                       <th>${item.statusSTecSenai}</td>
+                      <th>${item.CpfPfSenaiST}</td>
+                      <th>${item.cnpjPj}</td>
+                      <th>${item.razaoPj}</td>
+                      <th>${item.testemunhaNomeSenaiST}</td>
                     </tr>
                 `;
             });
@@ -74,9 +74,10 @@ function carregarDados() {
 carregarDados();
 
 
-//********************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
+//** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
     const cpf = document.querySelector("#cpfBusca").value;
 
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
 });
+
