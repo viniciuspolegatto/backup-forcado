@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const servicoSTecSenaiTitulo  =  localStorage.getItem('servicoTitulo');
   const servicoSTecSenaiRae = localStorage.getItem('servicoRae');
   const servicoSTecSenaiRM =  localStorage.getItem('servicoRM');
+  const servicoSTecSenaiQhora = localStorage.getItem('servicoQhora');
+  const servicoSTecSenaiValor = localStorage.getItem('servicoValor');
   
   
 // ****************** MONTANDO O TEXTO DA PARTE CONTRATANTE ******************************
@@ -36,12 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   `;
 
-  const reportProduto = document.getElementById("reportProduto");
-  reportProduto.innerHTML = `
-    <p style="text-align: justify;">
-    Produto específico da prestação dos serviços: ${servicoSTecSenaiFamilia} - ${servicoSTecSenaiTitulo} - RAE Nº ${servicoSTecSenaiRae}
-    </p>
-  `;
+
   
   const clienteAssinante = document.getElementById("clienteAssinante");
   clienteAssinante.innerHTML = `
@@ -57,6 +54,91 @@ document.addEventListener("DOMContentLoaded", function () {
       <p style="margin: 0.15em 0;">${cpfTestemunhaSTecSenai}</p>
   `;
   
+// Obtém a data atual
+const dataHoje = new Date();
+// Cria uma nova data baseada na data atual
+const dataAtual = new Date(dataHoje)
+const dataFuturaInicio = new Date(dataHoje);
+const dataFuturaFim = new Date(dataHoje);
+// Adiciona 30 dias à nova data
+dataAtual.setDate(dataAtual.getDate());
+dataFuturaInicio.setDate(dataFuturaInicio.getDate() + 15);
+dataFuturaFim.setDate(dataFuturaFim.getDate() + 75);
+// Obtém o dia, o mês e o ano da nova data
+const diaAtual = dataAtual.getDate();
+const diaInicio = dataFuturaInicio.getDate();
+const diaFim = dataFuturaFim.getDate();
+const mesAtual = dataAtual.getMonth()+1; // Meses começam do 0, então adiciona 1
+const mesInicio = dataFuturaInicio.getMonth() + 1; // Meses começam do 0, então adiciona 1
+const mesFim = dataFuturaFim.getMonth() + 1; // Meses começam do 0, então adiciona 1
+const anoAtual = dataAtual.getFullYear();
+const anoInicio = dataFuturaInicio.getFullYear();
+const anoFim = dataFuturaFim.getFullYear();
+// Formata a data como texto
+const dataFormatadaHoje = `${diaAtual}/${mesAtual}/${anoAtual}`;
+const dataFormatadaInicio = `${diaInicio}/${mesInicio}/${anoInicio}`;
+const dataFormatadaFim = `${diaFim}/${mesFim}/${anoFim}`;
+
+
+const descritivoSebraetecSenai = document.getElementById("descritivoSebraetecSenai");
+  descritivoSebraetecSenai.innerHTML = `
+    <p style="margin: 0.15em 0;">SERVIÇO: SEBRAETEC - Consultoria Tecnológica - Presencial</p>
+    <p style="margin: 0.15em 0;">Descritivo do serviço: ${servicoSTecSenaiTitulo}</p>
+    <p style="margin: 0.15em 0;">Produto: RAE ${servicoSTecSenaiRae} - ${servicoSTecSenaiFamilia}</p>
+    <p style="margin: 0.15em 0;">Carga Horária: ${servicoSTecSenaiQhora} h</p>
+    <p style="margin: 0.15em 0;">Período: Início previsto em ${dataFormatadaInicio} e fim estimado em ${dataFormatadaFim}</p>
+    <p style="margin: 0.15em 0;">Local: Presencial</p>
+  `;
+  
+  
+  function formatarDataAtual() {
+  const hoje = new Date();
+  const dia = hoje.getDate();
+  const mesIndex = hoje.getMonth();
+  const ano = hoje.getFullYear();
+
+  // Array com os nomes dos meses
+  const nomesMeses = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+  ];
+
+  // Obtém o nome do mês usando o índice
+  const nomeMes = nomesMeses[mesIndex];
+  return `São Paulo, ${dia} de ${nomeMes} de ${ano}`;
+  }
+  // Obtém o elemento onde a data será exibida
+  const elementoData = document.getElementById("dataAtual");
+  // Define o texto do elemento como a data formatada
+  elementoData.textContent = formatarDataAtual();
+  
+  
+  
+  const tabelaPrecoForma = document.getElementById("tabelaPrecoForma");
+  tabelaPrecoForma.innerHTML = `
+  
+    <div>
+        <table style="border: 1px solid black; padding: 1rem; text-align: center; border-collapse: collapse; width: 100%">
+          <tr>
+           <td style="border: 1px solid black; padding: 8px"><b>VALOR TOTAL</b></td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor)},00</td>
+        </tr>
+        <tr>
+           <td style="border: 1px solid black; padding: 8px"><b>VALOR SUBSIDIADO PELO SEBRAE</b></td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 1).toFixed(2)}</td>
+       </tr>
+        <tr>
+           <td style="border: 1px solid black; padding: 8px"><b>VALOR PAGO PELO CLIENTE</b></td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0).toFixed(2)}</td>
+       </tr>
+        <tr>
+           <td style="border: 1px solid black; padding: 8px"><b>FORMA DE PAGAMENTO</b></td>
+           <td style="border: 1px solid black; padding: 8px">Contrato realizado em ${dataFormatadaHoje}, contemplado por 100% de subsídio conforme diretrizes da UTS</td> 
+       </tr>
+      </table>
+    </div>
+  `;
+
+
   document.getElementById("voltar").addEventListener("click", function () {
     window.location.href = "/index.html";
   });
