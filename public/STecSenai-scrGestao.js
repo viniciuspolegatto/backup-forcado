@@ -74,47 +74,10 @@ function carregarDados() {
 carregarDados();
 
 
-
-
-// Função para atualizar informações do cliente
-document.getElementById("AtualizarClienteStatus").addEventListener("click", () => {
-    const idCliente = document.getElementById("UpdateId").value;
-    const numeroProcesso = document.getElementById("UpdateNoProcessoStartec").value;
-    const numeroPasta = document.getElementById("UpdatePastaServidor").value;
-    const status = document.getElementById("UpdateStatusStartec").value;
-
-    fetch('/atualizarCliente', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idCliente, numeroProcesso, numeroPasta, status })
-    })
-    .then(response => {
-        if (response.ok) {
-        // Use SweetAlert para mostrar a mensagem centralizada
-        swal("Atualização realizada com sucesso!", {
-            icon: "success",
-        }).then(() => {
-            // Redireciona para a página index.html após o usuário clicar em OK
-            window.location.href = "STecSenai-gestao.html";
-        });
-      }
-      else {
-            alert("Erro ao atualizar informações.");
-        }
-    })
-    .catch(error => console.error("Erro ao enviar solicitação:", error));
-});
-
-
-
-
-/*
 //** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
     const cpf = document.querySelector("#cpfBusca").value;
 
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
 });
-*/
+
