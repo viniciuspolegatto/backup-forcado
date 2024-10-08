@@ -137,22 +137,6 @@ app.get('/buscarPorNome/:nomeCliente', (req, res) => {
 });
 
 
-/* *********************** Rota para buscar dados por CPF ** - Edite no STecSenai - scrConsumir.js e no STecSenai - scrPickCliente.js
-app.get('/buscarPorCpf/:cpf', (req, res) => {
-  const cpf = req.params.cpf;
-  const query = 'SELECT * FROM ContratoSebraetecSenai WHERE CpfPfSenaiST = ?';
-
-  db.query(query, [cpf], (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar dados:', err);
-      res.status(500).send('Erro ao buscar dados: ' + err.message);
-      return;
-    }
-    console.log('Dados encontrados:', results);
-    res.json(results);
-  });
-});
-*/
 
 // ******************** Rota para buscar dados por ID_Contrato ***************** 
 app.get('/buscarPorIdContrato/:idContrato', (req, res) => {
@@ -169,6 +153,27 @@ app.get('/buscarPorIdContrato/:idContrato', (req, res) => {
     res.json(results);
   });
 });
+
+
+// ************ Rota para atualizar as informações do cliente com base no ID_CLIENTE
+app.put('/atualizarCliente', (req, res) => {
+  const { idCliente, status, numeroPasta, numeroProcesso } = req.body;
+  const query = `
+    UPDATE ClienteSebraetecSenai
+    SET statusSTecSenai = ?, numeroPasta = ?, procStarTec = ?
+    WHERE ID = ?`;
+
+  db.query(query, [status, numeroPasta, numeroProcesso, idCliente], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar os dados:', err);
+      res.status(500).send('Erro ao atualizar os dados: ' + err.message);
+      return;
+    }
+    console.log('Dados atualizados com sucesso:', result);
+    res.send('Informações atualizadas com sucesso');
+  });
+});
+
 
 // ************************** Inicialização do Servidor *************************
 app.listen(PORT, () => {
@@ -328,6 +333,7 @@ app.get('/buscarPorCpf/:cpf', (req, res) => {
     res.json(results);
   });
 });
+
 
 // ******************** Rota para buscar dados por ID_Contrato ***************** 
 app.get('/buscarPorIdContrato/:idContrato', (req, res) => {
