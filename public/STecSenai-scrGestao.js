@@ -74,6 +74,59 @@ function carregarDados() {
 carregarDados();
 
 
+// Função para atualizar informações do cliente
+document.getElementById("AtualizarClienteStatus").addEventListener("click", () => {
+    const idCliente = document.getElementById("UpdateId").value;
+    const numeroProcesso = document.getElementById("UpdateNoProcessoStartec").value;
+    const numeroPasta = document.getElementById("UpdatePastaServidor").value;
+    const status = document.getElementById("UpdateStatusStartec").value;
+
+    // Verificação: se o idCliente não foi informado, exibe uma mensagem de erro e interrompe a função
+    if (!idCliente) {
+        swal("Erro", "O ID do Cliente precisa ser informado para atualizar as informações.", "error");
+        return;
+    }
+
+    // Cria um objeto de atualização e só adiciona propriedades com valores preenchidos
+    const updateData = { idCliente };
+
+    if (numeroProcesso) {
+        updateData.numeroProcesso = numeroProcesso;
+    }
+    if (numeroPasta) {
+        updateData.numeroPasta = numeroPasta;
+    }
+    if (status) {
+        updateData.status = status;
+    }
+
+    // Envia a solicitação de atualização com apenas os campos preenchidos
+    fetch('/atualizarCliente', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Exibe mensagem de sucesso e redireciona
+            swal("Atualização realizada com sucesso!", {
+                icon: "success",
+            }).then(() => {
+                window.location.href = "STecSenai-gestao.html";
+            });
+        } else {
+            // Exibe mensagem de erro
+            swal("Erro", "Erro ao atualizar informações.", "error");
+        }
+    })
+    .catch(error => console.error("Erro ao enviar solicitação:", error));
+});
+
+
+
+
 //** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
     const cpf = document.querySelector("#cpfBusca").value;
