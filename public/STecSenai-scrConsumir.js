@@ -1,4 +1,29 @@
-// Função para verificar a senha antes de acessar o conteúdo
+// ********************* Verificação de autenticação *****************
+function isAuthenticated() {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('username=')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Função de logout
+function logout() {
+    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.location.href = 'index.html';
+}
+
+// Redirecionamento se o usuário não está autenticado
+if (!isAuthenticated()) {
+    window.location.href = 'login.html';
+}
+// ******************************** FIM LOGIN ************************
+
+
+/* // Função para verificar a senha antes de acessar o conteúdo
 function verificarSenha() {
     const senhaCorreta = "Sebrae@123";
     let senhaDigitada = prompt("Digite a senha para acessar:");
@@ -6,12 +31,17 @@ function verificarSenha() {
     if (senhaDigitada === senhaCorreta) {
         document.getElementById("conteudo").style.display = "block";
         document.getElementById("mensagem").style.display = "none";
-        carregarDados(); // Carregar os dados depois que a senha for verificada
     } else {
         alert("Senha incorreta!");
         window.location.href = "/STecSenai-lounge.html";
     }
 }
+
+// Verifica a senha e exibe o conteúdo ao carregar o script
+verificarSenha();
+******************************************************************** */
+
+carregarDados(); // Carregar os dados depois que a senha for verificada
 
 // Função para carregar dados existentes
 function carregarDados() {
@@ -67,8 +97,7 @@ function carregarDados() {
         .catch((error) => console.error("Error ao carregar dados:", error));
 }
 
-// Verifica a senha e exibe o conteúdo ao carregar o script
-verificarSenha();
+
 
 // Adiciona o evento de clique no botão de pesquisa
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
@@ -83,7 +112,6 @@ document.querySelector("#botaoPesquisar").addEventListener("click", function () 
     // Caso o nomeCliente tenha 3 ou mais caracteres, continua com a navegação
     window.location.href = `/STecSenai-pickCliente.html?nomeCliente=${encodeURIComponent(nomeCliente)}`;
 });
-
 
 
 /* *********************** Rota para buscar por CPF - Edite no Server.js e no STecSenai - scrPickCliente.js também ***********
