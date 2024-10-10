@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de Autenticação com Cookies</title>
+    <style>
+        /* Estilo para o modal de login */
+        #loginModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #333;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo! Faça login para continuar</h1>
+    <button onclick="openLoginModal()">Login</button>
+
+    <!-- Modal de Login -->
+    <div id="modalOverlay"></div>
+    <div id="loginModal">
+        <h2>Entrar</h2>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username">
+        <br><br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password">
+        <br><br>
+        <button onclick="login()">Continuar</button>
+        <button onclick="cancelLogin()">Cancelar</button>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

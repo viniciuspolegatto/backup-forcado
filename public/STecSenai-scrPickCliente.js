@@ -1,5 +1,31 @@
 // Script STecSenai-scrPickCliente.js para listar os CPF's cadastrados
 
+// ********************* Verificação de autenticação *****************
+function isAuthenticated() {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('username=')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Função de logout
+function logout() {
+    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.location.href = 'index.html';
+}
+
+// Redirecionamento se o usuário não está autenticado
+if (!isAuthenticated()) {
+    window.location.href = 'login.html';
+}
+// ******************************** FIM LOGIN ************************
+
+
+
 // Função para obter os parâmetros da URL
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);

@@ -1,22 +1,33 @@
-// Função para verificar a senha antes de acessar o conteúdo
-function verificarSenha() {
-    const senhaCorreta = "Sebrae@123";
-    let senhaDigitada = prompt("Digite a senha para acessar:");
-
-    if (senhaDigitada === senhaCorreta) {
-        document.querySelector("body").style.display = "block";
-    } else {
-        // Redireciona para lounge se a senha estiver incorreta
-        alert("Senha incorreta!");
-        window.location.href = "/STecSenai-lounge.html";
+// ********************* Verificação de autenticação *****************
+function isAuthenticated() {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('username=')) {
+            return true;
+        }
     }
+    return false;
 }
 
-// Oculta o conteúdo da página até que a senha seja verificada
-document.querySelector("body").style.display = "none";
-verificarSenha();
+// Função de logout
+function logout() {
+    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.location.href = 'index.html';
+}
 
-// Função para carregar dados existentes (mantenha o restante do código existente aqui)
+// Redirecionamento se o usuário não está autenticado
+if (!isAuthenticated()) {
+    window.location.href = 'login.html';
+}
+// ******************************** FIM LOGIN ************************
+
+
+
+// Carregar dados ao iniciar a página
+carregarDados();
+
+// Função para carregar dados existentes
 function carregarDados() {
     console.log("Carregando dados cadastrados...");
 
@@ -66,13 +77,12 @@ function carregarDados() {
             `;
             document.querySelector("#listaClientes").innerHTML = html;
 
+            // Exibe o corpo da página após carregar os dados
+            document.body.style.display = 'block';
+
         })
         .catch((error) => console.error("Error ao carregar dados:", error));
 }
-
-// Carregar dados ao iniciar a página
-carregarDados();
-
 
 // Função para atualizar informações do cliente
 document.getElementById("AtualizarClienteStatus").addEventListener("click", () => {
@@ -81,13 +91,11 @@ document.getElementById("AtualizarClienteStatus").addEventListener("click", () =
     const numeroPasta = document.getElementById("UpdatePastaServidor").value;
     const status = document.getElementById("UpdateStatusStartec").value;
 
-    // Verificação: se o idCliente não foi informado, exibe uma mensagem de erro e interrompe a função
     if (!idCliente) {
         swal("Erro", "O ID do Cliente precisa ser informado para atualizar as informações.", "error");
         return;
     }
 
-    // Cria um objeto de atualização e só adiciona propriedades com valores preenchidos
     const updateData = { idCliente };
 
     if (numeroProcesso) {
@@ -100,7 +108,6 @@ document.getElementById("AtualizarClienteStatus").addEventListener("click", () =
         updateData.status = status;
     }
 
-    // Envia a solicitação de atualização com apenas os campos preenchidos
     fetch('/atualizarCliente', {
         method: 'PUT',
         headers: {
@@ -110,21 +117,17 @@ document.getElementById("AtualizarClienteStatus").addEventListener("click", () =
     })
     .then(response => {
         if (response.ok) {
-            // Exibe mensagem de sucesso e redireciona
             swal("Atualização realizada com sucesso!", {
                 icon: "success",
             }).then(() => {
                 window.location.href = "STecSenai-gestao.html";
             });
         } else {
-            // Exibe mensagem de erro
             swal("Erro", "Erro ao atualizar informações.", "error");
         }
     })
     .catch(error => console.error("Erro ao enviar solicitação:", error));
 });
-
-
 
 
 //** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************

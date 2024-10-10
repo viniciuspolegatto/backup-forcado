@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <link rel="stylesheet" href="STecSenai-zConsumirSaldo.css" />
     <script src="STecSenai-scrConsumir.js" defer></script>
 </head>
+  
 <body>
-    <div id="conteudo" style="display: none;">
+    <button onclick="window.location.href='STecSenai-gestao.html'">GESTÃO</button>
+    <button onclick="logout()">Sair</button>
+      
         <h1>Buscar Cadastro</h1>
         <input type="text" id="nomeBusca" placeholder="Digite o Nome do Cliente" />
         <button id="botaoPesquisar">PESQUISAR</button>
@@ -16,9 +20,6 @@
         <div id="listaDados" class="tabela-container">
             <h2>Dados Cadastrados:</h2>
         </div>
-    </div>
-    <div id="mensagem" style="display: none;">
-        <p>Por favor, digite a senha para acessar o conteúdo.</p>
-    </div>
 </body>
+
 </html>

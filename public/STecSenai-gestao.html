@@ -8,7 +8,7 @@
     <script src="STecSenai-scrGestao.js" defer></script>
 </head>
 
-<body style="display: none;">
+<body>
 
     <header style="background-color: #003366; padding: 10px; color: white;">
         <h1>Área SEBRAETEC SENAI</h1>
@@ -17,7 +17,8 @@
     <div>
         <button><a href="index.html">VOLTAR</a></button>
         <button><a href="STecSenai-dadosContrato.html">FAZER CONTRATO</a></button>
-        <button><a href="STecSenai-pickCliente.html">CONSUMIR SALDO</a></button>
+        <button onclick="window.location.href='STecSenai-consumir.html'">CONSUMIR SALDO</button>
+        <button onclick="logout()">Sair</button>
     </div><br>
 
     <h3>
@@ -25,12 +26,12 @@
     </h3>
     <br>
 
-      <table style="border: 1px solid white; border-collapse: collapse; width: 700px">
+    <table style="border: 1px solid white; border-collapse: collapse; width: 700px">
         <tr>
           <th>
             <table style="border: 1px solid white; border-collapse: collapse; text-align: justify;">
               <tr>
-                <th style="border: 1px solid white;  background-color: white; color: black;">
+                <th style="border: 1px solid white; background-color: white; color: black;">
                   <div>
                    <div>
                      <label>ID_CLIENTE: </label>
@@ -42,22 +43,19 @@
                     </div>
                   </div>
                 </th>
-                <th style="border: 1px solid white; padding: 5px; background-color: white;color: white;"></th>
+                <th style="border: 1px solid white; padding: 5px; background-color: white; color: white;"></th>
                 <th style="border: 1px solid white; background-color: white; color: black;">
                   <div>
-
                     <label>STATUS: </label>
                     <textarea id="UpdateStatusStartec" style="width: 250px; height: 50px;"></textarea><p />
-                     <button id="AtualizarClienteStatus" style="float: right;">ATUALIZAR</button>
+                    <button id="AtualizarClienteStatus" style="float: right;">ATUALIZAR</button>
                   </div>
                 </th>
               </tr>          
             </table>
           </th>
         </tr>
-      </table>
-  
-  
+    </table>
   
     <h1>Buscar Cadastro</h1>
 
@@ -70,6 +68,7 @@
 </body>
 
 </html>
+
 
 
 
