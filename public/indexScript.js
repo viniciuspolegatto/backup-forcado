@@ -72,20 +72,20 @@ function carregarDados() {
     
       // Do contador é substituído o saldo inicial
       let total42567 = 55 - contador42567;
-      let total42568 = 10 - contador42568;
+      let total42568 = 11 - contador42568;
       let total40864 = 0 - contador40864;
       let total40865 = 0 - contador40865;
       let total40866 = 0 - contador40866;
       let total42569 = 6 - contador42569;
       let total40867 = 0 - contador40867;
-      let total40868 = 6 - contador40868;
+      let total40868 = 5 - contador40868;
       let total40869 = 0 - contador40869;    
       let total40863R = 13 - contador40863R;
-      let total41123R = 18 - contador41123R;
+      let total41123R = 19 - contador41123R;
       let total40864R = 1 - contador40864R;
-      let total42570R = 8 - contador42570R;
-      let total40865R = 3 - contador40865R;
-      let total40867R = 3 - contador40867R;
+      let total42570R = 10 - contador42570R;
+      let total40865R = 4 - contador40865R;
+      let total40867R = 1 - contador40867R;
       let total40869R = 5 - contador40869R;   
 
     
