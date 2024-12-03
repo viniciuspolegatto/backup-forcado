@@ -75,7 +75,7 @@ function carregarDados() {
       let total42568 = 12 - contador42568;
       let total40864 = 0 - contador40864;
       let total40865 = 0 - contador40865;
-      let total40866 = 0 - contador40866;
+      let total40866 = 1 - contador40866;
       let total42569 = 6 - contador42569;
       let total40867 = 0 - contador40867;
       let total40868 = 4 - contador40868;
