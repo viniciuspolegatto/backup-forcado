@@ -31,53 +31,14 @@ async function buscarProdutos() {
       // Verifica o códigoRm do produto atual
       let saldo;
       switch (produtoUnico.codigoRm) {
-        case 42567:
-          saldo = localStorage.getItem("total42567") || '';
+        case 40860:
+          saldo = localStorage.getItem("total40860") || '';
           break;
-        case 42568:
-          saldo = localStorage.getItem("total42568") || '';
+        case 40861:
+          saldo = localStorage.getItem("total40861") || '';
           break;
-        case 40864:
-          saldo = localStorage.getItem("total40864") || '';
-          break;
-        case 40865:
-          saldo = localStorage.getItem("total40865") || '';
-          break;
-        case 40866:
-          saldo = localStorage.getItem("total40866") || '';
-          break;
-        case 42569:
-          saldo = localStorage.getItem("total42569") || '';
-          break;
-        case 40867:
-          saldo = localStorage.getItem("total40867") || '';
-          break;
-        case 40868:
-          saldo = localStorage.getItem("total40868") || '';
-          break;
-        case 40869:
-          saldo = localStorage.getItem("total40869") || '';
-          break;
-        case "40863-":
-          saldo = localStorage.getItem("total40863R") || '';
-          break;
-        case "41123-":
-          saldo = localStorage.getItem("total41123R") || '';
-          break;
-        case "40864-":
-          saldo = localStorage.getItem("total40864R") || '';
-          break;
-        case "42570-":
-          saldo = localStorage.getItem("total42570R") || '';
-          break;
-        case "40865-":
-          saldo = localStorage.getItem("total40865R") || '';
-          break;
-        case "40867-":
-          saldo = localStorage.getItem("total40867R") || '';
-          break;
-        case "40869-":
-          saldo = localStorage.getItem("total40869R") || '';
+        case 40862:
+          saldo = localStorage.getItem("total40862") || '';
           break;
         default:
           saldo = '';
@@ -94,7 +55,7 @@ async function buscarProdutos() {
           <td style="border: 1px solid black; padding: 8px"><a href="STecAGRO-dadosContrato.html">CONTRATAR</a></td>
           <td style="border: 1px solid black; text-align: left; padding: 8px"><a href="${produtoUnico.linkFicha}">Ficha Técnica - link</a></td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.codigoRm}</td>
-          <td style="border: 1px solid black; padding: 8px">${produtoUnico.valorSTecSenai}</td>
+          <td style="border: 1px solid black; padding: 8px">${produtoUnico.valorSTecAgro}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.publico}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.setorAtendido}</td>
         </tr>

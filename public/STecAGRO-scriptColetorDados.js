@@ -268,7 +268,7 @@ dataCnpj.municipio,
 
 // *********** CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR **********
   
-    fetch('/addData', {
+    fetch('/addDataAgro', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

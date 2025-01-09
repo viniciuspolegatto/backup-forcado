@@ -23,24 +23,6 @@ if (!isAuthenticated()) {
 // ******************************** FIM LOGIN ************************
 
 
-/* // Função para verificar a senha antes de acessar o conteúdo
-function verificarSenha() {
-    const senhaCorreta = "Sebrae@123";
-    let senhaDigitada = prompt("Digite a senha para acessar:");
-
-    if (senhaDigitada === senhaCorreta) {
-        document.getElementById("conteudo").style.display = "block";
-        document.getElementById("mensagem").style.display = "none";
-    } else {
-        alert("Senha incorreta!");
-        window.location.href = "/STecSenai-lounge.html";
-    }
-}
-
-// Verifica a senha e exibe o conteúdo ao carregar o script
-verificarSenha();
-******************************************************************** */
-
 carregarDados(); // Carregar os dados depois que a senha for verificada
 
 // Função para carregar dados existentes
@@ -64,7 +46,7 @@ function carregarDados() {
                           <th>Razão Social</th>
                           <th>Nome Fantasia</th>
                           <th>Município PJ</th>
-                          <th>Telefone PJ</th>
+                          <th style="width: 200px;">Telefone PJ</th>
                           <th>E-mail Pessoal</th>                        
 
                         </tr>
@@ -82,7 +64,7 @@ function carregarDados() {
                       <td>${item.razaoPj}</td>
                       <td>${item.fantasiaPj}</td>
                       <td>${item.municipioPj}</td>
-                      <td>${item.telefonePj}</td>
+                      <td style="width: 200px;">${item.telefonePj}</td>
                       <td>${item.emailPfSenaiST}</td>
                      </tr>
                 `;

@@ -128,6 +128,44 @@ function carregarDados() {
   
     })
     .catch((error) => console.error("Erro ao carregar dados:", error));
+
+
+  fetch("/buscarCadastroClientesAgro")
+    .then((response) => response.json())
+    .then((data) => {
+      // Filtra os dados e conta cada item desejado lá no banco de dados
+      const contador40860 = data.filter(
+        (item) => item.servRMSenaiST === "40860"
+      ).length;
+
+      const contador40861 = data.filter(
+        (item) => item.servRMSenaiST === "40861"
+      ).length;
+    
+      const contador40862 = data.filter(
+        (item) => item.servRMSenaiST === "40862"
+      ).length;
+    
+      // Do contador é substituído o saldo inicial
+      let total40860 = 39 - contador40860;
+      let total40861 = 0 - contador40861;
+      let total40862 = 41 - contador40862; 
+
+    
+      // Atualiza os elementos HTML ou armazena em variáveis conforme necessário
+      document.querySelector("#contadorNome40860").textContent = total40860;
+      document.querySelector("#contadorNome40861").textContent = total40861;
+      document.querySelector("#contadorNome40862").textContent = total40862;
+
+      // Armazenar os dados no localStorage para ser usado na nova janela de contrato
+      localStorage.setItem('total40860', total40860);
+      localStorage.setItem('total40861', total40861);
+      localStorage.setItem('total40862', total40862);
+    
+  
+    })
+    .catch((error) => console.error("Erro ao carregar dados:", error));
+
 }
 
 // Chama a função para carregar os dados ao iniciar a página
