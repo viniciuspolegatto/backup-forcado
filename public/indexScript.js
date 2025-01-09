@@ -72,20 +72,20 @@ function carregarDados() {
     
       // Do contador é substituído o saldo inicial
       let total42567 = 55 - contador42567;
-      let total42568 = 10 - contador42568;
+      let total42568 = 12 - contador42568;
       let total40864 = 0 - contador40864;
       let total40865 = 0 - contador40865;
-      let total40866 = 0 - contador40866;
+      let total40866 = 1 - contador40866;
       let total42569 = 6 - contador42569;
       let total40867 = 0 - contador40867;
-      let total40868 = 6 - contador40868;
+      let total40868 = 4 - contador40868;
       let total40869 = 0 - contador40869;    
       let total40863R = 13 - contador40863R;
-      let total41123R = 18 - contador41123R;
-      let total40864R = 0 - contador40864R;
-      let total42570R = 4 - contador42570R;
-      let total40865R = 3 - contador40865R;
-      let total40867R = 3 - contador40867R;
+      let total41123R = 19 - contador41123R;
+      let total40864R = 1 - contador40864R;
+      let total42570R = 10 - contador42570R;
+      let total40865R = 4 - contador40865R;
+      let total40867R = 1 - contador40867R;
       let total40869R = 5 - contador40869R;   
 
     
@@ -128,6 +128,44 @@ function carregarDados() {
   
     })
     .catch((error) => console.error("Erro ao carregar dados:", error));
+
+
+  fetch("/buscarCadastroClientesAgro")
+    .then((response) => response.json())
+    .then((data) => {
+      // Filtra os dados e conta cada item desejado lá no banco de dados
+      const contador40860 = data.filter(
+        (item) => item.servRMSenaiST === "40860"
+      ).length;
+
+      const contador40861 = data.filter(
+        (item) => item.servRMSenaiST === "40861"
+      ).length;
+    
+      const contador40862 = data.filter(
+        (item) => item.servRMSenaiST === "40862"
+      ).length;
+    
+      // Do contador é substituído o saldo inicial
+      let total40860 = 39 - contador40860;
+      let total40861 = 0 - contador40861;
+      let total40862 = 41 - contador40862; 
+
+    
+      // Atualiza os elementos HTML ou armazena em variáveis conforme necessário
+      document.querySelector("#contadorNome40860").textContent = total40860;
+      document.querySelector("#contadorNome40861").textContent = total40861;
+      document.querySelector("#contadorNome40862").textContent = total40862;
+
+      // Armazenar os dados no localStorage para ser usado na nova janela de contrato
+      localStorage.setItem('total40860', total40860);
+      localStorage.setItem('total40861', total40861);
+      localStorage.setItem('total40862', total40862);
+    
+  
+    })
+    .catch((error) => console.error("Erro ao carregar dados:", error));
+
 }
 
 // Chama a função para carregar os dados ao iniciar a página

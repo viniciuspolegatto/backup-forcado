@@ -35,6 +35,10 @@ function carregarDados() {
         .then((response) => response.json())
         .then((data) => {
             console.log("Dados recebidos:", data);
+      
+          // Ordena os dados em ordem decrescente de ID
+            data.sort((a, b) => b.ID - a.ID);
+      
             let html = `
               <div class="table-container">
                 <table>
