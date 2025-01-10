@@ -35,6 +35,7 @@ async function buscarProdutos() {
       // Monta a linha da tabela com os dados do produto
       elementoParaInserirProdutos.innerHTML += `
         <tr>
+          <td style="border: 1px solid black; text-align: center; padding: 8px">${produtoUnico.EmpresasHabilitadas}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.Subarea}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.Area}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.NomeProduto}</td>
@@ -44,7 +45,6 @@ async function buscarProdutos() {
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.PublicoAlvo}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.Custo_Credenciado}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.DescricaoProduto}</td>
-          <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.EmpresasHabilitadas}</td>
         </tr>
       `;
     });
