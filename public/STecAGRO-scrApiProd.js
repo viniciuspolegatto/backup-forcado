@@ -26,17 +26,17 @@ async function buscarProdutos() {
 
 /* ****** ESTRUTURA DA API ******************* FORMATO *******
 
-"linkFicha": "https://datasebrae.com.br/wp-content/uploads/2020/09/Framework-OKR-para-Otimizac%CC%A7a%CC%83o-de-Processos-MMP14065-1.pdf",
-"tagProduto": "Framework OKR para otimização de processo",
-"familia": "SEBRAETEC - CONSULTORIA TECNOLÓGICA 4H - PRESENCIAL",
-"titulo": "Sebraetec Senai - Framework OKR para otimização de processos",
-"codigoRae": 4727,
-"codigoRm": 42567,
-"valorSTecSenai": 770.00,
-"publico": "ME / EPP",
-"setorAtendido": "Ind./Com./Serv.",
-"cargaHoraria": 4,
-"modalidade": "PRESENCIAL"
+"linkFicha":"https://drive.google.com/file/d/1cJLq6busjKoeJ8ouG4jCX9yjujXjJymj/view?usp=sharing",
+"tagProduto":"Rastreabilidade de vegetais - I.N. 02/2018 (MAPA)",
+"familia":"SEBRAETEC - CONSULTORIA TECNOLÓGICA 3H - Grupo: Lote 3 - PRESENCIAL",
+"titulo":"Sebraetec Agro - Rastreabilidade de vegetais frescos- Instrução Normativa conjunta 02/2018 (MAPA)",
+"codigoRae":2424,
+"codigoRm":40860,
+"valorSTecAgro":570.43,
+"publico":"PRODUTOR RURAL",
+"setorAtendido":"Agronegócios",
+"cargaHoraria":3,
+"modalidade":"PRESENCIAL"
 *********************************************************** */
 
 
