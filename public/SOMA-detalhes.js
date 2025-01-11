@@ -25,6 +25,7 @@ async function carregarDetalhes() {
             <h2>${produto.NomeProduto}</h2>
             <p><strong>Descrição:</strong> ${produto.DescricaoProduto}</p>
             <p><strong>ID do Produto:</strong> ${produto.ID_Produto}</p>
+            <p><strong>Família:</strong> ${produto.Familia}</p>
             <p><strong>Área:</strong> ${produto.Area}</p>
             <p><strong>Subárea:</strong> ${produto.Subarea}</p>
             <p><strong>Natureza:</strong> ${produto.Natureza}</p>
