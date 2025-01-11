@@ -1,13 +1,13 @@
-/* scriptColetorDeDados.js usado como motor para os arquivos STecSenai-lounge.html
-STecSenai-pickCliente.html, STecSenai-dadosContrato.html, STecSenai-localStorage.html
-STecSenai-contrato e STecSenai-consumir */
+/* scriptColetorDeDados.js usado como motor para os arquivos STecAgro-lounge.html
+STecAgro-pickCliente.html, STecAgro-dadosContrato.html, STecAgro-localStorage.html
+STecAgro-contrato e STecAgro-consumir */
 
-// Valores declarados em função dos botões existentes na STecSenai-dadosContrato.html
+// Valores declarados em função dos botões existentes na STecAgro-dadosContrato.html
 let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 
 
-// Ação de coleta e armazenagem de dados da página STecSenai-dadosContrato.html
+// Ação de coleta e armazenagem de dados da página STecAGRO-dadosContrato.html
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   let cepBruto = document.getElementById('cep').value;
   let cnpjBruto = document.getElementById('cnpj').value;
@@ -20,7 +20,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   let servicoSelecionado = document.getElementById('listaDeServicos').value;
   let testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
   let testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
-  let solicitanteSTecSenai = document.getElementById('nomeSolicitanteForm').value;
+  let solicitanteSTecAgro = document.getElementById('nomeSolicitanteForm').value;
 
   
 // Valida se nome, cpf e telefone estão preenchidos *******************************
@@ -44,13 +44,13 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
   
 // SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
-  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
+  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSAgro-dadosContrato.html
   const testemunhaNome = testemunhaDetalhes[0];
   const testemunhaCargo = testemunhaDetalhes[1];
   const testemunhaCpf = testemunhaDetalhes[2];
 //------------------------------------------------- 
-//{familia} {titulo} {codigoRae} {codigoRm} {valorSTecSenai} {publico} {setorAtendido} {cargaHoraria} {modalidade}
-  const servicoDetalhes = servicoSelecionado.split(" | "); // formato apresentado em STecSenai-scrApiProd.js
+//{familia} {titulo} {codigoRae} {codigoRm} {valorSTecAgro} {publico} {setorAtendido} {cargaHoraria} {modalidade}
+  const servicoDetalhes = servicoSelecionado.split(" | "); // formato apresentado em STecAGRO-scrApiProd.js
   const servicoFamilia = servicoDetalhes[0];
   const servicoTitulo = servicoDetalhes[1];  
   const servicoRae = servicoDetalhes[2];
@@ -123,7 +123,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 // ----------------------------------------
-// Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
+// Preenchendo a tabela de verificação que aparecerá na página STecAGRO-dadosContrato 
     document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
     document.getElementById('qsa-td').textContent = socioPj;
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
@@ -143,7 +143,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('email-td').textContent = email;
     document.getElementById('servico-td').textContent = `${servicoTitulo} - ${servicoQhora} H - ${servicoModalidade}`;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
-    document.getElementById("solicitante-td").textContent = solicitanteSTecSenai;
+    document.getElementById("solicitante-td").textContent = solicitanteSTecAgro;
 
     document.getElementById('data-table').style.display = 'block';
 
@@ -180,32 +180,32 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 // **** ENVIA OS DADOS PARA O SERVIDOR------------------------------------------------------------------------------- 
 /*
 CLIENTE: ----------------------------------------------
-nomeCliente, NomePfSenaiST
-cpf,CpfPfSenaiST
-nascimentoCliente,nascimentoPfSenaiST
-telefone,telefonePfSenaiST
-email,emailPfSenaiST
-dataCep.cep,cepPfSenaiST
-dataCep.logradouro,logradouroPfSenaiST
-numeroResidencia,numeroResidenciaPfSenaiST
-dataCep.bairro,bairroPfSenaiST
-dataCep.localidade,municipioPfSenaiST
+nomeCliente, NomePfAgroST
+cpf,CpfPfAgroST
+nascimentoCliente,nascimentoPfAgroST
+telefone,telefonePfAgroST
+email,emailPfAgroST
+dataCep.cep,cepPfAgroST
+dataCep.logradouro,logradouroPfAgroST
+numeroResidencia,numeroResidenciaPfAgroST
+dataCep.bairro,bairroPfAgroST
+dataCep.localidade,municipioPfAgroST
 
 TESTEMUNHA: ----------------------------------------------
-testemunhaNome,testemunhaNomeSenaiST
-testemunhaCargo,testemunhaCargoSenaiST
-testemunhaCpf,testemunhaCpfSenaiST
-solicitanteSTecSenai, solicitanteSenaiST
+testemunhaNome,testemunhaNomeAgroST
+testemunhaCargo,testemunhaCargoAgroST
+testemunhaCpf,testemunhaCpfAgroST
+solicitanteSTecAgro, solicitanteAgroST
 
 SERVIÇO:  ----------------------------------------------
-servicoFamilia,ServFamiliaSenaiST
-servicoTitulo,servTituloSenaiST
-servicoRae,servRaeSenaiST
-servicoRM,servRMSenaiST
-servicoValor,servValorSenaiST
-servicoTipo,servTipoSenaiST
-servicoQhora,servQhoraSenaiST
-servicoModalidade,servModalidadeSenaiST
+servicoFamilia,ServFamiliaAgroST
+servicoTitulo,servTituloAgroST
+servicoRae,servRaeAgroST
+servicoRM,servRMAgroST
+servicoValor,servValorAgroST
+servicoTipo,servTipoAgroST
+servicoQhora,servQhoraAgroST
+servicoModalidade,servModalidadeAgroST
 
 CNPJ: ----------------------------------------------
 dataCnpj.cnpj,
@@ -262,7 +262,7 @@ dataCnpj.municipio,
         info33: complementoPj,
         info34: dataCnpj.bairro,
         info35: dataCnpj.municipio,
-        info36: solicitanteSTecSenai,
+        info36: solicitanteSTecAgro,
         info37: dataCnpj.porte
     };
 

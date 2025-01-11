@@ -13,16 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailPj = localStorage.getItem("emailPj");
   const telefonePj = localStorage.getItem("telefonePj");
   
-  const nomeTestemunhaSTecSenai = localStorage.getItem("testemunhaNome");
-  const cargoTestemunhaSTecSenai = localStorage.getItem("testemunhaCargo")
-  const cpfTestemunhaSTecSenai = localStorage.getItem("testemunhaCpf");
+  const nomeTestemunhaSTecAgro = localStorage.getItem("testemunhaNome");
+  const cargoTestemunhaSTecAgro = localStorage.getItem("testemunhaCargo")
+  const cpfTestemunhaSTecAgro = localStorage.getItem("testemunhaCpf");
   
-  const servicoSTecSenaiFamilia = localStorage.getItem('servicoFamilia');
-  const servicoSTecSenaiTitulo  =  localStorage.getItem('servicoTitulo');
-  const servicoSTecSenaiRae = localStorage.getItem('servicoRae');
-  const servicoSTecSenaiRM =  localStorage.getItem('servicoRM');
-  const servicoSTecSenaiQhora = localStorage.getItem('servicoQhora');
-  const servicoSTecSenaiValor = localStorage.getItem('servicoValor');
+  const servicoSTecAgroFamilia = localStorage.getItem('servicoFamilia');
+  const servicoSTecAgroTitulo  =  localStorage.getItem('servicoTitulo');
+  const servicoSTecAgroRae = localStorage.getItem('servicoRae');
+  const servicoSTecAgroRM =  localStorage.getItem('servicoRM');
+  const servicoSTecAgroQhora = localStorage.getItem('servicoQhora');
+  const servicoSTecAgroValor = localStorage.getItem('servicoValor');
   
   
 // ****************** MONTANDO O TEXTO DA PARTE CONTRATANTE ******************************
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const reportProduto = document.getElementById("reportProduto");
   reportProduto.innerHTML = `
     <p style="text-align: justify;">
-    Produto específico da prestação dos serviços: ${servicoSTecSenaiFamilia} - ${servicoSTecSenaiTitulo} - RAE Nº ${servicoSTecSenaiRae}
+    Produto específico da prestação dos serviços: ${servicoSTecAgroFamilia} - ${servicoSTecAgroTitulo} - RAE Nº ${servicoSTecAgroRae}
     </p>
   `;
   
@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const testemunhaAssinante = document.getElementById("testemunhaAssinante");
   testemunhaAssinante.innerHTML = `
-     <p style="margin: 0.15em 0;">${nomeTestemunhaSTecSenai}</p>
-      <p style="margin: 0.15em 0;">${cargoTestemunhaSTecSenai}</p>
-      <p style="margin: 0.15em 0;">${cpfTestemunhaSTecSenai}</p>
+     <p style="margin: 0.15em 0;">${nomeTestemunhaSTecAgro}</p>
+      <p style="margin: 0.15em 0;">${cargoTestemunhaSTecAgro}</p>
+      <p style="margin: 0.15em 0;">${cpfTestemunhaSTecAgro}</p>
   `;
 
   
@@ -83,9 +83,9 @@ const dataFormatadaFim = `${diaFim}/${mesFim}/${anoFim}`;
   const descritivoSebraetecAgro = document.getElementById("descritivoSebraetecAgro");
   descritivoSebraetecAgro.innerHTML = `
     <p style="margin: 0.15em 0;">SERVIÇO: SEBRAETEC - Consultoria Tecnológica - Presencial</p>
-    <p style="margin: 0.15em 0;">Descritivo do serviço: ${servicoSTecSenaiTitulo}</p>
-    <p style="margin: 0.15em 0;">Produto: RAE ${servicoSTecSenaiRae} - ${servicoSTecSenaiFamilia}</p>
-    <p style="margin: 0.15em 0;">Carga Horária: ${servicoSTecSenaiQhora} h</p>
+    <p style="margin: 0.15em 0;">Descritivo do serviço: ${servicoSTecAgroTitulo}</p>
+    <p style="margin: 0.15em 0;">Produto: RAE ${servicoSTecAgroRae} - ${servicoSTecAgroFamilia}</p>
+    <p style="margin: 0.15em 0;">Carga Horária: ${servicoSTecAgroQhora} h</p>
     <p style="margin: 0.15em 0;">Período: Início em ${dataFormatadaInicio} e fim estimado em ${dataFormatadaFim}</p>
     <p style="margin: 0.15em 0;">Local: Presencial</p>
   `;
@@ -120,15 +120,15 @@ const dataFormatadaFim = `${diaFim}/${mesFim}/${anoFim}`;
         <table style="border: 1px solid black; padding: 1rem; text-align: center; border-collapse: collapse; width: 100%">
           <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR TOTAL</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecAgroValor)}</td>
         </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR SUBSIDIADO PELO SEBRAE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.7).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecAgroValor * 0.7).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR PAGO PELO CLIENTE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.3).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecAgroValor * 0.3).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>FORMA DE PAGAMENTO</b></td>
