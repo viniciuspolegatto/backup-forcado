@@ -24,7 +24,7 @@ function exibirProdutosNaTela(produtos) {
     );
 
     produtosFiltrados.forEach(produto => {
-        const custoCredenciado = Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
+        const custoCliente = Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         });
@@ -44,7 +44,7 @@ function exibirProdutosNaTela(produtos) {
                 <td style="border: 1px solid black; padding: 8px">${produto.CargaHoraria}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.Setor}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.PublicoAlvo}</td>
-                <td style="border: 1px solid black; padding: 8px">${custoCredenciado}</td>
+                <td style="border: 1px solid black; padding: 8px">${custoCliente}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.Pago}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.DescricaoProduto}</td>
             </tr>
