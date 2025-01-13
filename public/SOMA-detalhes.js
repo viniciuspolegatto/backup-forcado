@@ -29,15 +29,19 @@ async function carregarDetalhes() {
             <p><strong>Área:</strong> ${produto.Area}</p>
             <p><strong>Subárea:</strong> ${produto.Subarea}</p>
             <p><strong>Natureza:</strong> ${produto.Natureza}</p>
+            <p><strong style="color: red;">PREÇO PARA O CLIENTE:</strong> ${Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            })}</p>
+            <p><strong>Valor total:</strong> ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            })}</p>            
             <p><strong>Público-alvo:</strong> ${produto.PublicoAlvo}</p>
             <p><strong>Origem:</strong> ${produto.Origem}</p>
             <p><strong>Carga horária:</strong> ${produto.CargaHoraria} horas</p>
             <p><strong>Empresas Habilitadas:</strong> ${produto.EmpresasHabilitadas}</p>
             <p><strong>Complexidade:</strong> ${produto.Complexidade}</p>
-            <p><strong>Custo Credenciado:</strong> ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            })}</p>
             <p><strong>Modalidade:</strong> ${produto.Modalidade}</p>
             <p><strong>Pago:</strong> ${produto.Pago}</p>
         `;
