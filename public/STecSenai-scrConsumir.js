@@ -32,6 +32,10 @@ function carregarDados() {
     fetch("/buscarContrato")
         .then((response) => response.json())
         .then((data) => {
+  
+      // Ordena os dados em ordem decrescente do ID_Contrato
+            data.sort((a, b) => b.ID_Contrato - a.ID_Contrato);      
+      
             console.log("Dados recebidos:", data);
             let html = `
               <div class="table-container">

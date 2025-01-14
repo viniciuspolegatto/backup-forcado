@@ -37,5 +37,5 @@ function isAuthenticated() {
 
 // Redirecionamento se o usuário já está autenticado
 if (isAuthenticated()) {
-    window.location.href = 'STecSenai-consumir.html';
+    window.location.href = 'STecSenai-gestao.html';
 }
