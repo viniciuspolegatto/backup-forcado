@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const idProduto = urlParams.get('id'); // Obtém o ID do produto da URL
+const idProduto = urlParams.get('id');
 const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenciamentoSomaSebraeSP/main/SebraeSpSomaConsultorias.json';
 const detalhesProduto = document.getElementById('detalhesProduto');
 const enviarPedidoBtn = document.getElementById('enviarPedido');
@@ -20,7 +20,6 @@ async function carregarDetalhes() {
             return;
         }
 
-        // Exibe os detalhes do produto encontrado
         detalhesProduto.innerHTML = `
             <h2>${produto.NomeProduto}</h2>
             <p><strong>Descrição:</strong> ${produto.DescricaoProduto}</p>
@@ -46,10 +45,7 @@ async function carregarDetalhes() {
             <p><strong>Pago:</strong> ${produto.Pago}</p>
         `;
 
-        // Configura o botão "Enviar Pedido" para usar o Outlook Desktop
         enviarPedidoBtn.addEventListener('click', () => enviarPedidoDesktop(produto));
-
-        // Configura o botão "Usar Email Web" para redirecionar ao Outlook Web
         usarEmailWebBtn.addEventListener('click', () => enviarPedidoWeb(produto));
     } catch (error) {
         console.error('Erro ao carregar detalhes do produto:', error);
@@ -69,9 +65,9 @@ function enviarPedidoDesktop(produto) {
 function enviarPedidoWeb(produto) {
     const dataHora = new Date().toLocaleString('pt-BR');
     const assunto = `ER - SOLICITAÇÃO ATENDIMENTO CREDENCIADO - ${dataHora}`;
-    const corpo = gerarCorpoEmail(produto);
+    const corpo = gerarCorpoEmail(produto).replace(/\n/g, '%0A'); // Substitui quebras de linha pelo formato correto para URLs
 
-    const outlookWebUrl = `https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=169&ct=1736807412&rver=7.5.2211.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f?realm=hotmail.com&subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+    const outlookWebUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=marcosvp@sebraesp.com.br&subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
     window.open(outlookWebUrl, '_blank');
 }
 
