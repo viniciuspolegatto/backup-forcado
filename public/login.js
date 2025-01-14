@@ -12,7 +12,7 @@ function login() {
     // Simulação de verificação das credenciais
     if (username === '123' && password === '123') {
         document.cookie = 'username=' + username + '; path=/';
-        window.location.href = 'STecSenai-consumir.html';
+        window.location.href = 'STecSenai-gestao.html';
     } else {
         alert('Usuário ou senha inválidos');
     }
