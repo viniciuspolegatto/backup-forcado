@@ -175,7 +175,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-// ----------------------------------------
+// ----------------------------------
 // Preenchendo a tabela de verificação que aparecerá na página STecAGRO-dadosContrato 
     document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
     document.getElementById('qsa-td').textContent = socioPj;
