@@ -1,6 +1,6 @@
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 const urlParams = new URLSearchParams(window.location.search);
-const idProduto = urlParams.get('id'); // Obtém o ID do produto da URL
+const idProduto = urlParams.get('id');
 const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenciamentoSomaSebraeSP/main/SebraeSpSomaConsultorias.json';
 const detalhesProduto = document.getElementById('detalhesProduto');
 const enviarPedidoBtn = document.getElementById('enviarPedido');
@@ -21,8 +21,8 @@ async function carregarDetalhes() {
             return;
         }
 
-        // Exibe os detalhes do produto encontrado
         detalhesProduto.innerHTML = `
+
         <table style="width: 90%; text-align: justify;">
           <thead>
             <tr>
@@ -67,7 +67,32 @@ async function carregarDetalhes() {
           </tbody>
         </table>`;
       
-      
+            <h2>${produto.NomeProduto}</h2>
+            <p><strong>Descrição:</strong> ${produto.DescricaoProduto}</p>
+            <p><strong>ID do Produto:</strong> ${produto.ID_Produto}</p>
+            <p><strong>Família:</strong> ${produto.Familia}</p>
+            <p><strong>Área:</strong> ${produto.Area}</p>
+            <p><strong>Subárea:</strong> ${produto.Subarea}</p>
+            <p><strong>Natureza:</strong> ${produto.Natureza}</p>
+            <p><strong style="color: red;">PREÇO PARA O CLIENTE:</strong> ${Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            })}</p>
+            <p><strong>Valor total:</strong> ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            })}</p>            
+            <p><strong>Público-alvo:</strong> ${produto.PublicoAlvo}</p>
+            <p><strong>Origem:</strong> ${produto.Origem}</p>
+            <p><strong>Carga horária:</strong> ${produto.CargaHoraria} horas</p>
+            <p><strong>Empresas Habilitadas:</strong> ${produto.EmpresasHabilitadas}</p>
+            <p><strong>Complexidade:</strong> ${produto.Complexidade}</p>
+            <p><strong>Modalidade:</strong> ${produto.Modalidade}</p>
+            <p><strong>Pago:</strong> ${produto.Pago}</p>
+        `;
+
+        enviarPedidoBtn.addEventListener('click', () => enviarPedidoDesktop(produto));
+        usarEmailWebBtn.addEventListener('click', () => enviarPedidoWeb(produto));
     } catch (error) {
         console.error('Erro ao carregar detalhes do produto:', error);
         detalhesProduto.innerHTML = `<p>Erro ao carregar os detalhes do produto. Tente novamente mais tarde.</p>`;
@@ -237,6 +262,10 @@ function enviarPedidoDesktop(dataCnpj) {
 
     const mailto = `mailto:marcosvp@sebraesp.com.br?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
     window.location.href = mailto;
+    const corpo = gerarCorpoEmail(produto).replace(/\n/g, '%0A'); // Substitui quebras de linha pelo formato correto para URLs
+
+    const outlookWebUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=marcosvp@sebraesp.com.br&subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+    window.open(outlookWebUrl, '_blank');
 }
 
 function gerarCorpoEmail(produto) {
@@ -259,4 +288,3 @@ function gerarCorpoEmail(produto) {
         Pago: ${produto.Pago}
     `;
 }
-
