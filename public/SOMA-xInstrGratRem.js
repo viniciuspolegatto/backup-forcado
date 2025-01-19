@@ -17,15 +17,34 @@ async function buscarProdutos() {
 
 function exibirProdutosNaTela(produtos) {
     const produtosFiltrados = produtos.filter(produto => 
-        produto.Modalidade === 'Hibrido.' &&
-        produto.Pago === 'Sim' &&
-        produto.Natureza === 'Consultoria'
+        produto.Modalidade === 'Remoto' &&
+        produto.Pago === 'Não' &&
+        produto.Natureza === 'Instrutoria' 
         //&& produto.EmpresasHabilitadas !== 'xx'
-        && produto.Area !== 'Desenvolvimento Setorial'
-        && produto.Area !== 'Desenvolvimento Territorial'
-        && produto.Area !== 'Políticas Públicas'
-        //&& produto.DescricaoProduto !== 'NaN'
-    );
+        && produto.PublicoAlvo !== 'EPP, ME' 
+        && produto.PublicoAlvo !== 'EPP, ME, MEI' 
+        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empreendedor, Potencial Empresário, Produtor Rural' 
+        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empresário, Produtor Rural'
+        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empresário'
+        && produto.PublicoAlvo !== 'EPP, ME, MEI, Produtor Rural' 
+        && produto.PublicoAlvo !== 'EPP, ME, Potencial Empresário, Produtor Rural' 
+        && produto.PublicoAlvo !== 'EPP, ME, Potencial Empreendedor' 
+        && produto.PublicoAlvo !== 'EPP, ME, Produtor Rural' 
+        //&& produto.PublicoAlvo !== 'Gestor Público' 
+        && produto.PublicoAlvo !== 'ME' 
+        && produto.PublicoAlvo !== 'ME, MEI' 
+        && produto.PublicoAlvo !== 'ME, MEI, Potencial Empresário' 
+        && produto.PublicoAlvo !== 'ME, Produtor Rural' 
+        && produto.PublicoAlvo !== 'MEI' 
+        && produto.PublicoAlvo !== 'MEI, Potencial Empreendedor, Potencial Empresário' 
+        && produto.PublicoAlvo !== 'Potencial Empreendedor' 
+        && produto.PublicoAlvo !== 'Potencial Empreendedor, Potencial Empresário, Produtor Rural' 
+        && produto.PublicoAlvo !== 'Produtor Rural' 
+        //&& produto.PublicoAlvo !== 'Professor'
+        //&& produto.PublicoAlvo !== 'NaN'
+        && produto.Area !== 'Marketing e Vendas'
+        && produto.Area !== 'Planejamento Empresarial'
+   );
 
      // Classificar os itens: "xx" será movido para o final
     const produtosOrdenados = produtosFiltrados.sort((a, b) => {

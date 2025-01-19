@@ -20,10 +20,25 @@ function exibirProdutosNaTela(produtos) {
         produto.Modalidade === 'Hibrido' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Instrutoria' 
-        // && produto.DescricaoProduto !== 'NaN'
+        && produto.EmpresasHabilitadas !== 'xx'
+        && produto.Area !== 'Desenvolvimento Setorial'
+        && produto.Area !== 'Desenvolvimento Territorial'
+        && produto.Area !== 'Políticas Públicas'
+        && produto.Area !== 'Educação'
+        && produto.PublicoAlvo !== 'Professor'
+        && produto.PublicoAlvo !== 'Gestor Público'
+        //&& produto.PublicoAlvo !== 'NaN'
+        //&& produto.DescricaoProduto !== 'NaN'
     );
 
-    produtosFiltrados.forEach(produto => {
+     // Classificar os itens: "xx" será movido para o final
+    const produtosOrdenados = produtosFiltrados.sort((a, b) => {
+        if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
+        if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
+        return 0;
+    });
+
+    produtosOrdenados.forEach(produto => {
         const custoCredenciado = Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'

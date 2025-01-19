@@ -20,10 +20,21 @@ function exibirProdutosNaTela(produtos) {
         produto.Modalidade === 'Remoto' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Consultoria'
-        // && produto.DescricaoProduto !== 'NaN'
+        //&& produto.EmpresasHabilitadas !== 'xx'
+        && produto.Area !== 'Desenvolvimento Setorial'
+        && produto.Area !== 'Desenvolvimento Territorial'
+        && produto.Area !== 'Políticas Públicas'
+        //&& produto.DescricaoProduto !== 'NaN'
     );
 
-    produtosFiltrados.forEach(produto => {
+      // Classificar os itens: "xx" será movido para o final
+    const produtosOrdenados = produtosFiltrados.sort((a, b) => {
+        if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
+        if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
+        return 0;
+    });
+
+    produtosOrdenados.forEach(produto => {
         const custoCredenciado = Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -53,4 +64,3 @@ function exibirProdutosNaTela(produtos) {
         tabelaProdutos.innerHTML += linha;
     });
 }
-
