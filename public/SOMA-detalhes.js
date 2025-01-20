@@ -260,44 +260,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('testemunhaCpf', testemunhaCpf);
     
 
-
-
-/* ------------------------------------------------------ */ 
-
-    const data = {
-        info01: nomeCliente,
-        info02: cpf,
-        info03: nascimentoCliente,
-        info04: telefone,
-        info05: email,
-        info06: dataCep.cep,
-        info07: dataCep.logradouro,
-        info08: numeroResidencia,
-        info09: dataCep.bairro,
-        info10: dataCep.localidade,
-
-        info11: testemunhaNome,
-        info12: testemunhaCargo,
-        info13: testemunhaCpf,
-
-        info23: dataCnpj.cnpj,
-        info24: dataCnpj.nome,
-        info25: fantasiaPj,
-        info26: dataCnpj.atividade_principal[0].text,
-        info27: telefonePj,
-        info28: emailPj,
-        info29: socioPj,
-        info30: dataCnpj.situacao,
-        info31: dataCnpj.logradouro,
-        info32: dataCnpj.numero,
-        info33: complementoPj,
-        info34: dataCnpj.bairro,
-        info35: dataCnpj.municipio,
-        info37: dataCnpj.porte
-    };
-
-
-  
   
   } catch (error) {
     console.error(error);
@@ -309,8 +271,32 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-// Adiciona o evento de clique para o botão Gerar Contrato
-botaoGerarContrato.addEventListener("click", function() {
-    // Redireciona para a página de contrato
-    window.location.href = "STecSenai-contrato.html";
+botaoGerarContrato.addEventListener("click", function () {
+  // Coleta os dados necessários para o corpo do e-mail
+  const cnpj = document.getElementById('cnpj').value;
+  const nomeCliente = document.getElementById('nomeClienteForm').value;
+  const razaoSocial = document.getElementById('razao-social-td').textContent;
+  const dataConsultoria = document.getElementById('dataConsultoria').value;
+  const horario = document.getElementById('horarioConsultoria').value;
+  const telefone = document.getElementById('telefone').value;
+  const emailCliente = document.getElementById('email').value;
+  const projeto = document.getElementById('projeto').value;
+
+  // Formata o corpo do e-mail
+  const emailBody = `
+    CNPJ: ${cnpj}
+    Nome do Cliente: ${nomeCliente}
+    Razão Social: ${razaoSocial}
+    Data da Consultoria: ${dataConsultoria}
+    Horário: ${horario}
+    Telefone: ${telefone}
+    E-mail: ${emailCliente}
+    Pertence a Projeto: ${projeto}
+  `;
+
+  // Cria o link de e-mail
+  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+
+  // Redireciona para o link de e-mail
+  window.location.href = mailtoLink;
 });
