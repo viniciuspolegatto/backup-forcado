@@ -1,3 +1,4 @@
+let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 const urlParams = new URLSearchParams(window.location.search);
 const idProduto = urlParams.get('id'); // Obtém o ID do produto da URL
@@ -5,76 +6,116 @@ const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenc
 const detalhesProduto = document.getElementById('detalhesProduto');
 const enviarPedidoBtn = document.getElementById('enviarPedido');
 const usarEmailWebBtn = document.getElementById('usarEmailWeb');
+const inputDataConsultoria = document.getElementById("dataConsultoria");
 
-document.addEventListener('DOMContentLoaded', carregarDetalhes);
+document.addEventListener('DOMContentLoaded', () => {
+  carregarDetalhes();
+  configurarDataMinima(); // Chamada da função para configurar a data mínima
+});
 
-async function carregarDetalhes() {
-    try {
-        const res = await fetch(endpoint);
-        if (!res.ok) throw new Error('Erro ao buscar dados da API.');
-
-        const produtos = await res.json();
-        const produto = produtos.find(p => String(p.ID_Produto) === String(idProduto));
-
-        if (!produto) {
-            detalhesProduto.innerHTML = `<p>Produto não encontrado. Verifique o ID na URL.</p>`;
-            return;
-        }
-
-        // Exibe os detalhes do produto encontrado
-        detalhesProduto.innerHTML = `
-        <table style="width: 90%; text-align: justify;">
-          <thead>
-            <tr>
-              <th><h2>${produto.NomeProduto}</h2></th>
-            </tr>
-            <tr>
-              <th><h3>${produto.DescricaoProduto}</h3></th>
-            </tr>
-          </thead>
-        </table>
-        <p></P>
-        <table style="width: 90%; border-collapse: collapse; text-align: justify; border: 1px solid #ccc; margin: 5px;">
-          <tbody>
-            <tr>
-              <td><strong style="color: red;">PREÇO PARA O CLIENTE:</strong> ${Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-              })}</td>
-              <td><strong>ID do Produto:</strong> ${produto.ID_Produto}</td>
-              <td><strong>Família:</strong> ${produto.Familia}</td>
-              <td><strong>Área:</strong> ${produto.Area}</td>
-            </tr>
-            <tr>
-              <td><strong>Pagamento ao Credenciado:</strong> ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-              })}</td>
-              <td><strong>Natureza:</strong> ${produto.Natureza}</td>
-              <td><strong>Subárea:</strong> ${produto.Subarea}</td>
-              <td><strong>Público-alvo:</strong> ${produto.PublicoAlvo}</td>
-            </tr>
-            <tr>
-              <td><strong>Empresas Habilitadas:</strong> ${produto.EmpresasHabilitadas}</td>
-              <td><strong>Origem:</strong> ${produto.Origem}</td>
-              <td><strong>Carga horária:</strong> ${produto.CargaHoraria} horas</td>
-              <td><strong>Complexidade:</strong> ${produto.Complexidade}</td>
-            </tr>
-            <tr>
-              <td><strong>Modalidade:</strong> ${produto.Modalidade}</td>
-              <td><strong>Pago:</strong> ${produto.Pago}</td>
-            </tr>
-          </tbody>
-        </table>`;
-      
-      
-    } catch (error) {
-        console.error('Erro ao carregar detalhes do produto:', error);
-        detalhesProduto.innerHTML = `<p>Erro ao carregar os detalhes do produto. Tente novamente mais tarde.</p>`;
+// Função para calcular 13 dias úteis
+function calcularDiasUteis(inicio, feriados, diasNecessarios) {
+  let contadorDiasUteis = 0;
+  const resultado = new Date(inicio);
+  while (contadorDiasUteis < diasNecessarios) {
+    resultado.setDate(resultado.getDate() + 1);
+    const diaSemana = resultado.getDay();
+    const dataFormatada = resultado.toISOString().split("T")[0];
+    if (
+      diaSemana !== 0 &&
+      diaSemana !== 6 &&
+      !feriados.includes(dataFormatada)
+    ) {
+      contadorDiasUteis++;
     }
+  }
+  return resultado;
 }
 
-// Ação de coleta e armazenagem de dados da página STecAGRO-dadosContrato.html
+// Função para configurar a data mínima no campo de data
+function configurarDataMinima() {
+  const feriados = [
+    "2025-01-01",
+    "2025-04-21",
+    "2025-05-01",
+    "2025-09-07",
+    "2025-10-12",
+    "2025-11-02",
+    "2025-11-15",
+    "2025-12-25",
+  ];
+  const hoje = new Date();
+  const dataMinima = calcularDiasUteis(hoje, feriados, 13);
+  inputDataConsultoria.min = dataMinima.toISOString().split("T")[0];
+  inputDataConsultoria.disabled = false;
+}
+
+async function carregarDetalhes() {
+  try {
+    const res = await fetch(endpoint);
+    if (!res.ok) throw new Error('Erro ao buscar dados da API.');
+
+    const produtos = await res.json();
+    const produto = produtos.find(p => String(p.ID_Produto) === String(idProduto));
+
+    if (!produto) {
+      detalhesProduto.innerHTML = `<p>Produto não encontrado. Verifique o ID na URL.</p>`;
+      return;
+    }
+
+    // Exibe os detalhes do produto encontrado
+    detalhesProduto.innerHTML = `
+    <table style="width: 90%; text-align: justify;">
+      <thead>
+        <tr>
+          <th><h2>${produto.NomeProduto}</h2></th>
+        </tr>
+        <tr>
+          <th><h3>${produto.DescricaoProduto}</h3></th>
+        </tr>
+      </thead>
+    </table>
+    <p></P>
+    <table style="width: 90%; border-collapse: collapse; text-align: justify; border: 1px solid #ccc; margin: 5px;">
+      <tbody>
+        <tr>
+          <td><strong style="color: red;">PREÇO PARA O CLIENTE:</strong> ${Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+          })}</td>
+          <td><strong>ID do Produto:</strong> ${produto.ID_Produto}</td>
+          <td><strong>Família:</strong> ${produto.Familia}</td>
+          <td><strong>Área:</strong> ${produto.Area}</td>
+        </tr>
+        <tr>
+          <td><strong>Pagamento ao Credenciado:</strong> ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+          })}</td>
+          <td><strong>Natureza:</strong> ${produto.Natureza}</td>
+          <td><strong>Subárea:</strong> ${produto.Subarea}</td>
+          <td><strong>Público-alvo:</strong> ${produto.PublicoAlvo}</td>
+        </tr>
+        <tr>
+          <td><strong>Empresas Habilitadas:</strong> ${produto.EmpresasHabilitadas}</td>
+          <td><strong>Origem:</strong> ${produto.Origem}</td>
+          <td><strong>Carga horária:</strong> ${produto.CargaHoraria} horas</td>
+          <td><strong>Complexidade:</strong> ${produto.Complexidade}</td>
+        </tr>
+        <tr>
+          <td><strong>Modalidade:</strong> ${produto.Modalidade}</td>
+          <td><strong>Pago:</strong> ${produto.Pago}</td>
+        </tr>
+      </tbody>
+    </table>`;
+    
+  } catch (error) {
+    console.error('Erro ao carregar detalhes do produto:', error);
+    detalhesProduto.innerHTML = `<p>Erro ao carregar os detalhes do produto. Tente novamente mais tarde.</p>`;
+  }
+}
+
+// Ação de coleta e armazenagem de dados da página STecSenai-dadosContrato.html
 document.getElementById('botaoImpressaoCnpj').addEventListener('click', async function() {
   let cepBruto = document.getElementById('cep').value;
   let cnpjBruto = document.getElementById('cnpj').value;
@@ -109,11 +150,12 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
   
 // SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
-  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSAgro-dadosContrato.html
+  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
   const testemunhaNome = testemunhaDetalhes[0];
   const testemunhaCargo = testemunhaDetalhes[1];
   const testemunhaCpf = testemunhaDetalhes[2];
 //------------------------------------------------- 
+
 
 
 // ELEMENTO PARA COLETAR INFORMAÇÕES DE CNPJ e CEP
@@ -175,8 +217,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-// ----------------------------------
-// Preenchendo a tabela de verificação que aparecerá na página STecAGRO-dadosContrato 
+// ----------------------------------------
+// Preenchendo a tabela de verificação que aparecerá na página STecSenai-dadosContrato 
     document.getElementById('cnpj-td').textContent = dataCnpj.cnpj;
     document.getElementById('qsa-td').textContent = socioPj;
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
@@ -212,12 +254,50 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('telefonePj',telefonePj);
     localStorage.setItem('emailPj',emailPj);
     
+    
     localStorage.setItem('testemunhaNome', testemunhaNome);
     localStorage.setItem('testemunhaCargo', testemunhaCargo);
     localStorage.setItem('testemunhaCpf', testemunhaCpf);
+    
 
-    // Adiciona o evento de clique para o botão Gerar Contrato
-    enviarPedidoBtn.addEventListener('click', () => enviarPedidoDesktop(dataCnpj));
+
+
+/* ------------------------------------------------------ */ 
+
+    const data = {
+        info01: nomeCliente,
+        info02: cpf,
+        info03: nascimentoCliente,
+        info04: telefone,
+        info05: email,
+        info06: dataCep.cep,
+        info07: dataCep.logradouro,
+        info08: numeroResidencia,
+        info09: dataCep.bairro,
+        info10: dataCep.localidade,
+
+        info11: testemunhaNome,
+        info12: testemunhaCargo,
+        info13: testemunhaCpf,
+
+        info23: dataCnpj.cnpj,
+        info24: dataCnpj.nome,
+        info25: fantasiaPj,
+        info26: dataCnpj.atividade_principal[0].text,
+        info27: telefonePj,
+        info28: emailPj,
+        info29: socioPj,
+        info30: dataCnpj.situacao,
+        info31: dataCnpj.logradouro,
+        info32: dataCnpj.numero,
+        info33: complementoPj,
+        info34: dataCnpj.bairro,
+        info35: dataCnpj.municipio,
+        info37: dataCnpj.porte
+    };
+
+
+  
   
   } catch (error) {
     console.error(error);
@@ -229,34 +309,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-
-function enviarPedidoDesktop(dataCnpj) {
-    const dataHora = new Date().toLocaleString('pt-BR');
-    const assunto = `ER - SOLICITAÇÃO ATENDIMENTO CREDENCIADO - ${dataHora}`;
-    const corpo = gerarCorpoEmail(dataCnpj);
-
-    const mailto = `mailto:marcosvp@sebraesp.com.br?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
-    window.location.href = mailto;
-}
-
-function gerarCorpoEmail(produto) {
-    return `
-        Nome do Produto: ${produto.NomeProduto}
-        Descrição: ${produto.DescricaoProduto}
-        ID do Produto: ${produto.ID_Produto}
-        Família: ${produto.Familia}
-        Área: ${produto.Area}
-        Subárea: ${produto.Subarea}
-        Natureza: ${produto.Natureza}
-        Preço para o Cliente: ${Number(produto.Soma_Precificacao).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-        Valor Total: ${Number(produto.Custo_Credenciado).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-        Público-alvo: ${produto.PublicoAlvo}
-        Origem: ${produto.Origem}
-        Carga Horária: ${produto.CargaHoraria} horas
-        Empresas Habilitadas: ${produto.EmpresasHabilitadas}
-        Complexidade: ${produto.Complexidade}
-        Modalidade: ${produto.Modalidade}
-        Pago: ${produto.Pago}
-    `;
-}
-
+// Adiciona o evento de clique para o botão Gerar Contrato
+botaoGerarContrato.addEventListener("click", function() {
+    // Redireciona para a página de contrato
+    window.location.href = "STecSenai-contrato.html";
+});

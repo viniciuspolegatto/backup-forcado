@@ -303,16 +303,6 @@ dataCnpj.municipio,
 }); // FIM DO ADD EVENT LISTENER
 
 
-botaoBuscarCadastro.addEventListener("click", function() {
-    const senha = prompt("Digite a senha para acessar a busca de cadastro:");
-    const senhaCorreta = "Sebrae@123";
-
-    if (senha === senhaCorreta) {
-        window.location.href = "STecSenai-pickCliente.html";
-    } else {
-        alert("Senha incorreta. Acesso negado.");
-    }
-});
 
 // Adiciona o evento de clique para o botão Gerar Contrato
 botaoGerarContrato.addEventListener("click", function() {
