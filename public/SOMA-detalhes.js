@@ -350,7 +350,7 @@ botaoGerarContrato.addEventListener("click", function () {
   `;
 
   // Criação do link mailto
-  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+ const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
 
   // Redireciona para o link mailto
   window.location.href = mailtoLink;
