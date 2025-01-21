@@ -108,6 +108,10 @@ async function carregarDetalhes() {
         </tr>
       </tbody>
     </table>`;
+  
+  // Armazena os detalhes para uso posterior
+    localStorage.setItem('NomeProduto', produto.NomeProduto);
+    localStorage.setItem('Modalidade', produto.Modalidade);
     
   } catch (error) {
     console.error('Erro ao carregar detalhes do produto:', error);
@@ -271,6 +275,10 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 botaoGerarContrato.addEventListener("click", function () {
+  // PRODUTO - Atendimento
+  const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
+  const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
+
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
   const razaoSocial = document.getElementById('razao-social-td').textContent || 'N/A';
@@ -305,6 +313,12 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
+    **DETALHES DO PRODUTO**
+  - Nome do Produto: ${NomeProduto}
+  - Modalidade: ${Modalidade}
+  - Data da Consultoria: ${dataConsultoria}
+  - Horário: ${horario}
+
   **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Razão Social: ${razaoSocial}
@@ -337,6 +351,10 @@ botaoGerarContrato.addEventListener("click", function () {
   **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
+
+  // Criação do link mailto
+  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+
   
   // Criação do link mailto
   const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
