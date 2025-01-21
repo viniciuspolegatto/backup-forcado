@@ -274,12 +274,11 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 }); // FIM DO ADD EVENT LISTENER
 
 
-
 botaoGerarContrato.addEventListener("click", function () {
   // PRODUTO - Atendimento
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
-  
+
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
   const razaoSocial = document.getElementById('razao-social-td').textContent || 'N/A';
@@ -341,6 +340,10 @@ botaoGerarContrato.addEventListener("click", function () {
   - Telefone de Contato: ${telefoneContato}
   - E-mail: ${emailCliente}
 
+  **DETALHES DA CONSULTORIA**
+  - Data da Consultoria: ${dataConsultoria}
+  - Horário: ${horario}
+
   **DADOS DO PROJETO**
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
@@ -352,6 +355,9 @@ botaoGerarContrato.addEventListener("click", function () {
   // Criação do link mailto
   const mailtoLink = `mailto:marcosvp@sebraesp.com.br?subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
 
+  
+  // Criação do link mailto
+  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
   // Redireciona para o link mailto
   window.location.href = mailtoLink;
 });
