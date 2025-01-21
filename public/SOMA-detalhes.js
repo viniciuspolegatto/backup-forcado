@@ -108,6 +108,10 @@ async function carregarDetalhes() {
         </tr>
       </tbody>
     </table>`;
+  
+  // Armazena os detalhes para uso posterior
+    localStorage.setItem('NomeProduto', produto.NomeProduto);
+    localStorage.setItem('Modalidade', produto.Modalidade);
     
   } catch (error) {
     console.error('Erro ao carregar detalhes do produto:', error);
@@ -272,31 +276,82 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 botaoGerarContrato.addEventListener("click", function () {
-  // Coleta os dados necessários para o corpo do e-mail
+  // PRODUTO - Atendimento
+  const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
+  const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
+  
+  // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
-  const nomeCliente = document.getElementById('nomeClienteForm').value;
-  const razaoSocial = document.getElementById('razao-social-td').textContent;
-  const dataConsultoria = document.getElementById('dataConsultoria').value;
-  const horario = document.getElementById('horarioConsultoria').value;
-  const telefone = document.getElementById('telefone').value;
-  const emailCliente = document.getElementById('email').value;
-  const projeto = document.getElementById('projeto').value;
+  const razaoSocial = document.getElementById('razao-social-td').textContent || 'N/A';
+  const nomeFantasia = document.getElementById('empresa-nome-fantasia').textContent || 'N/A';
+  const atividadePrincipal = document.getElementById('empresa-atividade-principal').textContent || 'N/A';
+  const situacaoCnpj = document.getElementById('empresa-situacao').textContent || 'N/A';
+  const porte = document.getElementById('empresa-porte').textContent || 'N/A';
+  const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
+  const municipio = document.getElementById('empresa-municipio').textContent || 'N/A';
+  const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
 
-  // Formata o corpo do e-mail
+  // Dados do solicitante/testemunha
+  const testemunhaNome = document.getElementById("testemunha-td").textContent || 'N/A';
+  
+  // Dados do projeto
+  const projeto = document.getElementById('projeto').value || 'NÃO';
+  const nomeProjeto = document.getElementById('nomeProj').value || 'N/A';
+
+  // Dados da consultoria
+  const dataConsultoria = document.getElementById('dataConsultoria').value || 'N/A';
+  const horario = document.getElementById('horarioConsultoria').value || 'N/A';
+
+  // Coleta dos dados pessoais do cliente
+  const nomeCliente = document.getElementById('nomeClienteForm').value || 'N/A';
+  const cpf = document.getElementById('cpf').value || 'N/A';
+  const nascimento = document.getElementById('nascimento').value || 'N/A';
+  const cep = document.getElementById('cep').value || 'N/A';
+  const endereco = document.getElementById('endereco-td').textContent || 'N/A';
+  const numeroResidencia = document.getElementById('numeroResidencia').value || 'N/A';
+  const telefoneContato = document.getElementById('telefone').value || 'N/A';
+  const emailCliente = document.getElementById('email').value || 'N/A';
+
+  // Formatação do corpo do e-mail
   const emailBody = `
-    CNPJ: ${cnpj}
-    Nome do Cliente: ${nomeCliente}
-    Razão Social: ${razaoSocial}
-    Data da Consultoria: ${dataConsultoria}
-    Horário: ${horario}
-    Telefone: ${telefone}
-    E-mail: ${emailCliente}
-    Pertence a Projeto: ${projeto}
+    **DETALHES DO PRODUTO**
+  - Nome do Produto: ${NomeProduto}
+  - Modalidade: ${Modalidade}
+  - Data da Consultoria: ${dataConsultoria}
+  - Horário: ${horario}
+
+  **DADOS DA PESSOA JURÍDICA**
+  - CNPJ: ${cnpj}
+  - Razão Social: ${razaoSocial}
+  - Nome Fantasia: ${nomeFantasia}
+  - Atividade Principal: ${atividadePrincipal}
+  - Situação CNPJ: ${situacaoCnpj}
+  - Porte Empresarial: ${porte}
+  - Logradouro: ${logradouro}
+  - Município: ${municipio}
+  - Telefone (PJ): ${telefonePj}
+
+  **DADOS DA PESSOA FÍSICA (CLIENTE)**
+  - Nome Completo: ${nomeCliente}
+  - CPF: ${cpf}
+  - Data de Nascimento: ${nascimento}
+  - CEP: ${cep}
+  - Endereço: ${endereco}
+  - Número da Residência: ${numeroResidencia}
+  - Telefone de Contato: ${telefoneContato}
+  - E-mail: ${emailCliente}
+
+  **DADOS DO PROJETO**
+  - Pertence a Algum Projeto? ${projeto}
+  - Nome do Projeto: ${nomeProjeto}
+
+  **SOLICITANTE**
+  - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
-  // Cria o link de e-mail
+  // Criação do link mailto
   const mailtoLink = `mailto:marcosvp@sebraesp.com.br?subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
 
-  // Redireciona para o link de e-mail
+  // Redireciona para o link mailto
   window.location.href = mailtoLink;
 });
