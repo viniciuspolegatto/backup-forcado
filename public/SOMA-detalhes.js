@@ -10,45 +10,70 @@ const inputDataConsultoria = document.getElementById("dataConsultoria");
 
 document.addEventListener('DOMContentLoaded', () => {
   carregarDetalhes();
-  configurarDataMinima(); // Chamada da função para configurar a data mínima
+  configurarDataMinimaEValidacao(); // Chamada da função para configurar a data mínima
 });
 
-// Função para calcular 13 dias úteis
+
+
+// Lógica para calcular e validar dias úteis e feriados
 function calcularDiasUteis(inicio, feriados, diasNecessarios) {
-  let contadorDiasUteis = 0;
-  const resultado = new Date(inicio);
-  while (contadorDiasUteis < diasNecessarios) {
-    resultado.setDate(resultado.getDate() + 1);
-    const diaSemana = resultado.getDay();
-    const dataFormatada = resultado.toISOString().split("T")[0];
-    if (
-      diaSemana !== 0 &&
-      diaSemana !== 6 &&
-      !feriados.includes(dataFormatada)
-    ) {
-      contadorDiasUteis++;
+    let contadorDiasUteis = 0;
+    const resultado = new Date(inicio);
+    while (contadorDiasUteis < diasNecessarios) {
+        resultado.setUTCDate(resultado.getUTCDate() + 1); // Corrige para UTC para manter sincronização
+        const diaSemana = resultado.getUTCDay(); // Obtém o dia da semana com base em UTC
+        const dataFormatada = resultado.toISOString().split("T")[0];
+        if (diaSemana !== 0 && diaSemana !== 6 && !feriados.includes(dataFormatada)) {
+            contadorDiasUteis++;
+        }
     }
-  }
-  return resultado;
+    return resultado;
 }
 
-// Função para configurar a data mínima no campo de data
-function configurarDataMinima() {
-  const feriados = [
-    "2025-01-01",
-    "2025-04-21",
-    "2025-05-01",
-    "2025-09-07",
-    "2025-10-12",
-    "2025-11-02",
-    "2025-11-15",
-    "2025-12-25",
-  ];
-  const hoje = new Date();
-  const dataMinima = calcularDiasUteis(hoje, feriados, 13);
-  inputDataConsultoria.min = dataMinima.toISOString().split("T")[0];
-  inputDataConsultoria.disabled = false;
+// Configura a data mínima e adiciona a validação
+function configurarDataMinimaEValidacao() {
+    const feriados = [
+        "2025-01-01", "2025-04-21", "2025-05-01", "2025-09-07", "2025-10-12",
+        "2025-11-02", "2025-11-15", "2025-12-25"
+    ];
+    const hoje = new Date();
+    const dataMinima = calcularDiasUteis(hoje, feriados, 13);
+    const inputDataConsultoria = document.getElementById("dataConsultoria");
+
+    // Configura o mínimo no campo de data
+    inputDataConsultoria.min = dataMinima.toISOString().split("T")[0];
+    inputDataConsultoria.disabled = false;
+
+    // Adiciona o evento de validação
+    inputDataConsultoria.addEventListener("change", () => {
+        const dataSelecionada = new Date(inputDataConsultoria.value);
+        const diaSemana = dataSelecionada.getUTCDay(); // Corrige para UTC para validação correta
+        const dataFormatada = inputDataConsultoria.value;
+
+        if (
+            diaSemana === 0 || // Domingo
+            diaSemana === 6 || // Sábado
+            feriados.includes(dataFormatada) || // Feriado
+            dataSelecionada < dataMinima // Antes do prazo mínimo
+        ) {
+            swal({
+                title: "Data Inválida!",
+                text: "Por favor, escolha uma data válida: dias úteis após 13 dias úteis e evite sábados, domingos e feriados.",
+                icon: "warning",
+                button: "Ok"
+            });
+            inputDataConsultoria.value = ""; // Limpa a seleção inválida
+        }
+    });
 }
+
+// Executa as funções ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    configurarDataMinimaEValidacao();
+});
+
+
+
 
 async function carregarDetalhes() {
   try {
