@@ -254,7 +254,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
     document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
-    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
+    document.getElementById('empresa-simei').textContent = dataCnpj.simei.optante;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
@@ -313,7 +313,7 @@ botaoGerarContrato.addEventListener("click", function () {
   const situacaoCnpj = document.getElementById('empresa-situacao').textContent || 'N/A';
   const porte = document.getElementById('empresa-porte').textContent || 'N/A';
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
-  const municipio = document.getElementById('empresa-municipio').textContent || 'N/A';
+  const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
 
   // Dados do solicitante/testemunha
