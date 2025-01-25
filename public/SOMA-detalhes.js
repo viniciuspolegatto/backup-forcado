@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 async function carregarDetalhes() {
   try {
     const res = await fetch(endpoint);
@@ -209,8 +211,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     }
      return fantasiaPj;} // Obtém o nome fantasia
   let fantasiaPj = obterNomeFantasia();
-
-
+  
   function obterTelefonePj () {
     let telefonePj = dataCnpj.telefone;
     if (!telefonePj || telefonePj === "") {
@@ -252,15 +253,16 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
-    document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
+    document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
     document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
-    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, nº ${numeroResidencia} - Bairro: ${dataCep.bairro}, Município de ${dataCep.localidade} - ${dataCep.uf}`;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpfBruto;
+    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
@@ -345,13 +347,13 @@ botaoGerarContrato.addEventListener("click", function () {
 
   **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
+  - Situação CNPJ: ${situacaoCnpj}
+  - É MEI?: ${municipio}
   - Razão Social: ${razaoSocial}
   - Nome Fantasia: ${nomeFantasia}
   - Atividade Principal: ${atividadePrincipal}
-  - Situação CNPJ: ${situacaoCnpj}
   - Porte Empresarial: ${porte}
   - Logradouro: ${logradouro}
-  - Município: ${municipio}
   - Telefone (PJ): ${telefonePj}
 
   **DADOS DA PESSOA FÍSICA (CLIENTE)**
