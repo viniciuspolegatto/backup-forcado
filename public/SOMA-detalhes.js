@@ -362,7 +362,7 @@ botaoGerarContrato.addEventListener("click", function () {
   **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Situação CNPJ: ${situacaoCnpj}
-  - É MEI?: ${municipio}
+  - É MEI?: ${simei}
   - Razão Social: ${razaoSocial}
   - Nome Fantasia: ${nomeFantasia}
   - Atividade Principal: ${atividadePrincipal}
