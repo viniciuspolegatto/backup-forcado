@@ -259,7 +259,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
-    document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
+    document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
+    document.getElementById('empresa-municipio').textContent = dataCnpj.simei.optante;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
