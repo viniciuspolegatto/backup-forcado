@@ -135,8 +135,8 @@ async function carregarDetalhes() {
     </table>`;
   
   // Armazena os detalhes para uso posterior
-    localStorage.setItem('NomeProduto', produto.NomeProduto);
-    localStorage.setItem('Modalidade', produto.Modalidade);
+    localStorage.setItem('SOMA_NomeProduto', produto.NomeProduto);
+    localStorage.setItem('SOMA_Modalidade', produto.Modalidade);
     
   } catch (error) {
     console.error('Erro ao carregar detalhes do produto:', error);
@@ -211,6 +211,16 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     }
      return fantasiaPj;} // Obtém o nome fantasia
   let fantasiaPj = obterNomeFantasia();
+    
+  function apontaMEI() {
+    let verificaMEI = dataCnpj.simei.optante;
+    if (verificaMEI === false) {
+      verificaMEI = "NÃO";
+    } else {
+      verificaMEI = "SIM, é MEI";
+    }
+    return verificaMEI;}
+  let verificaMEI = apontaMEI();
   
   function obterTelefonePj () {
     let telefonePj = dataCnpj.telefone;
@@ -252,17 +262,17 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('qsa-td').textContent = socioPj;
     document.getElementById('razao-social-td').textContent = dataCnpj.nome;
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
+    document.getElementById('empresa-mei').textContent = verificaMEI;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
-    document.getElementById('empresa-logradouro').textContent = dataCnpj.logradouro;
-    document.getElementById('empresa-municipio').textContent = dataCnpj.municipio;
+    
+    document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
-    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, ${dataCep.bairro}, ${dataCep.localidade} - ${dataCep.uf}`;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, nº ${numeroResidencia} - Bairro: ${dataCep.bairro}, Município de ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpfBruto;
-    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
@@ -302,8 +312,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 botaoGerarContrato.addEventListener("click", function () {
   // PRODUTO - Atendimento
-  const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
-  const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
+  const SOMA_NomeProduto = localStorage.getItem('SOMA_NomeProduto') || 'N/A';
+  const SOMA_Modalidade = localStorage.getItem('SOMA_Modalidade') || 'N/A'; 
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -340,8 +350,8 @@ botaoGerarContrato.addEventListener("click", function () {
   // Formatação do corpo do e-mail
   const emailBody = `
     **DETALHES DO PRODUTO**
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
+  - Nome do Produto: ${SOMA_NomeProduto}
+  - Modalidade: ${SOMA_Modalidade}
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
