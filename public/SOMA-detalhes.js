@@ -257,7 +257,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
-    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, nº ${numeroResidencia} - Bairro: ${dataCep.bairro}, Município de ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpfBruto;
