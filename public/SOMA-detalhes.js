@@ -212,6 +212,20 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
      return fantasiaPj;} // Obtém o nome fantasia
   let fantasiaPj = obterNomeFantasia();
   
+  
+    
+  function apontaMEI() {
+    let verificaMEI = dataCnpj.simei.optante;
+    if (verificaMEI === false) {
+      verificaMEI = "NÃO";
+    } else {
+      verificaMEI = "SIM, é MEI";
+    }
+    return verificaMEI;}
+  let verificaMEI = apontaMEI();
+    
+    
+    
   function obterTelefonePj () {
     let telefonePj = dataCnpj.telefone;
     if (!telefonePj || telefonePj === "") {
@@ -254,7 +268,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
     document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
-    document.getElementById('empresa-simei').textContent = dataCnpj.simei.optante;
+    document.getElementById('empresa-simei').textContent = verificaMEI;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
