@@ -319,7 +319,15 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 botaoGerarContrato.addEventListener("click", function () {
   // PRODUTO - Atendimento
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
-  const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
+  const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
+  const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
+  const SOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
+  const SOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
+  const SOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
+  const SOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
+  const SOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
+  const SOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
+  const SOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
