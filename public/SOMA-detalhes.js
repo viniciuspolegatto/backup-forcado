@@ -318,6 +318,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 botaoGerarContrato.addEventListener("click", function () {
   console.log("Botão Gerar Contrato clicado!");
+  
   // PRODUTO - Atendimento
   const SOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
@@ -330,6 +331,20 @@ botaoGerarContrato.addEventListener("click", function () {
   const SOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
   const SOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
   const SOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
+  const detalhesProduto = `
+        **DETALHES DO SERVIÇO**
+        - Nome do Produto: ${NomeProduto}
+        - Modalidade: ${Modalidade}
+        - Complexidade: ${SOMA_Complexidade || 'N/A'}
+        - Carga Horária: ${SOMA_CargaHoraria} horas
+        - Preço para o Cliente: ${SOMA_Preco_Cliente}
+        - ID do Produto: ${SOMA_ID}
+        - Família: ${SOMA_Familia}
+        - Área: ${SOMA_Area}
+        - Subárea: ${SOMA_Subarea}
+        - Natureza: ${SOMA_Natureza}
+        - Total SEBRAE: ${SOMA_TotalSEBRAE}
+        `;
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -341,6 +356,18 @@ botaoGerarContrato.addEventListener("click", function () {
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
+  const detalhesCnpj = `
+        **DETALHES DA PESSOA JURÍDICA**
+        - CNPJ: ${cnpj}
+        - Razão Social: ${razaoSocial}
+        - Nome Fantasia: ${nomeFantasia}
+        - Atividade Principal: ${atividadePrincipal}
+        - Situação do CNPJ: ${situacaoCnpj}
+        - Porte Empresarial: ${porte}
+        - Endereço: ${logradouro}
+        - Optante pelo MEI: ${simei}
+        - Telefone: ${telefonePj}
+        `;
 
   // Dados do solicitante/testemunha
   const testemunhaNome = document.getElementById("testemunha-td").textContent || 'N/A';
@@ -361,6 +388,16 @@ botaoGerarContrato.addEventListener("click", function () {
   const endereco = document.getElementById('endereco-td').textContent || 'N/A';
   const telefoneContato = document.getElementById('telefone').value || 'N/A';
   const emailCliente = document.getElementById('email').value || 'N/A';
+  const detalhesCliente = `
+        **DADOS PESSOAIS DO CLIENTE**
+        - Nome Completo: ${nomeCliente}
+        - CPF: ${cpf}
+        - Data de Nascimento: ${nascimento}
+        - CEP: ${cep}
+        - Endereço: ${endereco}
+        - Telefone de Contato: ${telefoneContato}
+        - E-mail: ${emailCliente}
+        `;
 
   // Formatação do corpo do e-mail
   const emailBody = `
@@ -379,41 +416,13 @@ _________________________________________
   - Nome do Projeto: ${nomeProjeto}
 
 _________________________________________
-****DETALHES DO PRODUTO**
-  - Natureza do Atendimento: ${SOMA_Natureza}
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
-  - Carga Horária: ${SOMA_CargaHoraria}
-  - Complexidade:  ${SOMA_Complexidade}
-
-  - ID do Produto: ${SOMA_ID}
-  - Preço para o Cliente: R$ ${SOMA_Preco_Cliente}
-  - Família: ${SOMA_Familia}
-  - Area: ${SOMA_Area}
-  - Subárea: ${SOMA_Subarea}
-  - Custo para o SEBRAE: R$ ${SOMA_TotalSEBRAE}
+${detalhesProduto}
 
 _________________________________________
-****DADOS DA PESSOA JURÍDICA**
-  - CNPJ: ${cnpj}
-  - Situação CNPJ: ${situacaoCnpj}
-  - É MEI?: ${simei}
-  - Razão Social: ${razaoSocial}
-  - Nome Fantasia: ${nomeFantasia}
-  - Atividade Principal: ${atividadePrincipal}
-  - Porte Empresarial: ${porte}
-  - Logradouro: ${logradouro}
-  - Telefone (PJ): ${telefonePj}
+${detalhesCnpj}
 
 _________________________________________
-****DADOS DA PESSOA FÍSICA (CLIENTE)**
-  - Nome Completo: ${nomeCliente}
-  - CPF: ${cpf}
-  - Data de Nascimento: ${nascimento}
-  - CEP: ${cep}
-  - Endereço: ${endereco}
-  - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente} 
+${detalhesCliente}
 
 _________________________________________
 ****SOLICITANTE**
