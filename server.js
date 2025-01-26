@@ -303,8 +303,7 @@ app.post('/enviar-email', async (req, res) => {
 });
 
 
-const PORTA = 3000;
-app.listen(PORTA, () => console.log(`Servidor rodando na porta ${PORTA}`));
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
 
 
