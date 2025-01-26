@@ -132,17 +132,9 @@ async function carregarDetalhes() {
     </table>`;
   
   // Armazena os detalhes para uso posterior
-    localStorage.setItem('Natureza', produto.Natureza);
     localStorage.setItem('NomeProduto', produto.NomeProduto);
     localStorage.setItem('Modalidade', produto.Modalidade);
-    localStorage.setItem('CargaHoraria', produto.CargaHoraria);
-    localStorage.setItem('Preço Cliente', produto.Soma_Precificacao);
-    localStorage.setItem('ID', produto.produto.ID_Produto);
-    localStorage.setItem('Familia', produto.Familia);
-    localStorage.setItem('Area', produto.Area);
-    localStorage.setItem('Subarea', produto.Subarea);
-    localStorage.setItem('Complexidade', produto.Complexidade);
-    localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
+  
     
   } catch (error) {
     console.error('Erro ao carregar detalhes do produto:', error);
@@ -318,19 +310,9 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 botaoGerarContrato.addEventListener("click", function () {
   // PRODUTO - Atendimento
-  const Natureza = localStorage.getItem('Natureza');
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
-  const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
-  const Complexidade = localStorage.getItem('Complexidade');
-  const CargaHoraria = localStorage.getItem('CargaHoraria') || 'N/A';
-  const Preco_Cliente = localStorage.getItem('Preço Cliente') || 'N/A';
-  const SOMA_ID = localStorage.getItem('ID') || 'N/A';
-  const Familia = localStorage.getItem('Familia') || 'N/A';
-  const Area = localStorage.getItem('Area') || 'N/A';
-  const Subarea = localStorage.getItem('Subarea') || 'N/A';
-  const TotalSEBRAE = localStorage.getItem('TotalSEBRAE') || 'N/A';
-
-
+  const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
+  
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
   const razaoSocial = document.getElementById('razao-social-td').textContent || 'N/A';
@@ -341,13 +323,6 @@ botaoGerarContrato.addEventListener("click", function () {
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
-
-
-  // Recuperando os dados do localStorage
-  const SOMA_dadosCnpj = JSON.parse(localStorage.getItem('dadosCnpj'));
-  const dataSituacao = SOMA_dadosCnpj.data_situacao;
-  const capitalSocial = SOMA_dadosCnpj.capital_social;
-
 
   // Dados do solicitante/testemunha
   const testemunhaNome = document.getElementById("testemunha-td").textContent || 'N/A';
@@ -371,37 +346,13 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
-  Prezada equipe SOMA - CREDENCIAMENTO,
-  
-  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-  
-_________________________________________
-****DETALHES DO AGENDAMENTO****
+  **DETALHES DO PRODUTO**
+  - Nome do Produto: ${NomeProduto}
+  - Modalidade: ${Modalidade}
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
-_________________________________________
-****DADOS DO PROJETO**
-  - Pertence a Algum Projeto? ${projeto}
-  - Nome do Projeto: ${nomeProjeto}
-  
-_________________________________________
-****DETALHES DO PRODUTO**
-  - Natureza do Atendimento: ${Natureza}
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
-  - Carga Horária: ${CargaHoraria}
-  - Complexidade:  ${Complexidade}
-
-  - ID do Produto: ${SOMA_ID}
-  - Preço para o Cliente: R$ ${Preco_Cliente}
-  - Família: ${Familia}
-  - Area: ${Area}
-  - Subárea: ${Subarea}
-  - Custo para o SEBRAE: R$ ${TotalSEBRAE}
-  
-_________________________________________
-****DADOS DA PESSOA JURÍDICA**
+  **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Situação CNPJ: ${situacaoCnpj}
   - É MEI?: ${simei}
@@ -411,21 +362,21 @@ _________________________________________
   - Porte Empresarial: ${porte}
   - Logradouro: ${logradouro}
   - Telefone (PJ): ${telefonePj}
-  - Abertura ou atualização: ${dataSituacao}
-  - Capital Social: ${capitalSocial}
 
-_________________________________________
-****DADOS DA PESSOA FÍSICA (CLIENTE)**
+  **DADOS DA PESSOA FÍSICA (CLIENTE)**
   - Nome Completo: ${nomeCliente}
   - CPF: ${cpf}
   - Data de Nascimento: ${nascimento}
   - CEP: ${cep}
   - Endereço: ${endereco}
   - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente} 
+  - E-mail: ${emailCliente}
 
-_________________________________________
-****SOLICITANTE**
+  **DADOS DO PROJETO**
+  - Pertence a Algum Projeto? ${projeto}
+  - Nome do Projeto: ${nomeProjeto}
+
+  **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
