@@ -317,7 +317,9 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 botaoGerarContrato.addEventListener("click", function () {
+  console.log("Botão Gerar Contrato clicado!");
   // PRODUTO - Atendimento
+  const SOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
   const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
@@ -362,13 +364,37 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
-  **DETALHES DO PRODUTO**
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
+  Prezada equipe SOMA - CREDENCIAMENTO,
+  
+  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
+  
+_________________________________________
+****DETALHES DO AGENDAMENTO****
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
-  **DADOS DA PESSOA JURÍDICA**
+_________________________________________
+****DADOS DO PROJETO**
+  - Pertence a Algum Projeto? ${projeto}
+  - Nome do Projeto: ${nomeProjeto}
+
+_________________________________________
+****DETALHES DO PRODUTO**
+  - Natureza do Atendimento: ${SOMA_Natureza}
+  - Nome do Produto: ${NomeProduto}
+  - Modalidade: ${Modalidade}
+  - Carga Horária: ${SOMA_CargaHoraria}
+  - Complexidade:  ${SOMA_Complexidade}
+
+  - ID do Produto: ${SOMA_ID}
+  - Preço para o Cliente: R$ ${SOMA_Preco_Cliente}
+  - Família: ${SOMA_Familia}
+  - Area: ${SOMA_Area}
+  - Subárea: ${SOMA_Subarea}
+  - Custo para o SEBRAE: R$ ${SOMA_TotalSEBRAE}
+
+_________________________________________
+****DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Situação CNPJ: ${situacaoCnpj}
   - É MEI?: ${simei}
@@ -379,20 +405,18 @@ botaoGerarContrato.addEventListener("click", function () {
   - Logradouro: ${logradouro}
   - Telefone (PJ): ${telefonePj}
 
-  **DADOS DA PESSOA FÍSICA (CLIENTE)**
+_________________________________________
+****DADOS DA PESSOA FÍSICA (CLIENTE)**
   - Nome Completo: ${nomeCliente}
   - CPF: ${cpf}
   - Data de Nascimento: ${nascimento}
   - CEP: ${cep}
   - Endereço: ${endereco}
   - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente}
+  - E-mail: ${emailCliente} 
 
-  **DADOS DO PROJETO**
-  - Pertence a Algum Projeto? ${projeto}
-  - Nome do Projeto: ${nomeProjeto}
-
-  **SOLICITANTE**
+_________________________________________
+****SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
