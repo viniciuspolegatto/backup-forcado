@@ -380,18 +380,8 @@ _________________________________________
 
 _________________________________________
 ****DETALHES DO PRODUTO**
-  - Natureza do Atendimento: ${eSOMA_Natureza}
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
-  - Carga Horária: ${eSOMA_CargaHoraria}
-  - Complexidade:  ${eSOMA_Complexidade}
-
-  - ID do Produto: ${eSOMA_ID}
-  - Preço para o Cliente: R$ ${eSOMA_Preco_Cliente}
-  - Família: ${eSOMA_Familia}
-  - Area: ${eSOMA_Area}
-  - Subárea: ${eSOMA_Subarea}
-  - Custo para o SEBRAE: R$ ${eSOMA_TotalSEBRAE}
 
 _________________________________________
 ****DADOS DA PESSOA JURÍDICA**
