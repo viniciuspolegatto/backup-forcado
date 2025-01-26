@@ -320,7 +320,7 @@ botaoGerarContrato.addEventListener("click", function () {
   console.log("Botão Gerar Contrato clicado!");
   
   // PRODUTO - Atendimento
-  const SOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
+  const eSOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
   const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
@@ -345,6 +345,7 @@ botaoGerarContrato.addEventListener("click", function () {
         - Natureza: ${SOMA_Natureza}
         - Total SEBRAE: ${SOMA_TotalSEBRAE}
         `;
+
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -400,7 +401,7 @@ botaoGerarContrato.addEventListener("click", function () {
         `;
 
   // Formatação do corpo do e-mail
-  const emailBody = `
+    const emailBody = `
   Prezada equipe SOMA - CREDENCIAMENTO,
   
   Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
@@ -415,23 +416,29 @@ _________________________________________
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-_________________________________________
+________________________________________
 ${detalhesProduto}
-
 _________________________________________
 ${detalhesCnpj}
-
 _________________________________________
 ${detalhesCliente}
-
 _________________________________________
 ****SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
-  // Criação do link mailto
- const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
 
-  // Redireciona para o link mailto
-  window.location.href = mailtoLink;
+    console.log("Link gerado:", mailtoLink);
+    window.location.href = mailtoLink;
+
 });
+
+
+
+
+
+
+
+
+
