@@ -421,14 +421,15 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Nome do Solicitante/Testemunha: ${testemunhaNome}
     `;
 
+  console.log('Corpo do e-mail enviado:', emailBody);
+  
     try {
-        const response = await fetch('http://localhost:3000/enviar-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ emailBody }),
-        });
+      const response = await fetch('http://localhost:3000/enviar-email', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ emailBody }),
+      });
+
 
         if (response.ok) {
             alert('E-mail enviado com sucesso!');

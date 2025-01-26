@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // ************************** Pool de Conexões MySQL *************************
 const db = mysql.createPool({
   connectionLimit: 10, // Limite máximo de conexões
@@ -274,11 +275,13 @@ app.put('/atualizarCliente', (req, res) => {
 app.post('/enviar-email', async (req, res) => {
     const { emailBody } = req.body;
 
+    console.log('Corpo do e-mail recebido:', emailBody); // Log para depuração
+  
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: 'Sebrae@123', // Substitua por um App Password
+            pass: 'zidazixadvzyyslr', // Substitua por um App Password
         },
     });
 
@@ -298,6 +301,7 @@ app.post('/enviar-email', async (req, res) => {
         res.status(500).send('Erro ao enviar o e-mail.');
     }
 });
+
 
 const PORTA = 3000;
 app.listen(PORTA, () => console.log(`Servidor rodando na porta ${PORTA}`));
