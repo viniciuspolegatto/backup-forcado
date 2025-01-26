@@ -267,11 +267,10 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
-    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, nº ${numeroResidencia} - Bairro: ${dataCep.bairro}`;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}, nº ${numeroResidencia} - Bairro: ${dataCep.bairro}, Município de ${dataCep.localidade} - ${dataCep.uf}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpfBruto;
-    //document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
@@ -283,7 +282,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
     localStorage.setItem('nomeCliente', nomeCliente);
     localStorage.setItem('cpfBruto', cpfBruto);
-    //localStorage.setItem('numeroResidencia', numeroResidencia);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
 
@@ -342,19 +340,18 @@ botaoGerarContrato.addEventListener("click", function () {
   const nascimento = document.getElementById('nascimento').value || 'N/A';
   const cep = document.getElementById('cep').value || 'N/A';
   const endereco = document.getElementById('endereco-td').textContent || 'N/A';
-  //const numeroResidencia = document.getElementById('numeroResidencia').value || 'N/A';
   const telefoneContato = document.getElementById('telefone').value || 'N/A';
   const emailCliente = document.getElementById('email').value || 'N/A';
 
   // Formatação do corpo do e-mail
   const emailBody = `
-    **DETALHES DO PRODUTO**
+  <b>**DETALHES DO PRODUTO**</b>
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
-  **DADOS DA PESSOA JURÍDICA**
+  <b>**DADOS DA PESSOA JURÍDICA**</b>
   - CNPJ: ${cnpj}
   - Situação CNPJ: ${situacaoCnpj}
   - É MEI?: ${simei}
@@ -365,21 +362,20 @@ botaoGerarContrato.addEventListener("click", function () {
   - Logradouro: ${logradouro}
   - Telefone (PJ): ${telefonePj}
 
-  **DADOS DA PESSOA FÍSICA (CLIENTE)**
+  <b>**DADOS DA PESSOA FÍSICA (CLIENTE)**</b>
   - Nome Completo: ${nomeCliente}
   - CPF: ${cpf}
   - Data de Nascimento: ${nascimento}
   - CEP: ${cep}
   - Endereço: ${endereco}
-  
   - Telefone de Contato: ${telefoneContato}
   - E-mail: ${emailCliente}
 
-  **DADOS DO PROJETO**
+  <b>**DADOS DO PROJETO**</b>
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-  **SOLICITANTE**
+  <b>**SOLICITANTE**<b>
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
