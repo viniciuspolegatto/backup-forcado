@@ -318,18 +318,34 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 botaoGerarContrato.addEventListener("click", function () {
   console.log("Botão Gerar Contrato clicado!");
+  
   // PRODUTO - Atendimento
   const eSOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
-  const eSOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
-  const eSOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
-  const eSOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
-  const eSOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
-  const eSOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
-  const eSOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
-  const eSOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
-  const eSOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
+  const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
+  const SOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
+  const SOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
+  const SOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
+  const SOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
+  const SOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
+  const SOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
+  const SOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
+  const detalhesProduto = `
+        **DETALHES DO SERVIÇO**
+        - Nome do Produto: ${NomeProduto}
+        - Modalidade: ${Modalidade}
+        - Complexidade: ${SOMA_Complexidade || 'N/A'}
+        - Carga Horária: ${SOMA_CargaHoraria} horas
+        - Preço para o Cliente: ${SOMA_Preco_Cliente}
+        - ID do Produto: ${SOMA_ID}
+        - Família: ${SOMA_Familia}
+        - Área: ${SOMA_Area}
+        - Subárea: ${SOMA_Subarea}
+        - Natureza: ${SOMA_Natureza}
+        - Total SEBRAE: ${SOMA_TotalSEBRAE}
+        `;
+
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -341,6 +357,18 @@ botaoGerarContrato.addEventListener("click", function () {
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
+  const detalhesCnpj = `
+        **DETALHES DA PESSOA JURÍDICA**
+        - CNPJ: ${cnpj}
+        - Razão Social: ${razaoSocial}
+        - Nome Fantasia: ${nomeFantasia}
+        - Atividade Principal: ${atividadePrincipal}
+        - Situação do CNPJ: ${situacaoCnpj}
+        - Porte Empresarial: ${porte}
+        - Endereço: ${logradouro}
+        - Optante pelo MEI: ${simei}
+        - Telefone: ${telefonePj}
+        `;
 
   // Dados do solicitante/testemunha
   const testemunhaNome = document.getElementById("testemunha-td").textContent || 'N/A';
@@ -361,45 +389,43 @@ botaoGerarContrato.addEventListener("click", function () {
   const endereco = document.getElementById('endereco-td').textContent || 'N/A';
   const telefoneContato = document.getElementById('telefone').value || 'N/A';
   const emailCliente = document.getElementById('email').value || 'N/A';
+  const detalhesCliente = `
+        **DADOS PESSOAIS DO CLIENTE**
+        - Nome Completo: ${nomeCliente}
+        - CPF: ${cpf}
+        - Data de Nascimento: ${nascimento}
+        - CEP: ${cep}
+        - Endereço: ${endereco}
+        - Telefone de Contato: ${telefoneContato}
+        - E-mail: ${emailCliente}
+        `;
 
   // Formatação do corpo do e-mail
     const emailBody = `
-    **DETALHES DO PRODUTO**
-    - Nome do Produto: ${NomeProduto}
-    - Modalidade: ${Modalidade}
-
-  **DADOS DA PESSOA JURÍDICA**
-  - CNPJ: ${cnpj}
-  - Razão Social: ${razaoSocial}
-  - Nome Fantasia: ${nomeFantasia}
-  - Atividade Principal: ${atividadePrincipal}
-  - Situação CNPJ: ${situacaoCnpj}
-  - Porte Empresarial: ${porte}
-  - Logradouro: ${logradouro}
-  - É MEI?: ${simei}
-  - Telefone (PJ): ${telefonePj}
-
-  **DADOS DA PESSOA FÍSICA (CLIENTE)**
-  - Nome Completo: ${nomeCliente}
-  - CPF: ${cpf}
-  - Data de Nascimento: ${nascimento}
-  - CEP: ${cep}
-  - Endereço: ${endereco}
-  - Número da Residência: ${numeroResidencia}
-  - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente}
-
-  **DETALHES DA CONSULTORIA**
+  Prezada equipe SOMA - CREDENCIAMENTO,
+  
+  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
+  
+_________________________________________
+****DETALHES DO AGENDAMENTO****
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
-  **DADOS DO PROJETO**
+_________________________________________
+****DADOS DO PROJETO**
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-  **SOLICITANTE**
+________________________________________
+${detalhesProduto}
+_________________________________________
+${detalhesCnpj}
+_________________________________________
+${detalhesCliente}
+_________________________________________
+****SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
-    `;
+  `;
 
     const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
 
