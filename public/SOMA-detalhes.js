@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 // Lógica para calcular e validar dias úteis e feriados
 function calcularDiasUteis(inicio, feriados, diasNecessarios) {
     let contadorDiasUteis = 0;
@@ -71,8 +70,6 @@ function configurarDataMinimaEValidacao() {
 document.addEventListener("DOMContentLoaded", () => {
     configurarDataMinimaEValidacao();
 });
-
-
 
 
 async function carregarDetalhes() {
@@ -212,8 +209,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
      return fantasiaPj;} // Obtém o nome fantasia
   let fantasiaPj = obterNomeFantasia();
   
-  
-    
+   
   function apontaMEI() {
     let verificaMEI = dataCnpj.simei.optante;
     if (verificaMEI === false) {
@@ -223,7 +219,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     }
     return verificaMEI;}
   let verificaMEI = apontaMEI();
-    
     
     
   function obterTelefonePj () {
@@ -272,11 +267,11 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
     document.getElementById('telefone-td').textContent = telefonePj;
-    document.getElementById('endereco-td').textContent = dataCep.logradouro;
+    document.getElementById('endereco-td').textContent = `${dataCep.logradouro}`;
     document.getElementById('cep-td').textContent = dataCep.cep;
     document.getElementById('nome-cliente-td').textContent = nomeCliente;
     document.getElementById('cpf-td').textContent = cpfBruto;
-    document.getElementById('numero-residencia-td').textContent = numeroResidencia;
+    //document.getElementById('numero-residencia-td').textContent = numeroResidencia;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
     document.getElementById("testemunha-td").textContent = testemunhaNome;
@@ -288,7 +283,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('cepDigitado', JSON.stringify(dataCep)); // Armazenar dados do CEP como JSON
     localStorage.setItem('nomeCliente', nomeCliente);
     localStorage.setItem('cpfBruto', cpfBruto);
-    localStorage.setItem('numeroResidencia', numeroResidencia);
+    //localStorage.setItem('numeroResidencia', numeroResidencia);
     localStorage.setItem('telefone', telefone);
     localStorage.setItem('email', email);
 
@@ -347,7 +342,7 @@ botaoGerarContrato.addEventListener("click", function () {
   const nascimento = document.getElementById('nascimento').value || 'N/A';
   const cep = document.getElementById('cep').value || 'N/A';
   const endereco = document.getElementById('endereco-td').textContent || 'N/A';
-  const numeroResidencia = document.getElementById('numeroResidencia').value || 'N/A';
+  //const numeroResidencia = document.getElementById('numeroResidencia').value || 'N/A';
   const telefoneContato = document.getElementById('telefone').value || 'N/A';
   const emailCliente = document.getElementById('email').value || 'N/A';
 
@@ -376,7 +371,7 @@ botaoGerarContrato.addEventListener("click", function () {
   - Data de Nascimento: ${nascimento}
   - CEP: ${cep}
   - Endereço: ${endereco}
-  - Número da Residência: ${numeroResidencia}
+  
   - Telefone de Contato: ${telefoneContato}
   - E-mail: ${emailCliente}
 
