@@ -323,29 +323,28 @@ botaoGerarContrato.addEventListener("click", function () {
   const eSOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
-  const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
-  const SOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
-  const SOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
-  const SOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
-  const SOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
-  const SOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
-  const SOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
-  const SOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
+  const eSOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
+  const eSOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
+  const eSOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
+  const eSOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
+  const eSOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
+  const eSOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
+  const eSOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
+  const eSOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
   const detalhesProduto = `
         **DETALHES DO SERVIÇO**
+        - Natureza: ${eSOMA_Natureza}
         - Nome do Produto: ${NomeProduto}
         - Modalidade: ${Modalidade}
-        - Complexidade: ${SOMA_Complexidade || 'N/A'}
-        - Carga Horária: ${SOMA_CargaHoraria} horas
-        - Preço para o Cliente: ${SOMA_Preco_Cliente}
-        - ID do Produto: ${SOMA_ID}
-        - Família: ${SOMA_Familia}
-        - Área: ${SOMA_Area}
-        - Subárea: ${SOMA_Subarea}
-        - Natureza: ${SOMA_Natureza}
-        - Total SEBRAE: ${SOMA_TotalSEBRAE}
+        - Complexidade: ${eSOMA_Complexidade || 'N/A'}
+        - Carga Horária: ${eSOMA_CargaHoraria} horas
+        - Preço para o Cliente: ${eSOMA_Preco_Cliente}
+        - ID do Produto: ${eSOMA_ID}
+        - Família: ${eSOMA_Familia}
+        - Área: ${eSOMA_Area}
+        - Subárea: ${eSOMA_Subarea}
+        - Total SEBRAE: ${eSOMA_TotalSEBRAE}
         `;
-
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -401,7 +400,7 @@ botaoGerarContrato.addEventListener("click", function () {
         `;
 
   // Formatação do corpo do e-mail
-    const emailBody = `
+  const emailBody = `
   Prezada equipe SOMA - CREDENCIAMENTO,
   
   Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
@@ -416,29 +415,23 @@ _________________________________________
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-________________________________________
+_________________________________________
 ${detalhesProduto}
+
 _________________________________________
 ${detalhesCnpj}
+
 _________________________________________
 ${detalhesCliente}
+
 _________________________________________
 ****SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
   `;
 
-    const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
+  // Criação do link mailto
+ const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
 
-    console.log("Link gerado:", mailtoLink);
-    window.location.href = mailtoLink;
-
+  // Redireciona para o link mailto
+  window.location.href = mailtoLink;
 });
-
-
-
-
-
-
-
-
-
