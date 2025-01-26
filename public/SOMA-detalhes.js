@@ -368,15 +368,37 @@ botaoGerarContrato.addEventListener("click", function () {
     - Nome do Produto: ${NomeProduto}
     - Modalidade: ${Modalidade}
 
-    **DADOS DA PESSOA JURÍDICA**
-    - CNPJ: ${cnpj}
-    - Razão Social: ${razaoSocial}
-    - Nome Fantasia: ${nomeFantasia}
+  **DADOS DA PESSOA JURÍDICA**
+  - CNPJ: ${cnpj}
+  - Razão Social: ${razaoSocial}
+  - Nome Fantasia: ${nomeFantasia}
+  - Atividade Principal: ${atividadePrincipal}
+  - Situação CNPJ: ${situacaoCnpj}
+  - Porte Empresarial: ${porte}
+  - Logradouro: ${logradouro}
+  - É MEI?: ${simei}
+  - Telefone (PJ): ${telefonePj}
 
-    **DADOS PESSOAIS DO CLIENTE**
-    - Nome: ${nomeCliente}
-    - CPF: ${cpf}
-    - Telefone: ${telefoneContato}
+  **DADOS DA PESSOA FÍSICA (CLIENTE)**
+  - Nome Completo: ${nomeCliente}
+  - CPF: ${cpf}
+  - Data de Nascimento: ${nascimento}
+  - CEP: ${cep}
+  - Endereço: ${endereco}
+  - Número da Residência: ${numeroResidencia}
+  - Telefone de Contato: ${telefoneContato}
+  - E-mail: ${emailCliente}
+
+  **DETALHES DA CONSULTORIA**
+  - Data da Consultoria: ${dataConsultoria}
+  - Horário: ${horario}
+
+  **DADOS DO PROJETO**
+  - Pertence a Algum Projeto? ${projeto}
+  - Nome do Projeto: ${nomeProjeto}
+
+  **SOLICITANTE**
+  - Nome do Solicitante/Testemunha: ${testemunhaNome}
     `;
 
     const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
@@ -385,3 +407,12 @@ botaoGerarContrato.addEventListener("click", function () {
     window.location.href = mailtoLink;
 
 });
+
+
+
+
+
+
+
+
+
