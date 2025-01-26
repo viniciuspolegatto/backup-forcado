@@ -395,7 +395,6 @@ botaoGerarContrato.addEventListener("click", function () {
 
   **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
-
   `;
 
   // Criação do link mailto
