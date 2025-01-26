@@ -368,46 +368,38 @@ botaoGerarContrato.addEventListener("click", function () {
   
   Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
   
-_________________________________________
-****DETALHES DO AGENDAMENTO****
-  - Data da Consultoria: ${dataConsultoria}
-  - Horário: ${horario}
-
-_________________________________________
-****DADOS DO PROJETO**
-  - Pertence a Algum Projeto? ${projeto}
-  - Nome do Projeto: ${nomeProjeto}
-
-_________________________________________
-****DETALHES DO PRODUTO**
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
-
-_________________________________________
-****DADOS DA PESSOA JURÍDICA**
+  **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
-  - Situação CNPJ: ${situacaoCnpj}
-  - É MEI?: ${simei}
   - Razão Social: ${razaoSocial}
   - Nome Fantasia: ${nomeFantasia}
   - Atividade Principal: ${atividadePrincipal}
+  - Situação CNPJ: ${situacaoCnpj}
   - Porte Empresarial: ${porte}
   - Logradouro: ${logradouro}
+  - Município: ${municipio}
   - Telefone (PJ): ${telefonePj}
 
-_________________________________________
-****DADOS DA PESSOA FÍSICA (CLIENTE)**
+  **DADOS DA PESSOA FÍSICA (CLIENTE)**
   - Nome Completo: ${nomeCliente}
   - CPF: ${cpf}
   - Data de Nascimento: ${nascimento}
   - CEP: ${cep}
   - Endereço: ${endereco}
+  - Número da Residência: ${numeroResidencia}
   - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente} 
+  - E-mail: ${emailCliente}
 
-_________________________________________
-****SOLICITANTE**
+  **DETALHES DA CONSULTORIA**
+  - Data da Consultoria: ${dataConsultoria}
+  - Horário: ${horario}
+
+  **DADOS DO PROJETO**
+  - Pertence a Algum Projeto? ${projeto}
+  - Nome do Projeto: ${nomeProjeto}
+
+  **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
+
   `;
 
   // Criação do link mailto
