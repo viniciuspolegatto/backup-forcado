@@ -363,48 +363,25 @@ botaoGerarContrato.addEventListener("click", function () {
   const emailCliente = document.getElementById('email').value || 'N/A';
 
   // Formatação do corpo do e-mail
-  const emailBody = encodeURIComponent(`
-  **DETALHES DO PRODUTO**
-  - Nome do Produto: ${NomeProduto}
-  - Modalidade: ${Modalidade}
-  
-  **DADOS DA PESSOA JURÍDICA**
-  - CNPJ: ${cnpj}
-  - Razão Social: ${razaoSocial}
-  - Nome Fantasia: ${nomeFantasia}
-  - Atividade Principal: ${atividadePrincipal}
-  - Situação CNPJ: ${situacaoCnpj}
-  - Porte Empresarial: ${porte}
-  - Logradouro: ${logradouro}
-  - É MEI?: ${simei}
-  - Telefone (PJ): ${telefonePj}
+    const emailBody = `
+    **DETALHES DO PRODUTO**
+    - Nome do Produto: ${NomeProduto}
+    - Modalidade: ${Modalidade}
 
-  **DADOS DA PESSOA FÍSICA (CLIENTE)**
-  - Nome Completo: ${nomeCliente}
-  - CPF: ${cpf}
-  - Data de Nascimento: ${nascimento}
-  - CEP: ${cep}
-  - Endereço: ${endereco}
-  - Número da Residência: ${numeroResidencia}
-  - Telefone de Contato: ${telefoneContato}
-  - E-mail: ${emailCliente}
+    **DADOS DA PESSOA JURÍDICA**
+    - CNPJ: ${cnpj}
+    - Razão Social: ${razaoSocial}
+    - Nome Fantasia: ${nomeFantasia}
 
-  **DETALHES DA CONSULTORIA**
-  - Data da Consultoria: ${dataConsultoria}
-  - Horário: ${horario}
+    **DADOS PESSOAIS DO CLIENTE**
+    - Nome: ${nomeCliente}
+    - CPF: ${cpf}
+    - Telefone: ${telefoneContato}
+    `;
 
-  **DADOS DO PROJETO**
-  - Pertence a Algum Projeto? ${projeto}
-  - Nome do Projeto: ${nomeProjeto}
+    const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
 
-  **SOLICITANTE**
-  - Nome do Solicitante/Testemunha: ${testemunhaNome}
-  `);
+    console.log("Link gerado:", mailtoLink);
+    window.location.href = mailtoLink;
 
-  // Criação do link mailto
-  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
-  console.log(mailtoLink);
-  
-  // Redireciona para o link mailto
-  window.location.href = mailtoLink;
 });
