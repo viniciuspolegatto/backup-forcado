@@ -363,7 +363,7 @@ botaoGerarContrato.addEventListener("click", function () {
   const emailCliente = document.getElementById('email').value || 'N/A';
 
   // Formatação do corpo do e-mail
-  const emailBody = `
+  const emailBody = encodeURIComponent(`
   **DETALHES DO PRODUTO**
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
@@ -399,11 +399,12 @@ botaoGerarContrato.addEventListener("click", function () {
 
   **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
-  `;
+  `);
 
   // Criação do link mailto
- const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
-
+  const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+  console.log(mailtoLink);
+  
   // Redireciona para o link mailto
   window.location.href = mailtoLink;
 });
