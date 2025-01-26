@@ -132,18 +132,17 @@ async function carregarDetalhes() {
     </table>`;
   
   // Armazena os detalhes para uso posterior
-    localStorage.setItem('Natureza', produto.Natureza);
+    localStorage.setItem('SOMA_Natureza', produto.Natureza);
     localStorage.setItem('NomeProduto', produto.NomeProduto);
     localStorage.setItem('Modalidade', produto.Modalidade);
-    localStorage.setItem('CargaHoraria', produto.CargaHoraria);
-    localStorage.setItem('Preco_Cliente', produto.Soma_Precificacao);
-    localStorage.setItem('ID', produto.ID_Produto);
-    localStorage.setItem('Familia', produto.Familia);
-    localStorage.setItem('Area', produto.Area);
-    localStorage.setItem('Subarea', produto.Subarea);
-    localStorage.setItem('Complexidade', produto.Complexidade);
-    localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
-  
+    localStorage.setItem('SOMA_CargaHoraria', produto.CargaHoraria);
+    localStorage.setItem('SOMA_Preco_Cliente', produto.Soma_Precificacao);
+    localStorage.setItem('SOMA_ID', produto.ID_Produto);
+    localStorage.setItem('SOMA_Familia', produto.Familia);
+    localStorage.setItem('SOMA_Area', produto.Area);
+    localStorage.setItem('SOMA_Subarea', produto.Subarea);
+    localStorage.setItem('SOMA_Complexidade', produto.Complexidade);
+    localStorage.setItem('SOMA_TotalSEBRAE', produto.Custo_Credenciado);
     
   } catch (error) {
     console.error('Erro ao carregar detalhes do produto:', error);
@@ -318,8 +317,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 botaoGerarContrato.addEventListener("click", function () {
-  console.log("Botão Gerar Contrato clicado!");
-
   // PRODUTO - Atendimento
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
