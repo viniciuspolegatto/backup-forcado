@@ -317,7 +317,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-botaoGerarContrato.addEventListener("click", function () {
+botaoGerarContrato.addEventListener("click", async function () {
   console.log("Botão Gerar Contrato clicado!");
   
   // PRODUTO - Atendimento
@@ -401,60 +401,43 @@ botaoGerarContrato.addEventListener("click", function () {
         `;
 
   // Formatação do corpo do e-mail
-  const emailBody = `
-  Prezada equipe SOMA - CREDENCIAMENTO,
-  
-  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-  
-_________________________________________
-****DETALHES DO AGENDAMENTO****
-  - Data da Consultoria: ${dataConsultoria}
-  - Horário: ${horario}
+    const emailBody = `
+    Prezada equipe SOMA - CREDENCIAMENTO,
+    
+    Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
+    
+    ****DETALHES DO AGENDAMENTO****
+    - Data da Consultoria: ${dataConsultoria}
+    - Horário: ${horario}
 
-_________________________________________
-****DADOS DO PROJETO**
-  - Pertence a Algum Projeto? ${projeto}
-  - Nome do Projeto: ${nomeProjeto}
+    ****DADOS DO PROJETO**
+    - Pertence a Algum Projeto? ${projeto}
+    - Nome do Projeto: ${nomeProjeto}
 
-_________________________________________
-${detalhesProduto}
+    ${detalhesProduto}
+    ${detalhesCnpj}
+    ${detalhesCliente}
 
-_________________________________________
-${detalhesCnpj}
-
-_________________________________________
-${detalhesCliente}
-
-_________________________________________
-****SOLICITANTE**
-  - Nome do Solicitante/Testemunha: ${testemunhaNome}
-  `;
-
-  // Criação do link mailto
-async function enviarEmail() {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail', // Ou outro serviço SMTP
-        auth: {
-            user: 'credenciamentoerbarretos@gmail.com',
-            pass: 'Sebrae@123', // Use um App Password se necessário
-        },
-    });
-
-    const mailOptions = {
-        from: 'credenciamentoerbarretos@gmail.com',
-        to: 'marcosvp@sebraesp.com.br',
-        cc: 'Back@sebraesp.onmicrosoft.com, joaovmt@sebraesp.com.br',
-        subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
-        text: emailBody, // Corpo no formato texto
-    };
+    ****SOLICITANTE**
+    - Nome do Solicitante/Testemunha: ${testemunhaNome}
+    `;
 
     try {
-        await transporter.sendMail(mailOptions);
-        console.log('E-mail enviado com sucesso!');
-    } catch (error) {
-        console.error('Erro ao enviar o e-mail:', error);
-    }
-}
+        const response = await fetch('http://localhost:3000/enviar-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ emailBody }),
+        });
 
-enviarEmail();
+        if (response.ok) {
+            alert('E-mail enviado com sucesso!');
+        } else {
+            alert('Erro ao enviar o e-mail.');
+        }
+    } catch (error) {
+        console.error('Erro na solicitação de envio de e-mail:', error);
+        alert('Erro ao enviar o e-mail.');
+    }
 });
