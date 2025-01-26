@@ -1,4 +1,3 @@
-const nodemailer = require('nodemailer');
 let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 const urlParams = new URLSearchParams(window.location.search);
