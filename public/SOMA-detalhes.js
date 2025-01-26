@@ -136,13 +136,13 @@ async function carregarDetalhes() {
     localStorage.setItem('NomeProduto', produto.NomeProduto);
     localStorage.setItem('Modalidade', produto.Modalidade);
     localStorage.setItem('CargaHoraria', produto.CargaHoraria);
-    localStorage.setItem('Preço Cliente', produto.Soma_Precificacao);
+    //localStorage.setItem('Preço Cliente', produto.Soma_Precificacao);
     localStorage.setItem('ID', produto.ID_Produto);
     localStorage.setItem('Familia', produto.Familia);
     localStorage.setItem('Area', produto.Area);
     localStorage.setItem('Subarea', produto.Subarea);
     localStorage.setItem('Complexidade', produto.Complexidade);
-    localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
+    //localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
   
     
   } catch (error) {
@@ -318,6 +318,8 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 botaoGerarContrato.addEventListener("click", function () {
+  console.log("Botão Gerar Contrato clicado!");
+
   // PRODUTO - Atendimento
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A'; 
