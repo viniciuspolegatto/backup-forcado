@@ -319,17 +319,17 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 botaoGerarContrato.addEventListener("click", function () {
   console.log("Botão Gerar Contrato clicado!");
   // PRODUTO - Atendimento
-  const SOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
+  const eSOMA_Natureza = localStorage.getItem('SOMA_Natureza') || 'N/A';
   const NomeProduto = localStorage.getItem('NomeProduto') || 'N/A';
   const Modalidade = localStorage.getItem('Modalidade') || 'N/A';
-  const SOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
-  const SOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
-  const SOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
-  const SOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
-  const SOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
-  const SOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
-  const SOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
-  const SOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
+  const eSOMA_Complexidade = localStorage.getItem('SOMA_Complexidade');
+  const eSOMA_CargaHoraria = localStorage.getItem('SOMA_CargaHoraria') || 'N/A';
+  const eSOMA_Preco_Cliente = localStorage.getItem('SOMA_Preco_Cliente') || 'N/A';
+  const eSOMA_ID = localStorage.getItem('SOMA_ID') || 'N/A';
+  const eSOMA_Familia = localStorage.getItem('SOMA_Familia') || 'N/A';
+  const eSOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
+  const eSOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
+  const eSOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -380,18 +380,18 @@ _________________________________________
 
 _________________________________________
 ****DETALHES DO PRODUTO**
-  - Natureza do Atendimento: ${SOMA_Natureza}
+  - Natureza do Atendimento: ${eSOMA_Natureza}
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
-  - Carga Horária: ${SOMA_CargaHoraria}
-  - Complexidade:  ${SOMA_Complexidade}
+  - Carga Horária: ${eSOMA_CargaHoraria}
+  - Complexidade:  ${eSOMA_Complexidade}
 
-  - ID do Produto: ${SOMA_ID}
-  - Preço para o Cliente: R$ ${SOMA_Preco_Cliente}
-  - Família: ${SOMA_Familia}
-  - Area: ${SOMA_Area}
-  - Subárea: ${SOMA_Subarea}
-  - Custo para o SEBRAE: R$ ${SOMA_TotalSEBRAE}
+  - ID do Produto: ${eSOMA_ID}
+  - Preço para o Cliente: R$ ${eSOMA_Preco_Cliente}
+  - Família: ${eSOMA_Familia}
+  - Area: ${eSOMA_Area}
+  - Subárea: ${eSOMA_Subarea}
+  - Custo para o SEBRAE: R$ ${eSOMA_TotalSEBRAE}
 
 _________________________________________
 ****DADOS DA PESSOA JURÍDICA**
