@@ -424,7 +424,7 @@ botaoGerarContrato.addEventListener("click", async function () {
   console.log('Corpo do e-mail enviado:', emailBody);
   
     try {
-      const response = await fetch('https://barretos.vercel.app/enviar-email', {
+      const response = await fetch('/enviar-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ emailBody }),
