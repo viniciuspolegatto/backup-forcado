@@ -345,13 +345,14 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
-  <b>**DETALHES DO PRODUTO**</b>
+  <p>
+  **DETALHES DO PRODUTO**
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
   - Data da Consultoria: ${dataConsultoria}
   - Horário: ${horario}
 
-  <b>**DADOS DA PESSOA JURÍDICA**</b>
+  **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Situação CNPJ: ${situacaoCnpj}
   - É MEI?: ${simei}
@@ -362,7 +363,7 @@ botaoGerarContrato.addEventListener("click", function () {
   - Logradouro: ${logradouro}
   - Telefone (PJ): ${telefonePj}
 
-  <b>**DADOS DA PESSOA FÍSICA (CLIENTE)**</b>
+  **DADOS DA PESSOA FÍSICA (CLIENTE)**
   - Nome Completo: ${nomeCliente}
   - CPF: ${cpf}
   - Data de Nascimento: ${nascimento}
@@ -371,12 +372,13 @@ botaoGerarContrato.addEventListener("click", function () {
   - Telefone de Contato: ${telefoneContato}
   - E-mail: ${emailCliente}
 
-  <b>**DADOS DO PROJETO**</b>
+  **DADOS DO PROJETO**
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-  <b>**SOLICITANTE**<b>
+  <b>**SOLICITANTE**</b>
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
+  </P>
   `;
 
   // Criação do link mailto
