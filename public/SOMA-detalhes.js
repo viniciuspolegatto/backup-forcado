@@ -364,10 +364,6 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
-  Prezada equipe SOMA - CREDENCIAMENTO,
-  
-  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-  
   **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Razão Social: ${razaoSocial}
