@@ -136,13 +136,13 @@ async function carregarDetalhes() {
     localStorage.setItem('NomeProduto', produto.NomeProduto);
     localStorage.setItem('Modalidade', produto.Modalidade);
     localStorage.setItem('CargaHoraria', produto.CargaHoraria);
-    //localStorage.setItem('Preço Cliente', produto.Soma_Precificacao);
+    localStorage.setItem('Preco_Cliente', produto.Soma_Precificacao);
     localStorage.setItem('ID', produto.ID_Produto);
     localStorage.setItem('Familia', produto.Familia);
     localStorage.setItem('Area', produto.Area);
     localStorage.setItem('Subarea', produto.Subarea);
     localStorage.setItem('Complexidade', produto.Complexidade);
-    //localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
+    localStorage.setItem('TotalSEBRAE', produto.Custo_Credenciado);
   
     
   } catch (error) {
