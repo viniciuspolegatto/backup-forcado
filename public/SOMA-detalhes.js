@@ -364,6 +364,10 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
+  **DETALHES DO PRODUTO**
+  - Nome do Produto: ${NomeProduto}
+  - Modalidade: ${Modalidade}
+  
   **DADOS DA PESSOA JURÍDICA**
   - CNPJ: ${cnpj}
   - Razão Social: ${razaoSocial}
