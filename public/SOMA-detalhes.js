@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 const urlParams = new URLSearchParams(window.location.search);
@@ -430,8 +431,30 @@ _________________________________________
   `;
 
   // Criação do link mailto
- const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA&body=${encodeURIComponent(emailBody)}`;
+async function enviarEmail() {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail', // Ou outro serviço SMTP
+        auth: {
+            user: 'credenciamentoerbarretos@gmail.com',
+            pass: 'Sebrae@123', // Use um App Password se necessário
+        },
+    });
 
-  // Redireciona para o link mailto
-  window.location.href = mailtoLink;
+    const mailOptions = {
+        from: 'credenciamentoerbarretos@gmail.com',
+        to: 'marcosvp@sebraesp.com.br',
+        cc: 'Back@sebraesp.onmicrosoft.com, joaovmt@sebraesp.com.br',
+        subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
+        text: emailBody, // Corpo no formato texto
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('E-mail enviado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao enviar o e-mail:', error);
+    }
+}
+
+enviarEmail();
 });
