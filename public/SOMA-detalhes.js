@@ -345,7 +345,6 @@ botaoGerarContrato.addEventListener("click", function () {
 
   // Formatação do corpo do e-mail
   const emailBody = `
-  <p>
   **DETALHES DO PRODUTO**
   - Nome do Produto: ${NomeProduto}
   - Modalidade: ${Modalidade}
@@ -376,9 +375,8 @@ botaoGerarContrato.addEventListener("click", function () {
   - Pertence a Algum Projeto? ${projeto}
   - Nome do Projeto: ${nomeProjeto}
 
-  <b>**SOLICITANTE**</b>
+  **SOLICITANTE**
   - Nome do Solicitante/Testemunha: ${testemunhaNome}
-  </P>
   `;
 
   // Criação do link mailto
