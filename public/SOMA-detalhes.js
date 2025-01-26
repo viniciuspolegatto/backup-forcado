@@ -376,7 +376,7 @@ botaoGerarContrato.addEventListener("click", function () {
   - Situação CNPJ: ${situacaoCnpj}
   - Porte Empresarial: ${porte}
   - Logradouro: ${logradouro}
-  - Município: ${municipio}
+  - É MEI?: ${simei}
   - Telefone (PJ): ${telefonePj}
 
   **DADOS DA PESSOA FÍSICA (CLIENTE)**
