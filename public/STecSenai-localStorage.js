@@ -124,11 +124,11 @@ const descritivoSebraetecSenai = document.getElementById("descritivoSebraetecSen
         </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR SUBSIDIADO PELO SEBRAE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 1).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.95).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR PAGO PELO CLIENTE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.05).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>FORMA DE PAGAMENTO</b></td>
