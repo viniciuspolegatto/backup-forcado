@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/enviar-email", "destination": "/api/enviar-email" }
-  ],
   "builds": [
     {
       "src": "server.js",
