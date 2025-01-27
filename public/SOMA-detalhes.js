@@ -400,29 +400,56 @@ botaoGerarContrato.addEventListener("click", async function () {
         `;
 
   // Formatação do corpo do e-mail
-    const emailBody = `
-    Prezada equipe SOMA - CREDENCIAMENTO,
-    
-    Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-    
-    ****DETALHES DO AGENDAMENTO****
+// Formatação do corpo do e-mail
+    const emailBody = `Prezada equipe CREDENCIAMENTO,
+
+    Solicito atendimento conforme abaixo:
+
+    ** AGENDAMENTO
     - Data da Consultoria: ${dataConsultoria}
     - Horário: ${horario}
 
-    ****DADOS DO PROJETO**
+    ** PRODUTO
+    - Natureza: ${eSOMA_Natureza}
+    - Nome do Produto: ${NomeProduto}
+    - Modalidade: ${Modalidade}
+    - Complexidade: ${eSOMA_Complexidade || 'N/A'}
+    - Carga Horária: ${eSOMA_CargaHoraria} horas
+
+    ** DADOS DO PROJETO
     - Pertence a Algum Projeto? ${projeto}
     - Nome do Projeto: ${nomeProjeto}
 
-    ${detalhesProduto}
-    ${detalhesCnpj}
-    ${detalhesCliente}
+    ** CLIENTE
+    - Nome Completo: ${nomeCliente}
+    - CPF: ${cpf}
+    - CEP: ${cep}
+    - Endereço: ${endereco}
+    - Telefone de Contato: ${telefoneContato}
+    - E-mail: ${emailCliente}
 
-    ****SOLICITANTE**
-    - Nome do Solicitante/Testemunha: ${testemunhaNome}
-    `;
+    ** EMPRESA
+    - CNPJ: ${cnpj}
+    - Razão Social: ${razaoSocial}
+    - Nome Fantasia: ${nomeFantasia}
+    - Endereço: ${logradouro}
+    - Optante pelo MEI: ${simei}
+    - Telefone: ${telefonePj}`;
 
   console.log('Corpo do e-mail enviado:', emailBody);
   
+//*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
+
+    const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
+
+    console.log("Link gerado:", mailtoLink);
+    window.location.href = mailtoLink;
+});
+
+
+
+// *** EMAIL ENVIADO VIA BAKCEND ************************************************
+/*
     try {
       const response = await fetch('/enviar-email', {
           method: 'POST',
@@ -441,3 +468,4 @@ botaoGerarContrato.addEventListener("click", async function () {
         alert('Erro ao enviar o e-mail.');
     }
 });
+*/
