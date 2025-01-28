@@ -272,6 +272,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('empresa-atividade-principal').textContent = dataCnpj.atividade_principal[0].text;
     document.getElementById('empresa-nome-fantasia').textContent = fantasiaPj;
     document.getElementById('empresa-logradouro').textContent = `${dataCnpj.logradouro}, nº ${dataCnpj.numero} - Bairro: ${dataCnpj.bairro}, Município de ${dataCnpj.municipio} - ${dataCnpj.uf}`;
+    document.getElementById('cep-empresa-td').textContent = dataCnpj.cep;
     document.getElementById('empresa-simei').textContent = verificaMEI;
     document.getElementById('empresa-situacao').textContent = dataCnpj.situacao;
     document.getElementById('empresa-porte').textContent = dataCnpj.porte;
@@ -354,6 +355,9 @@ botaoGerarContrato.addEventListener("click", async function () {
   const situacaoCnpj = document.getElementById('empresa-situacao').textContent || 'N/A';
   const porte = document.getElementById('empresa-porte').textContent || 'N/A';
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
+  const cepCNPJ = document.getElementById('cep-empresa-td').textContent || 'N/A';
+  
+
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
   const detalhesCnpj = `
@@ -365,6 +369,7 @@ botaoGerarContrato.addEventListener("click", async function () {
         - Situação do CNPJ: ${situacaoCnpj}
         - Porte Empresarial: ${porte}
         - Endereço: ${logradouro}
+        - CEP CNPJ: ${cepCNPJ}
         - Optante pelo MEI: ${simei}
         - Telefone: ${telefonePj}
         `;
@@ -406,7 +411,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     Solicito atendimento conforme abaixo:
 
     ** AGENDAMENTO
-    - Data da Consultoria: ${dataConsultoria}
+    - Data: ${dataConsultoria}
     - Horário: ${horario}
 
     ** SERVIÇO
@@ -417,7 +422,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Carga Horária: ${eSOMA_CargaHoraria} horas
 
     ** PROJETO
-    - Pertence a Algum Projeto? ${projeto}
+    - Pertence a Projetos? ${projeto}
     - Nome do Projeto: ${nomeProjeto}
 
     ** CLIENTE
@@ -432,7 +437,8 @@ botaoGerarContrato.addEventListener("click", async function () {
     - CNPJ: ${cnpj}
     - Razão Social: ${razaoSocial}
     - Nome Fantasia: ${nomeFantasia}
-    - Endereço: ${logradouro}
+    - Endereço CNPJ: ${logradouro}
+    - CEP CNPJ: ${cepCNPJ}
     - Optante pelo MEI: ${simei}
     - Telefone CNPJ: ${telefonePj}`;
 
