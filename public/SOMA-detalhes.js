@@ -414,7 +414,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Data: ${dataConsultoria}
     - Horário: ${horario}
 
-    ** PRODUTO
+    ** SERVIÇO
     - Natureza: ${eSOMA_Natureza}
     - Nome do Serviço (produto): ${NomeProduto}
     - Modalidade: ${Modalidade}
@@ -430,7 +430,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - CPF: ${cpf}
     - CEP: ${cep}
     - Endereço: ${endereco}
-    - Telefone CPJ: ${telefoneContato}
+    - Telefone CPF: ${telefoneContato}
     - E-mail: ${emailCliente}
 
     ** EMPRESA
