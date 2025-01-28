@@ -409,9 +409,9 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Data da Consultoria: ${dataConsultoria}
     - Horário: ${horario}
 
-    ** PRODUTO
+    ** SERVIÇO
     - Natureza: ${eSOMA_Natureza}
-    - Nome do Produto: ${NomeProduto}
+    - Nome do Serviço (produto): ${NomeProduto}
     - Modalidade: ${Modalidade}
     - Complexidade: ${eSOMA_Complexidade || 'N/A'}
     - Carga Horária: ${eSOMA_CargaHoraria} horas
