@@ -416,7 +416,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Complexidade: ${eSOMA_Complexidade || 'N/A'}
     - Carga Horária: ${eSOMA_CargaHoraria} horas
 
-    ** DADOS DO PROJETO
+    ** PROJETO
     - Pertence a Algum Projeto? ${projeto}
     - Nome do Projeto: ${nomeProjeto}
 
@@ -425,7 +425,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - CPF: ${cpf}
     - CEP: ${cep}
     - Endereço: ${endereco}
-    - Telefone de Contato: ${telefoneContato}
+    - Telefone CPF: ${telefoneContato}
     - E-mail: ${emailCliente}
 
     ** EMPRESA
@@ -434,7 +434,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Nome Fantasia: ${nomeFantasia}
     - Endereço: ${logradouro}
     - Optante pelo MEI: ${simei}
-    - Telefone: ${telefonePj}`;
+    - Telefone CNPJ: ${telefonePj}`;
 
   console.log('Corpo do e-mail enviado:', emailBody);
   
