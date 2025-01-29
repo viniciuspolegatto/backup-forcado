@@ -385,7 +385,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
         `;
 
   // Dados do solicitante/testemunha
-  const solicitanteNome = document.getElementById("solicitanteNome").textContent || 'N/A';
+  const solicitanteNome = localStorage.getItem('solicitanteNome') || 'N/A';
   const solicitanteEmail = localStorage.getItem('solicitanteEmail') || 'N/A';
 
   
