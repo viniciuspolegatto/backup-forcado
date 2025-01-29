@@ -471,7 +471,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ emailBody }),
+      body: JSON.stringify({ emailBody, solicitanteEmail }),
     });
 
     if (response.ok) {
@@ -485,62 +485,3 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     alert('Erro ao enviar o e-mail.');
   }
 });
-  
-
-
-
-/* /*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
-
-    const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
-
-    console.log("Link gerado:", mailtoLink);
-    window.location.href = mailtoLink;
-});
-******************************************************************************* */
-
-
-// *** EMAIL ENVIADO VIA BAKCEND ************************************************
-/*
-document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
-
-  // Captura os valores dos selects
-  let solicitante = document.getElementById("listaDeTestemunhas").value;
-  let nomeProjeto = document.getElementById("nomeProj").value;
-
-  // Formatação do corpo do e-mail
-  let emailBody = `
-  Prezada equipe SOMA - CREDENCIAMENTO,
-
-  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-
-  **** DETALHES DO PEDIDO ****
-  Solicitante: ${solicitante}
-  Projeto: ${nomeProjeto}
-
-  Agradeço pela atenção.
-  `;
-
-  console.log(emailBody);
-
-  try {
-    // Realiza a requisição fetch dentro do bloco try
-    const response = await fetch('/enviarEmail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ emailBody }),
-    });
-
-    if (response.ok) {
-      alert('E-mail enviado com sucesso!');
-    } else {
-      alert('Erro ao enviar o e-mail.');
-    }
-  } catch (error) {
-    // Caso haja erro, é capturado aqui no catch
-    console.error('Erro na solicitação de envio de e-mail:', error);
-    alert('Erro ao enviar o e-mail.');
-  }
-});
-*/
