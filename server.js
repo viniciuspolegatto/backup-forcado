@@ -271,31 +271,30 @@ app.put('/atualizarCliente', (req, res) => {
 
 // ************** ESTRUTURA DE ENVIO DE E-MAILS DIRETO DO BACKEND ***************
 
-
-app.post('/enviar-email', async (req, res) => {
+app.post('/enviarEmail', async (req, res) => {
     const { emailBody } = req.body;
 
     console.log('Corpo do e-mail recebido:', emailBody); // Log para depuração
-  
+ 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: 'zidazixadvzyyslr', // Substitua por um App Password
+            pass: '_________', // ojcupzxatiqicqdo Substitua por um App Password
         },
     });
 
     const mailOptions = {
         from: 'credenciamentoerbarretos@gmail.com',
-        to: 'marcosvp@sebraesp.com.br',
-        cc: 'Back@sebraesp.onmicrosoft.com, joaovmt@sebraesp.com.br',
+        to: 'tudojuntoesemacento@hotmail.com',
+        //cc: 'tudojuntoesemacento@hotmail.com',
         subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
         text: emailBody,
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        res.status(200).send('E-mail enviado com sucesso!');
+        res.status(200).send('E-mail enviado com sucesso! \n VERIFIQUE SUA CAIXA DE ENTRADA');
     } catch (error) {
         console.error('Erro ao enviar o e-mail:', error);
         res.status(500).send('Erro ao enviar o e-mail.');
