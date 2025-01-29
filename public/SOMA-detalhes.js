@@ -399,6 +399,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - Natureza: ${eSOMA_Natureza}
     - Nome do Serviço (produto): ${NomeProduto}
     - Modalidade: ${Modalidade}
+    - Preço para o Cliente: ${eSOMA_Preco_Cliente}
     - Complexidade: ${eSOMA_Complexidade}
     - Carga Horária: ${eSOMA_CargaHoraria} horas
     - ID do Produto: ${eSOMA_ID}
