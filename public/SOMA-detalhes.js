@@ -1,4 +1,3 @@
-let botaoBuscarCadastro = document.querySelector("#botaoBuscarCadastro");
 let botaoGerarContrato = document.querySelector("#botaoGerarContrato");
 const urlParams = new URLSearchParams(window.location.search);
 const idProduto = urlParams.get('id'); // Obtém o ID do produto da URL
@@ -160,9 +159,12 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
   let numeroResidencia = document.getElementById('numeroResidencia').value;
   let telefone = document.getElementById('telefone').value;
   let email = document.getElementById('email').value;
-  let testemunhaSelecionada = document.getElementById("listaDeTestemunhas");
-  let testemunhaDados = testemunhaSelecionada.value; // Obtém o valor selecionado
+  
+  let solicitanteSelecionado = document.getElementById("listaSolicitantes");
+  let solicitanteDados = solicitanteSelecionado.value; // Obtém o valor selecionado
 
+  let projSelecionado = document.getElementById("nomeProj");
+  let projDados = projSelecionado.value; // Obtém o valor selecionado
   
 // Valida se nome, cpf e telefone estão preenchidos *******************************
     if (!nomeCliente || !cpfBruto || !telefone) {
@@ -185,10 +187,17 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
   
 // SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
-  const testemunhaDetalhes = testemunhaDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
-  const testemunhaNome = testemunhaDetalhes[0];
-  const testemunhaCargo = testemunhaDetalhes[1];
-  const testemunhaCpf = testemunhaDetalhes[2];
+  const solicitanteDetalhes = solicitanteDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
+  const solicitanteNome = solicitanteDetalhes[0];
+  const solicitanteEmail = solicitanteDetalhes[1];
+  const solicitanteCpf = solicitanteDetalhes[2];
+  
+  // SPLIT para Quebra a String PRODUTO e TESTEMUNHA para salvar detalhes no Banco de Dados **
+  const projDetalhes = projDados.split(" | "); // formato apresentado em STecSenai-dadosContrato.html
+  const projNome = projDetalhes[0];
+  const projCentroCusto = projDetalhes[1];
+  const projetoCodCC = projDetalhes[2];
+  
 //------------------------------------------------- 
 
 
@@ -283,7 +292,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     document.getElementById('cpf-td').textContent = cpfBruto;
     document.getElementById('telefone-contato-td').textContent = telefone;
     document.getElementById('email-td').textContent = email;
-    document.getElementById("testemunha-td").textContent = testemunhaNome;
+    document.getElementById("solicitante-td").textContent = solicitanteNome;
 
     document.getElementById('data-table').style.display = 'block';
 
@@ -301,10 +310,13 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
     localStorage.setItem('emailPj',emailPj);
     
     
-    localStorage.setItem('testemunhaNome', testemunhaNome);
-    localStorage.setItem('testemunhaCargo', testemunhaCargo);
-    localStorage.setItem('testemunhaCpf', testemunhaCpf);
-    
+    localStorage.setItem('solicitanteNome', solicitanteNome);
+    localStorage.setItem('solicitanteEmail', solicitanteEmail);
+    localStorage.setItem('solicitanteCpf', solicitanteCpf);
+
+    localStorage.setItem('projNome', projNome);
+    localStorage.setItem('projCentroCusto', projCentroCusto);
+    localStorage.setItem('projetoCodCC', projetoCodCC);
 
   
   } catch (error) {
@@ -317,7 +329,7 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 
 
 
-botaoGerarContrato.addEventListener("click", async function () {
+document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
   console.log("Botão Gerar Contrato clicado!");
   
   // PRODUTO - Atendimento
@@ -356,8 +368,6 @@ botaoGerarContrato.addEventListener("click", async function () {
   const porte = document.getElementById('empresa-porte').textContent || 'N/A';
   const logradouro = document.getElementById('empresa-logradouro').textContent || 'N/A';
   const cepCNPJ = document.getElementById('cep-empresa-td').textContent || 'N/A';
-  
-
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
   const detalhesCnpj = `
@@ -375,11 +385,16 @@ botaoGerarContrato.addEventListener("click", async function () {
         `;
 
   // Dados do solicitante/testemunha
-  const testemunhaNome = document.getElementById("testemunha-td").textContent || 'N/A';
+  const solicitanteNome = document.getElementById("solicitanteNome").textContent || 'N/A';
+  const solicitanteEmail = localStorage.getItem('solicitanteEmail') || 'N/A';
+
   
   // Dados do projeto
-  const projeto = document.getElementById('projeto').value || 'NÃO';
-  const nomeProjeto = document.getElementById('nomeProj').value || 'N/A';
+  const projeto = document.getElementById('pertenceProjeto').value || 'NÃO';
+  const nomeProjeto = localStorage.getItem('projNome') || 'N/A';
+  const centroCustoProjeto = localStorage.getItem('projCentroCusto') || 'N/A';  
+  const codCentroCustoProjeto = localStorage.getItem('projetoCodCC') || 'N/A';
+  
 
   // Dados da consultoria
   const dataConsultoria = document.getElementById('dataConsultoria').value || 'N/A';
@@ -406,7 +421,7 @@ botaoGerarContrato.addEventListener("click", async function () {
 
   // Formatação do corpo do e-mail
 // Formatação do corpo do e-mail
-    const emailBody = `Prezada equipe CREDENCIAMENTO,
+    let emailBody = `Prezada equipe CREDENCIAMENTO,
 
     Solicito atendimento conforme abaixo:
 
@@ -414,7 +429,7 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Data: ${dataConsultoria}
     - Horário: ${horario}
 
-    ** SERVIÇO
+    ** PRODUTO
     - Natureza: ${eSOMA_Natureza}
     - Nome do Serviço (produto): ${NomeProduto}
     - Modalidade: ${Modalidade}
@@ -440,38 +455,92 @@ botaoGerarContrato.addEventListener("click", async function () {
     - Endereço CNPJ: ${logradouro}
     - CEP CNPJ: ${cepCNPJ}
     - Optante pelo MEI: ${simei}
-    - Telefone CNPJ: ${telefonePj}`;
+    - Telefone CNPJ: ${telefonePj}
+    
+    ** SOLICITANTE
+    `;
+  
 
   console.log('Corpo do e-mail enviado:', emailBody);
   
-//*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
+  
+    try {
+    // Realiza a requisição fetch dentro do bloco try
+    const response = await fetch('/enviarEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ emailBody }),
+    });
+
+    if (response.ok) {
+      alert('E-mail enviado com sucesso!');
+    } else {
+      alert('Erro ao enviar o e-mail.');
+    }
+  } catch (error) {
+    // Caso haja erro, é capturado aqui no catch
+    console.error('Erro na solicitação de envio de e-mail:', error);
+    alert('Erro ao enviar o e-mail.');
+  }
+});
+  
+
+
+
+/* /*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
 
     const mailtoLink = `mailto:marcosvp@sebraesp.com.br?cc=Back@sebraesp.onmicrosoft.com,joaovmt@sebraesp.com.br&subject=${encodeURIComponent("ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA")}&body=${encodeURIComponent(emailBody)}`;
 
     console.log("Link gerado:", mailtoLink);
     window.location.href = mailtoLink;
 });
-
+******************************************************************************* */
 
 
 // *** EMAIL ENVIADO VIA BAKCEND ************************************************
 /*
-    try {
-      const response = await fetch('/enviar-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ emailBody }),
-      });
+document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
 
+  // Captura os valores dos selects
+  let solicitante = document.getElementById("listaDeTestemunhas").value;
+  let nomeProjeto = document.getElementById("nomeProj").value;
 
-        if (response.ok) {
-            alert('E-mail enviado com sucesso!');
-        } else {
-            alert('Erro ao enviar o e-mail.');
-        }
-    } catch (error) {
-        console.error('Erro na solicitação de envio de e-mail:', error);
-        alert('Erro ao enviar o e-mail.');
+  // Formatação do corpo do e-mail
+  let emailBody = `
+  Prezada equipe SOMA - CREDENCIAMENTO,
+
+  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
+
+  **** DETALHES DO PEDIDO ****
+  Solicitante: ${solicitante}
+  Projeto: ${nomeProjeto}
+
+  Agradeço pela atenção.
+  `;
+
+  console.log(emailBody);
+
+  try {
+    // Realiza a requisição fetch dentro do bloco try
+    const response = await fetch('/enviarEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ emailBody }),
+    });
+
+    if (response.ok) {
+      alert('E-mail enviado com sucesso!');
+    } else {
+      alert('Erro ao enviar o e-mail.');
     }
+  } catch (error) {
+    // Caso haja erro, é capturado aqui no catch
+    console.error('Erro na solicitação de envio de e-mail:', error);
+    alert('Erro ao enviar o e-mail.');
+  }
 });
 */
