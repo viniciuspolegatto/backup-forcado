@@ -358,6 +358,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   // ------------------------------ tirando dados da stringfy dadosCNPJ no localStorage
   const dadosCnpjStrg = JSON.parse(localStorage.getItem("dadosCnpj"));
   const AberturaCnpjStrg = dadosCnpjStrg.abertura;
+  const EmailCnpjStrg = dadosCnpjStrg.email;
   
 
   // Dados do solicitante/testemunha
@@ -431,6 +432,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - CEP CNPJ: ${cepCNPJ}
     - Optante pelo MEI: ${simei}
     - Telefone CNPJ: ${telefonePj}
+    - E-mail do CNPJ: ${EmailCnpjStrg}
     - Optante pelo MEI?: ${simei}
     - Porte Empresarial: ${porte}
     - Data da Abertura CNPJ: ${AberturaCnpjStrg}
