@@ -410,8 +410,8 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     ** DETALHES CASO A EMPRESA ATENDIDA ESTEJA EM PROJETO DO SEBRAE
     - O atendimento pertence a algum Projeto? ${projeto}
     - Nome do Projeto: ${nomeProjeto}
-    - Descrição SEBRAE do Centro de Custos: ${centroCustoProjeto}  
-    - Código SEBRAE do Centro de Custos: ${codCentroCustoProjeto}
+    - ${centroCustoProjeto}  
+    - ${codCentroCustoProjeto}
 
     ** DETALHES SOBRE O CLIENTE QUE REPRESENTARÁ A EMPRESA
     - Nome Completo: ${nomeCliente}
