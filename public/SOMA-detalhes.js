@@ -328,7 +328,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 }); // FIM DO ADD EVENT LISTENER
 
 
-
 document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
   console.log("Botão Gerar Contrato clicado!");
   
@@ -356,6 +355,10 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const cepCNPJ = document.getElementById('cep-empresa-td').textContent || 'N/A';
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
+  // ------------------------------ tirando dados da stringfy dadosCNPJ no localStorage
+  const dadosCnpjStrg = JSON.parse(localStorage.getItem("dadosCnpj"));
+  const AberturaCnpjStrg = dadosCnpjStrg.abertura;
+  
 
   // Dados do solicitante/testemunha
   const solicitanteNome = localStorage.getItem('solicitanteNome') || 'N/A';
@@ -430,6 +433,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - Telefone CNPJ: ${telefonePj}
     - Optante pelo MEI?: ${simei}
     - Porte Empresarial: ${porte}
+    - Data da Abertura CNPJ: ${AberturaCnpjStrg}
     `;
   
 
@@ -457,6 +461,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     alert('Erro ao enviar o e-mail.');
   }
 });
+  
 
 /* /*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
 
