@@ -294,7 +294,7 @@ app.post('/enviarEmail', async (req, res) => {
 
     try {
         await transporter.sendMail(mailOptions);
-        res.status(200).send('E-mail enviado com sucesso! \n VERIFIQUE SUA CAIXA DE ENTRADA');
+        res.status(200).send('E-mail enviado com sucesso! VERIFIQUE SUA CAIXA DE ENTRADA');
     } catch (error) {
         console.error('Erro ao enviar o e-mail:', error);
         res.status(500).send('Erro ao enviar o e-mail.');
