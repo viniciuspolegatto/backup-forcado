@@ -286,7 +286,7 @@ app.post('/enviarEmail', async (req, res) => {
 
     const mailOptions = {
         from: 'credenciamentoerbarretos@gmail.com',
-        to: `tudojuntoesemacento@hotmail.com`,
+        to: `marcosvp@sebraesp.com.br, joaovmt@sebraesp.com.br, murilohr@sebraesp.com.br, back@sebraesp.onmicrosoft.com`,
         cc: `${solicitanteEmail}`,
         subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
         text: emailBody,
