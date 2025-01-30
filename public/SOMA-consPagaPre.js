@@ -1,5 +1,8 @@
 const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenciamentoSomaSebraeSP/main/SebraeSpSomaConsultorias.json';
 const tabelaProdutos = document.getElementById('tabela_produtos').querySelector('tbody');
+const filtroArea = document.getElementById('filtroArea');
+const filtroSetor = document.getElementById('filtroSetor');
+let produtos = [];
 
 document.addEventListener('DOMContentLoaded', buscarProdutos);
 
@@ -8,26 +11,46 @@ async function buscarProdutos() {
         const res = await fetch(endpoint);
         if (!res.ok) throw new Error('Erro ao buscar dados da API.');
         
-        const produtos = await res.json();
-        exibirProdutosNaTela(produtos);
+        produtos = await res.json();
+        preencherFiltros(produtos);
+        exibirProdutosNaTela();
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
     }
 }
 
-function exibirProdutosNaTela(produtos) {
+function preencherFiltros(produtos) {
+    // Filtra as áreas para excluir "Educação" e "Desenvolvimento Territorial" e adiciona "Todos"
+    const areas = ['Todos', ...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    const setores = ['Todos', ...new Set(produtos.map(p => p.Setor).filter(setor => setor))];
+
+    preencherSelect(filtroArea, areas);
+    preencherSelect(filtroSetor, setores);
+}
+
+function preencherSelect(select, valores) {
+    valores.forEach(valor => {
+        const option = document.createElement('option');
+        option.value = valor;
+        option.textContent = valor;
+        select.appendChild(option);
+    });
+}
+
+function exibirProdutosNaTela() {
+    tabelaProdutos.innerHTML = '';
     const produtosFiltrados = produtos.filter(produto => 
         produto.Modalidade === 'Presencial' &&
         produto.Pago === 'Sim' &&
-        produto.Natureza === 'Consultoria'
-        //&& produto.EmpresasHabilitadas !== 'xx'
-        && produto.Area !== 'Desenvolvimento Setorial'
-        && produto.Area !== 'Desenvolvimento Territorial'
-        && produto.Area !== 'Políticas Públicas'
-        //&& produto.DescricaoProduto !== 'NaN'
+        produto.Natureza === 'Consultoria' &&
+        produto.Area !== 'Desenvolvimento Setorial' &&
+        produto.Area !== 'Desenvolvimento Territorial' &&
+        // Filtragem por Área
+        (filtroArea.value === 'Todos' || produto.Area === filtroArea.value) &&
+        // Filtragem por Setor
+        (filtroSetor.value === 'Todos' || produto.Setor === filtroSetor.value)
     );
 
-     // Classificar os itens: "xx" será movido para o final
     const produtosOrdenados = produtosFiltrados.sort((a, b) => {
         if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
         if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
@@ -60,7 +83,11 @@ function exibirProdutosNaTela(produtos) {
                 <td style="border: 1px solid black; padding: 8px">${produto.DescricaoProduto}</td>
             </tr>
         `;
-
         tabelaProdutos.innerHTML += linha;
     });
 }
+
+// Adiciona o evento de mudança para os filtros
+[filtroArea, filtroSetor].forEach(filtro => {
+    filtro.addEventListener('change', exibirProdutosNaTela);
+});
