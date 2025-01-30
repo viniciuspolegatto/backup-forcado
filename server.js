@@ -272,7 +272,7 @@ app.put('/atualizarCliente', (req, res) => {
 // ************** ESTRUTURA DE ENVIO DE E-MAILS DIRETO DO BACKEND ***************
 
 app.post('/enviarEmail', async (req, res) => {
-    const { emailBody } = req.body;
+    const { emailBody, solicitanteEmail } = req.body;
 
     console.log('Corpo do e-mail recebido:', emailBody); // Log para depuração
  
@@ -280,14 +280,14 @@ app.post('/enviarEmail', async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: '_________', // ojcupzxatiqicqdo Substitua por um App Password
+            pass: 'ojcupzxatiqicqdo',
         },
     });
 
     const mailOptions = {
         from: 'credenciamentoerbarretos@gmail.com',
-        to: 'tudojuntoesemacento@hotmail.com',
-        //cc: 'tudojuntoesemacento@hotmail.com',
+        to: `marcosvp@sebraesp.com.br, joaovmt@sebraesp.com.br, murilohr@sebraesp.com.br, back@sebraesp.onmicrosoft.com`,
+        cc: `${solicitanteEmail}`,
         subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
         text: emailBody,
     };

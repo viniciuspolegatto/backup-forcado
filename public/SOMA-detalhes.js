@@ -328,7 +328,6 @@ document.getElementById('botaoImpressaoCnpj').addEventListener('click', async fu
 }); // FIM DO ADD EVENT LISTENER
 
 
-
 document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
   console.log("Botão Gerar Contrato clicado!");
   
@@ -344,20 +343,6 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const eSOMA_Area = localStorage.getItem('SOMA_Area') || 'N/A';
   const eSOMA_Subarea = localStorage.getItem('SOMA_Subarea') || 'N/A';
   const eSOMA_TotalSEBRAE = localStorage.getItem('SOMA_TotalSEBRAE') || 'N/A';
-  const detalhesProduto = `
-        **DETALHES DO SERVIÇO**
-        - Natureza: ${eSOMA_Natureza}
-        - Nome do Produto: ${NomeProduto}
-        - Modalidade: ${Modalidade}
-        - Complexidade: ${eSOMA_Complexidade || 'N/A'}
-        - Carga Horária: ${eSOMA_CargaHoraria} horas
-        - Preço para o Cliente: ${eSOMA_Preco_Cliente}
-        - ID do Produto: ${eSOMA_ID}
-        - Família: ${eSOMA_Familia}
-        - Área: ${eSOMA_Area}
-        - Subárea: ${eSOMA_Subarea}
-        - Total SEBRAE: ${eSOMA_TotalSEBRAE}
-        `;
   
   // Coleta os dados do formulário
   const cnpj = document.getElementById('cnpj').value;
@@ -370,32 +355,22 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const cepCNPJ = document.getElementById('cep-empresa-td').textContent || 'N/A';
   const simei = document.getElementById('empresa-simei').textContent || 'N/A';
   const telefonePj = document.getElementById('telefone-td').textContent || 'N/A';
-  const detalhesCnpj = `
-        **DETALHES DA PESSOA JURÍDICA**
-        - CNPJ: ${cnpj}
-        - Razão Social: ${razaoSocial}
-        - Nome Fantasia: ${nomeFantasia}
-        - Atividade Principal: ${atividadePrincipal}
-        - Situação do CNPJ: ${situacaoCnpj}
-        - Porte Empresarial: ${porte}
-        - Endereço: ${logradouro}
-        - CEP CNPJ: ${cepCNPJ}
-        - Optante pelo MEI: ${simei}
-        - Telefone: ${telefonePj}
-        `;
+  // ------------------------------ tirando dados da stringfy dadosCNPJ no localStorage
+  const dadosCnpjStrg = JSON.parse(localStorage.getItem("dadosCnpj"));
+  const AberturaCnpjStrg = dadosCnpjStrg.abertura;
+  const EmailCnpjStrg = dadosCnpjStrg.email;
+  
 
   // Dados do solicitante/testemunha
-  const solicitanteNome = document.getElementById("solicitanteNome").textContent || 'N/A';
+  const solicitanteNome = localStorage.getItem('solicitanteNome') || 'N/A';
   const solicitanteEmail = localStorage.getItem('solicitanteEmail') || 'N/A';
 
-  
   // Dados do projeto
   const projeto = document.getElementById('pertenceProjeto').value || 'NÃO';
   const nomeProjeto = localStorage.getItem('projNome') || 'N/A';
   const centroCustoProjeto = localStorage.getItem('projCentroCusto') || 'N/A';  
   const codCentroCustoProjeto = localStorage.getItem('projetoCodCC') || 'N/A';
   
-
   // Dados da consultoria
   const dataConsultoria = document.getElementById('dataConsultoria').value || 'N/A';
   const horario = document.getElementById('horarioConsultoria').value || 'N/A';
@@ -408,62 +383,66 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const endereco = document.getElementById('endereco-td').textContent || 'N/A';
   const telefoneContato = document.getElementById('telefone').value || 'N/A';
   const emailCliente = document.getElementById('email').value || 'N/A';
-  const detalhesCliente = `
-        **DADOS PESSOAIS DO CLIENTE**
-        - Nome Completo: ${nomeCliente}
-        - CPF: ${cpf}
-        - Data de Nascimento: ${nascimento}
-        - CEP: ${cep}
-        - Endereço: ${endereco}
-        - Telefone de Contato: ${telefoneContato}
-        - E-mail: ${emailCliente}
-        `;
+
 
   // Formatação do corpo do e-mail
 // Formatação do corpo do e-mail
     let emailBody = `Prezada equipe CREDENCIAMENTO,
 
-    Solicito atendimento conforme abaixo:
+    ${solicitanteNome} solicitou atendimento conforme abaixo:
 
-    ** AGENDAMENTO
+    ** DETALHES SOBRE O AGENDAMENTO
     - Data: ${dataConsultoria}
     - Horário: ${horario}
 
-    ** PRODUTO
+    ** DETALHES SOBRE O SERVIÇO / PRODUTO
     - Natureza: ${eSOMA_Natureza}
     - Nome do Serviço (produto): ${NomeProduto}
     - Modalidade: ${Modalidade}
-    - Complexidade: ${eSOMA_Complexidade || 'N/A'}
+    - Preço para o Cliente: ${eSOMA_Preco_Cliente}
+    - Complexidade: ${eSOMA_Complexidade}
     - Carga Horária: ${eSOMA_CargaHoraria} horas
+    - ID do Produto: ${eSOMA_ID}
+    - Família: ${eSOMA_Familia}
+    - Área: ${eSOMA_Area}
+    - Subárea: ${eSOMA_Subarea}
+    - Total SEBRAE: ${eSOMA_TotalSEBRAE}
 
-    ** PROJETO
-    - Pertence a Projetos? ${projeto}
+    ** DETALHES CASO A EMPRESA ATENDIDA ESTEJA EM PROJETO DO SEBRAE
+    - O atendimento pertence a algum Projeto? ${projeto}
     - Nome do Projeto: ${nomeProjeto}
+    - ${centroCustoProjeto}  
+    - ${codCentroCustoProjeto}
 
-    ** CLIENTE
+    ** DETALHES SOBRE O CLIENTE QUE REPRESENTARÁ A EMPRESA
     - Nome Completo: ${nomeCliente}
     - CPF: ${cpf}
+    - Data de Nascimento: ${nascimento}
     - CEP: ${cep}
     - Endereço: ${endereco}
     - Telefone CPF: ${telefoneContato}
     - E-mail: ${emailCliente}
 
-    ** EMPRESA
+    ** DETALHES SOBRE A EMPRESA QUE RECEBERÁ O ATENDIMENTO
     - CNPJ: ${cnpj}
+    - Situação do CNPJ: ${situacaoCnpj}
     - Razão Social: ${razaoSocial}
     - Nome Fantasia: ${nomeFantasia}
+    - Atividade Principal: ${atividadePrincipal}
     - Endereço CNPJ: ${logradouro}
     - CEP CNPJ: ${cepCNPJ}
     - Optante pelo MEI: ${simei}
     - Telefone CNPJ: ${telefonePj}
-    
-    ** SOLICITANTE
+    - E-mail do CNPJ: ${EmailCnpjStrg}
+    - Optante pelo MEI?: ${simei}
+    - Porte Empresarial: ${porte}
+    - Data da Abertura CNPJ: ${AberturaCnpjStrg}
     `;
   
 
   console.log('Corpo do e-mail enviado:', emailBody);
   
-  
+// ************ ENVIO DE EMAIL VIA BACKEND *************************
     try {
     // Realiza a requisição fetch dentro do bloco try
     const response = await fetch('/enviarEmail', {
@@ -471,7 +450,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ emailBody }),
+      body: JSON.stringify({ emailBody, solicitanteEmail }),
     });
 
     if (response.ok) {
@@ -486,8 +465,6 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   }
 });
   
-
-
 
 /* /*** EVMAIL CURTO - ENVIADO DIRETO VIA OUTL00K ********************************
 
@@ -497,50 +474,3 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     window.location.href = mailtoLink;
 });
 ******************************************************************************* */
-
-
-// *** EMAIL ENVIADO VIA BAKCEND ************************************************
-/*
-document.getElementById('botaoGerarContrato').addEventListener('click', async function() {
-
-  // Captura os valores dos selects
-  let solicitante = document.getElementById("listaDeTestemunhas").value;
-  let nomeProjeto = document.getElementById("nomeProj").value;
-
-  // Formatação do corpo do e-mail
-  let emailBody = `
-  Prezada equipe SOMA - CREDENCIAMENTO,
-
-  Solicito processamento do pedido abaixo para atendimento da empresa conforme descrito abaixo:
-
-  **** DETALHES DO PEDIDO ****
-  Solicitante: ${solicitante}
-  Projeto: ${nomeProjeto}
-
-  Agradeço pela atenção.
-  `;
-
-  console.log(emailBody);
-
-  try {
-    // Realiza a requisição fetch dentro do bloco try
-    const response = await fetch('/enviarEmail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ emailBody }),
-    });
-
-    if (response.ok) {
-      alert('E-mail enviado com sucesso!');
-    } else {
-      alert('Erro ao enviar o e-mail.');
-    }
-  } catch (error) {
-    // Caso haja erro, é capturado aqui no catch
-    console.error('Erro na solicitação de envio de e-mail:', error);
-    alert('Erro ao enviar o e-mail.');
-  }
-});
-*/
