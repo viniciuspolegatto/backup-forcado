@@ -1,7 +1,14 @@
 const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenciamentoSomaSebraeSP/main/SebraeSpSomaConsultorias.json';
 const tabelaProdutos = document.getElementById('tabela_produtos').querySelector('tbody');
 
+const filtroArea = document.getElementById('filtroArea');
+const filtroSubarea = document.getElementById('filtroSubarea');
+const filtroSetor = document.getElementById('filtroSetor');
+const filtroPublico = document.getElementById('filtroPublico');
+
 document.addEventListener('DOMContentLoaded', buscarProdutos);
+
+let produtosFiltrados = [];
 
 async function buscarProdutos() {
     try {
@@ -9,50 +16,71 @@ async function buscarProdutos() {
         if (!res.ok) throw new Error('Erro ao buscar dados da API.');
         
         const produtos = await res.json();
-        exibirProdutosNaTela(produtos);
+        produtosFiltrados = produtos.filter(produto => 
+            produto.Modalidade === 'Presencial' &&
+            produto.Pago === 'Sim' &&
+            produto.Natureza === 'Consultoria' &&
+            ![
+                'EPP, ME', 'EPP, ME, MEI', 'EPP, ME, MEI, Potencial Empreendedor, Potencial Empresário, Produtor Rural',
+                'EPP, ME, MEI, Potencial Empresário, Produtor Rural', 'EPP, ME, MEI, Potencial Empresário',
+                'EPP, ME, MEI, Produtor Rural', 'EPP, ME, Potencial Empresário, Produtor Rural', 'EPP, ME, Potencial Empreendedor',
+                'EPP, ME, Produtor Rural', 'ME', 'ME, MEI', 'ME, MEI, Potencial Empresário', 'ME, Produtor Rural',
+                'MEI', 'MEI, Potencial Empreendedor, Potencial Empresário', 'Potencial Empreendedor',
+                'Potencial Empreendedor, Potencial Empresário, Produtor Rural', 'Produtor Rural'
+            ].includes(produto.PublicoAlvo) &&
+            produto.Area !== 'Marketing e Vendas'
+        );
+
+        preencherFiltros(produtosFiltrados);
+        exibirProdutosNaTela(produtosFiltrados);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
     }
 }
 
-function exibirProdutosNaTela(produtos) {
-    const produtosFiltrados = produtos.filter(produto => 
-        produto.Modalidade === 'Presencial' &&
-        produto.Pago === 'Sim' &&
-        produto.Natureza === 'Consultoria'
-        //&& produto.EmpresasHabilitadas !== 'xx'
-        && produto.PublicoAlvo !== 'EPP, ME' 
-        && produto.PublicoAlvo !== 'EPP, ME, MEI' 
-        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empreendedor, Potencial Empresário, Produtor Rural' 
-        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empresário, Produtor Rural'
-        && produto.PublicoAlvo !== 'EPP, ME, MEI, Potencial Empresário'
-        && produto.PublicoAlvo !== 'EPP, ME, MEI, Produtor Rural' 
-        && produto.PublicoAlvo !== 'EPP, ME, Potencial Empresário, Produtor Rural' 
-        && produto.PublicoAlvo !== 'EPP, ME, Potencial Empreendedor' 
-        && produto.PublicoAlvo !== 'EPP, ME, Produtor Rural' 
-        //&& produto.PublicoAlvo !== 'Gestor Público' 
-        && produto.PublicoAlvo !== 'ME' 
-        && produto.PublicoAlvo !== 'ME, MEI' 
-        && produto.PublicoAlvo !== 'ME, MEI, Potencial Empresário' 
-        && produto.PublicoAlvo !== 'ME, Produtor Rural' 
-        && produto.PublicoAlvo !== 'MEI' 
-        && produto.PublicoAlvo !== 'MEI, Potencial Empreendedor, Potencial Empresário' 
-        && produto.PublicoAlvo !== 'Potencial Empreendedor' 
-        && produto.PublicoAlvo !== 'Potencial Empreendedor, Potencial Empresário, Produtor Rural' 
-        && produto.PublicoAlvo !== 'Produtor Rural' 
-        //&& produto.PublicoAlvo !== 'Professor'
-        //&& produto.PublicoAlvo !== 'NaN'
-        && produto.Area !== 'Marketing e Vendas'
+function preencherFiltros(produtos) {
+    const valoresUnicos = (chave) => [...new Set(produtos.map(p => p[chave]))].sort();
+
+    const preencherSelect = (elemento, valores) => {
+        valores.forEach(valor => {
+            const option = document.createElement('option');
+            option.value = valor;
+            option.textContent = valor;
+            elemento.appendChild(option);
+        });
+    };
+
+    preencherSelect(filtroArea, valoresUnicos('Area'));
+    preencherSelect(filtroSubarea, valoresUnicos('Subarea'));
+    preencherSelect(filtroSetor, valoresUnicos('Setor'));
+    preencherSelect(filtroPublico, valoresUnicos('PublicoAlvo'));
+
+    filtroArea.addEventListener('change', filtrarProdutos);
+    filtroSubarea.addEventListener('change', filtrarProdutos);
+    filtroSetor.addEventListener('change', filtrarProdutos);
+    filtroPublico.addEventListener('change', filtrarProdutos);
+}
+
+function filtrarProdutos() {
+    const areaSelecionada = filtroArea.value;
+    const subareaSelecionada = filtroSubarea.value;
+    const setorSelecionado = filtroSetor.value;
+    const publicoSelecionado = filtroPublico.value;
+
+    const produtosFiltradosLocalmente = produtosFiltrados.filter(produto =>
+        (areaSelecionada === '' || produto.Area === areaSelecionada) &&
+        (subareaSelecionada === '' || produto.Subarea === subareaSelecionada) &&
+        (setorSelecionado === '' || produto.Setor === setorSelecionado) &&
+        (publicoSelecionado === '' || produto.PublicoAlvo === publicoSelecionado)
     );
 
-     // Classificar os itens: "xx" será movido para o final
-    const produtosOrdenados = produtosFiltrados.sort((a, b) => {
-        if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
-        if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
-        return 0;
-    });
+    exibirProdutosNaTela(produtosFiltradosLocalmente);
+}
 
-    produtosOrdenados.forEach(produto => {
+function exibirProdutosNaTela(produtos) {
+    tabelaProdutos.innerHTML = '';
+
+    produtos.forEach(produto => {
         const custoCredenciado = Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -60,22 +88,22 @@ function exibirProdutosNaTela(produtos) {
 
         const linha = `
             <tr>
-                <td style="border: 1px solid black; text-align: center; padding: 8px">${produto.EmpresasHabilitadas}</td>
-                <td style="border: 1px solid black; text-align: left; padding: 8px">${produto.Subarea}</td>
-                <td style="border: 1px solid black; text-align: left; padding: 8px">${produto.Area}</td>
-                <td style="border: 1px solid black; padding: 8px">
+                <td>${produto.EmpresasHabilitadas}</td>
+                <td>${produto.Subarea}</td>
+                <td>${produto.Area}</td>
+                <td>
                     <a href="SOMA-detalhes.html?id=${produto.ID_Produto}" style="text-decoration: none; color: blue;">
                         ${produto.NomeProduto}
                     </a>
                 </td>
-                <td style="border: 1px solid black; padding: 8px">${produto.Natureza}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.Modalidade}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.CargaHoraria}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.Setor}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.PublicoAlvo}</td>
-                <td style="border: 1px solid black; padding: 8px">${custoCredenciado}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.Pago}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.DescricaoProduto}</td>
+                <td>${produto.Natureza}</td>
+                <td>${produto.Modalidade}</td>
+                <td>${produto.CargaHoraria}</td>
+                <td>${produto.Setor}</td>
+                <td>${produto.PublicoAlvo}</td>
+                <td>${custoCredenciado}</td>
+                <td>${produto.Pago}</td>
+                <td>${produto.DescricaoProduto}</td>
             </tr>
         `;
 
