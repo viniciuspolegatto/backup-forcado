@@ -35,7 +35,7 @@ function configurarDataMinimaEValidacao() {
         "2025-11-02", "2025-11-15", "2025-12-25"
     ];
     const hoje = new Date();
-    const dataMinima = calcularDiasUteis(hoje, feriados, 13);
+    const dataMinima = calcularDiasUteis(hoje, feriados, 12);
     const inputDataConsultoria = document.getElementById("dataConsultoria");
 
     // Configura o mínimo no campo de data
@@ -55,10 +55,16 @@ function configurarDataMinimaEValidacao() {
             dataSelecionada < dataMinima // Antes do prazo mínimo
         ) {
             swal({
-                title: "Data Inválida!",
-                text: "Por favor, escolha uma data válida: dias úteis após 13 dias úteis e evite sábados, domingos e feriados.",
+                title: "DATA BLOQUEADA!",
+                text: "",
                 icon: "warning",
-                button: "Ok"
+                button: "Ok",
+                content: {
+                    element: "div",
+                    attributes: {
+                        innerHTML: "<h3 style='font-weight: bold;'>SELECIONE O PRÓXIMO DIA ÚTIL.</h3> <p>OBS.: Evite Sábados, Domingos e Feriados</p>"
+                    }
+                }
             });
             inputDataConsultoria.value = ""; // Limpa a seleção inválida
         }
