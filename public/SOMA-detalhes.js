@@ -56,15 +56,9 @@ function configurarDataMinimaEValidacao() {
         ) {
             swal({
                 title: "DATA BLOQUEADA!",
-                text: "",
+                text: "SELECIONE O PRÓXIMO DIA ÚTIL. \n\n OBS.: Evite Sábados, Domingos e Feriados",
                 icon: "warning",
-                button: "Ok",
-                content: {
-                    element: "div",
-                    attributes: {
-                        innerHTML: "<h3 style='font-weight: bold;'>SELECIONE O PRÓXIMO DIA ÚTIL.</h3> <p>OBS.: Evite Sábados, Domingos e Feriados</p>"
-                    }
-                }
+                button: "Ok"
             });
             inputDataConsultoria.value = ""; // Limpa a seleção inválida
         }
