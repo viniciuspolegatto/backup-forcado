@@ -58,7 +58,7 @@ function exibirProdutosNaTela() {
     });
 
     produtosOrdenados.forEach(produto => {
-        const custoCredenciado = Number(produto.Soma_Precificacao).toLocaleString('pt-BR', {
+        const custoCredenciado = Number(produto.Custo_Credenciado).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         });
