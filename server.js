@@ -280,13 +280,13 @@ app.post('/enviarEmail', async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: '________', //ojcupzxatiqicqdo
+            pass: 'ojcupzxatiqicqdo',
         },
     });
 
     const mailOptions = {
         from: 'credenciamentoerbarretos@gmail.com',
-        to: `marcosvp@sebraesp.com.br, joaovmt@sebraesp.com.br, murilohr@sebraesp.com.br, back@sebraesp.onmicrosoft.com`,
+        to: //`marcosvp@sebraesp.com.br, joaovmt@sebraesp.com.br, murilohr@sebraesp.com.br, back@sebraesp.onmicrosoft.com`,
         cc: `${solicitanteEmail}`,
         subject: 'ER BARRETOS - SOLICITAÇÃO DE CONSULTORIA',
         text: emailBody,
