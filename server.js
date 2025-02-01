@@ -269,7 +269,7 @@ app.put('/atualizarCliente', (req, res) => {
 });
 
 
-/* / ************** ESTRUTURA DE ENVIO DE E-MAILS DIRETO DO BACKEND ***************
+// ************** ESTRUTURA DE ENVIO DE E-MAILS DIRETO DO BACKEND ***************
 
 app.post('/enviarEmail', async (req, res) => {
     const { emailBody, solicitanteEmail } = req.body;
@@ -280,7 +280,7 @@ app.post('/enviarEmail', async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: '________', //ojcupzxatiqicqdo
+            pass: 'ojcupzxatiqicqdo', //
         },
     });
 
@@ -301,7 +301,7 @@ app.post('/enviarEmail', async (req, res) => {
     }
 });
 
-*/
+
 
 // ************************** Inicialização do Servidor *************************
 app.listen(PORT, () => {
