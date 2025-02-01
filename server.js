@@ -280,7 +280,7 @@ app.post('/enviarEmail', async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'credenciamentoerbarretos@gmail.com',
-            pass: 'ojcupzxatiqicqdo',
+            pass: '________', //ojcupzxatiqicqdo
         },
     });
 
