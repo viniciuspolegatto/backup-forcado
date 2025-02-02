@@ -6,16 +6,67 @@
     <title>SOMA - Credenciados 2025</title>
     <script src="SOMA-consGratHib.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilização do dropdown de múltipla seleção */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+        
+        .dropdown-toggle {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 8px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+        
+        .dropdown-menu label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        
+        .dropdown-menu label:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <header style="background-color: green; padding: 10px; color: white;">
-        <h1>SOMA - CONSULTORIAS 100% SUBSIDIADAS</h1>
+        <h1>SOMA - CONSULTORIAS GRATUITAS - Exclusiva para MEIs e Prefeituras participantes de programas e projetos</h1>
     </header>
     <div>
         <button><a href="SOMA-index.html">VOLTAR</a></button>
     </div><br>
 
     <h2>ATENDIMENTOS HÍBRIDOS (Presencial e Remoto)</h2>
+  
+    <div>
+        <!-- Dropdown para selecionar múltiplas áreas -->
+        <label>Área:</label>
+        <div class="dropdown">
+            <div id="dropdownToggle" class="dropdown-toggle">Selecione as Áreas</div>
+            <div id="dropdownMenu" class="dropdown-menu"></div>
+        </div>
+      <br>
+        <label for="filtroSetor">Setor:</label>
+        <select id="filtroSetor"></select>
+    </div><br>
+
     <table id="tabela_produtos" style="border: 1px solid black; padding: 1rem; text-align: center; border-collapse: collapse; width:100%">
         <thead>
             <tr>
@@ -28,72 +79,12 @@
                 <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">CARGA HOR.</th>          
                 <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">SETOR</th>
                 <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PÚBLICO</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">CUSTO SEBRAE</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PAGO?</th>          
+                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PREÇO CLIENTE</th>
+                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">APLICADOR</th>          
                 <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">DESCRIÇÃO</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Conteúdo gerado dinamicamente -->
-        </tbody>
+        <tbody></tbody>
     </table>
 </body>
 </html>
-
-
-
-
-
-
-
-<!-- Arquivo STecSenai-lounge.html, usado como tela de boas vindas para um visitante
-  que deseje obter informações sobre o SEBRAETEC SENAI e gerar contratos 
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-  
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOMA - Credenciados 2025</title>
-    <script src="SOMA-consGrat.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-  
-  
-<body>
-    <header style="background-color: green; padding: 10px; color: white;">
-        <h1>SOMA - CONSULTORIAS 100% SUBSIDIADAS</h1>
-    </header>
-    <p></p>
-    <div>
-        <button><a href="index.html">VOLTAR</a></button>
-
-    </div><br>
-
-    <h2>ATENDIMENTOS PRESENCIAIS</h2>
-
-    <table id="tabela_produtos" style="border: 1px solid black; padding: 1rem; text-align: center; border-collapse: collapse; width:100%">
-        <tr>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">HABIL</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">SUB ÁREA</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">AREA</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PRODUTO</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">NATUREZA</th>          
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">MODALIDADE</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">CARGA HOR.</th>          
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">SETOR</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PÚBLICO</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">CUSTO SEBRAE</th>
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PAGO?</th>          
-          <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">DESCRIÇÃO</th>
-        </tr>
-
-      <!-- NESSE PONTO O CORPO DA TABELA VEM DA API NO STecSenai-scrLounge.js  --
-      
-    </table>
-  <br>
-  
-</body>
-</html>
--->
