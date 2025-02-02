@@ -1,6 +1,7 @@
 const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenciamentoSomaSebraeSP/main/SebraeSpSomaConsultorias.json';
 const tabelaProdutos = document.getElementById('tabela_produtos').querySelector('tbody');
-const filtroArea = document.getElementById('filtroArea');
+const dropdownToggle = document.getElementById('dropdownToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
 const filtroSetor = document.getElementById('filtroSetor');
 let produtos = [];
 
@@ -20,12 +21,37 @@ async function buscarProdutos() {
 }
 
 function preencherFiltros(produtos) {
-    // Filtra as áreas para excluir "Educação" e "Desenvolvimento Territorial" e adiciona "Todos"
-    const areas = ['Todos', ...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
     const setores = ['Todos', ...new Set(produtos.map(p => p.Setor).filter(setor => setor))];
 
-    preencherSelect(filtroArea, areas);
+    preencherDropdownAreas(areas);
     preencherSelect(filtroSetor, setores);
+}
+
+function preencherDropdownAreas(areas) {
+    dropdownMenu.innerHTML = '';
+
+    areas.forEach(area => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = area;
+        checkbox.addEventListener('change', exibirProdutosNaTela);
+        
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + area));
+        dropdownMenu.appendChild(label);
+    });
+
+    dropdownToggle.addEventListener('click', () => {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
 }
 
 function preencherSelect(select, valores) {
@@ -37,20 +63,25 @@ function preencherSelect(select, valores) {
     });
 }
 
+function getSelectedAreas() {
+    return Array.from(dropdownMenu.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
+}
+
 function exibirProdutosNaTela() {
     tabelaProdutos.innerHTML = '';
-    const produtosFiltrados = produtos.filter(produto => 
+
+    const selectedAreas = getSelectedAreas();
+    const selectedSetor = filtroSetor.value;
+
+    const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Presencial' &&
         produto.Pago === 'Sim' &&
         produto.Natureza === 'Consultoria' &&
-        produto.Area !== 'Desenvolvimento Setorial' &&
-        produto.Area !== 'Desenvolvimento Territorial' &&
-        // Filtragem por Área
-        (filtroArea.value === 'Todos' || produto.Area === filtroArea.value) &&
-        // Filtragem por Setor
-        (filtroSetor.value === 'Todos' || produto.Setor === filtroSetor.value)
+        (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
+        (selectedSetor === 'Todos' || produto.Setor === selectedSetor)
     );
 
+    // Ordena para que "xx" no campo EmpresasHabilitadas vá para o final
     const produtosOrdenados = produtosFiltrados.sort((a, b) => {
         if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
         if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
@@ -79,7 +110,7 @@ function exibirProdutosNaTela() {
                 <td style="border: 1px solid black; padding: 8px">${produto.Setor}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.PublicoAlvo}</td>
                 <td style="border: 1px solid black; padding: 8px">${custoCredenciado}</td>
-                <td style="border: 1px solid black; padding: 8px">${produto.Pago}</td>
+                <td style="border: 1px solid black; padding: 8px">${produto.Aplicador}</td>
                 <td style="border: 1px solid black; padding: 8px">${produto.DescricaoProduto}</td>
             </tr>
         `;
@@ -88,6 +119,4 @@ function exibirProdutosNaTela() {
 }
 
 // Adiciona o evento de mudança para os filtros
-[filtroArea, filtroSetor].forEach(filtro => {
-    filtro.addEventListener('change', exibirProdutosNaTela);
-});
+filtroSetor.addEventListener('change', exibirProdutosNaTela);

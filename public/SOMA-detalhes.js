@@ -366,7 +366,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const solicitanteEmail = localStorage.getItem('solicitanteEmail') || 'N/A';
 
   // Dados do projeto
-  const projeto = document.getElementById('pertenceProjeto').value || 'NÃO';
+  const pertenceLote = document.getElementById('pertenceLote').value || 'NÃO';
   const nomeProjeto = localStorage.getItem('projNome') || 'N/A';
   const centroCustoProjeto = localStorage.getItem('projCentroCusto') || 'N/A';  
   const codCentroCustoProjeto = localStorage.getItem('projetoCodCC') || 'N/A';
@@ -409,7 +409,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - Total SEBRAE: ${eSOMA_TotalSEBRAE}
 
     ** DETALHES CASO A EMPRESA ATENDIDA ESTEJA EM PROJETO DO SEBRAE
-    - O atendimento pertence a algum Projeto? ${projeto}
+    - O atendimento é parte de um Lote? ${pertenceLote}
     - Nome do Projeto: ${nomeProjeto}
     - ${centroCustoProjeto}  
     - ${codCentroCustoProjeto}
