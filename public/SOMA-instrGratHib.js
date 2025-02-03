@@ -21,7 +21,8 @@ async function buscarProdutos() {
 }
 
 function preencherFiltros(produtos) {
-    const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    //const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    const areas = [...new Set(produtos.map(p => p.Area).filter(area => area))];
     const setores = ['Todos', ...new Set(produtos.map(p => p.Setor).filter(setor => setor))];
 
     preencherDropdownAreas(areas);
@@ -74,7 +75,7 @@ function exibirProdutosNaTela() {
     const selectedSetor = filtroSetor.value;
 
     const produtosFiltrados = produtos.filter(produto =>
-        produto.Modalidade === 'Híbrido' &&
+        produto.Modalidade === 'Hibrido' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra' &&
         (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&

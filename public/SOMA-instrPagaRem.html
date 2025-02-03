@@ -6,7 +6,8 @@
     <title>SOMA - Credenciados 2025</title>
     <script src="SOMA-instrPagaRem.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <style>
+
+  <style>
         /* Estilização do dropdown de múltipla seleção */
         .dropdown {
             position: relative;
@@ -43,11 +44,29 @@
         .dropdown-menu label:hover {
             background-color: #f0f0f0;
         }
+        
+        /* Estilização da tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: green;
+            color: white;
+        }
     </style>
+
 </head>
 <body>
     <header style="background-color: green; padding: 10px; color: white;">
-        <h1>SOMA - INSTRUTORIAS PAGAS - Direcionadas ao público em geral</h1>
+        <h1>SOMA - INSTRUTORIAS PAGAS - Direcionadas para parceiros de programas e projetos</h1>
     </header>
     <div>
         <button><a href="SOMA-index.html">VOLTAR</a></button>
@@ -63,25 +82,29 @@
             <div id="dropdownMenu" class="dropdown-menu"></div>
         </div>
       <br>
-        <label for="filtroSetor">Setor:</label>
-        <select id="filtroSetor"></select>
+        <!-- Dropdown para selecionar múltiplos setores -->
+        <label>Público Alvo:</label>
+        <div class="dropdown">
+            <div id="dropdownToggleSetor" class="dropdown-toggle">Selecione o Público</div>
+            <div id="dropdownMenuSetor" class="dropdown-menu"></div>
+        </div>
     </div><br>
 
-    <table id="tabela_produtos" style="border: 1px solid black; padding: 1rem; text-align: center; border-collapse: collapse; width:100%">
+    <table id="tabela_produtos">
         <thead>
             <tr>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PESSOAS HABIL</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">SUB ÁREA</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">ÁREA</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PRODUTO</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">NATUREZA</th>          
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">MODALIDADE</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">CARGA HOR.</th>          
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">SETOR</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PÚBLICO</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">PREÇO CLIENTE</th>
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">APLICADOR</th>          
-                <th style="border: 1px solid black; padding: 1rem; background-color: green; color: white">DESCRIÇÃO</th>
+                <th>PESSOAS HABIL</th>
+                <th>SUB ÁREA</th>
+                <th>ÁREA</th>
+                <th>PRODUTO</th>
+                <th>NATUREZA</th>
+                <th>MODALIDADE</th>
+                <th>CARGA HOR.</th>
+                <th>SETOR</th>
+                <th>PÚBLICO</th>
+                <th>PREÇO CLIENTE</th>
+                <th>APLICADOR</th>
+                <th>DESCRIÇÃO</th>
             </tr>
         </thead>
         <tbody></tbody>
