@@ -2,8 +2,8 @@ const endpoint = 'https://raw.githubusercontent.com/viniciuspolegatto/apiCredenc
 const tabelaProdutos = document.getElementById('tabela_produtos').querySelector('tbody');
 const dropdownToggle = document.getElementById('dropdownToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
-const dropdownToggleSetor = document.getElementById('dropdownToggleSetor');
-const dropdownMenuSetor = document.getElementById('dropdownMenuSetor');
+const dropdownTogglePublicoAlvo = document.getElementById('dropdownToggleSetor');
+const dropdownMenuPublicoAlvo = document.getElementById('dropdownMenuSetor');
 let produtos = [];
 
 document.addEventListener('DOMContentLoaded', buscarProdutos);
@@ -23,10 +23,10 @@ async function buscarProdutos() {
 
 function preencherFiltros(produtos) {
     const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
-    const setores = [...new Set(produtos.map(p => p.PublicoAlvo).filter(setor => setor))];
+    const publicosAlvo = [...new Set(produtos.map(p => p.PublicoAlvo).filter(publico => publico))];
 
     preencherDropdownAreas(areas);
-    preencherDropdownSetores(setores);
+    preencherDropdownPublicosAlvo(publicosAlvo);
 }
 
 function preencherDropdownAreas(areas) {
@@ -55,28 +55,28 @@ function preencherDropdownAreas(areas) {
     });
 }
 
-function preencherDropdownSetores(setores) {
-    dropdownMenuSetor.innerHTML = '';
+function preencherDropdownPublicosAlvo(publicosAlvo) {
+    dropdownMenuPublicoAlvo.innerHTML = '';
     
-    setores.forEach(setor => {
+    publicosAlvo.forEach(publico => {
         const label = document.createElement('label');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.value = setor;
+        checkbox.value = publico;
         checkbox.addEventListener('change', exibirProdutosNaTela);
         
         label.appendChild(checkbox);
-        label.appendChild(document.createTextNode(' ' + setor));
-        dropdownMenuSetor.appendChild(label);
+        label.appendChild(document.createTextNode(' ' + publico));
+        dropdownMenuPublicoAlvo.appendChild(label);
     });
     
-    dropdownToggleSetor.addEventListener('click', () => {
-        dropdownMenuSetor.style.display = dropdownMenuSetor.style.display === 'block' ? 'none' : 'block';
+    dropdownTogglePublicoAlvo.addEventListener('click', () => {
+        dropdownMenuPublicoAlvo.style.display = dropdownMenuPublicoAlvo.style.display === 'block' ? 'none' : 'block';
     });
     
     document.addEventListener('click', (event) => {
-        if (!dropdownToggleSetor.contains(event.target) && !dropdownMenuSetor.contains(event.target)) {
-            dropdownMenuSetor.style.display = 'none';
+        if (!dropdownTogglePublicoAlvo.contains(event.target) && !dropdownMenuPublicoAlvo.contains(event.target)) {
+            dropdownMenuPublicoAlvo.style.display = 'none';
         }
     });
 }
@@ -85,29 +85,29 @@ function getSelectedAreas() {
     return Array.from(dropdownMenu.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
 }
 
-function getSelectedSetores() {
-    return Array.from(dropdownMenuSetor.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
+function getSelectedPublicosAlvo() {
+    return Array.from(dropdownMenuPublicoAlvo.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
 }
 
 function exibirProdutosNaTela() {
     tabelaProdutos.innerHTML = '';
     
     const selectedAreas = getSelectedAreas();
-    const selectedSetores = getSelectedSetores();
+    const selectedPublicosAlvo = getSelectedPublicosAlvo();
     
     const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Remoto' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Consultoria' &&
         (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
-        (selectedSetores.length === 0 || selectedSetores.includes(produto.Setor))
+        (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );
     
-    // Ordena para que "xx" no campo EmpresasHabilitadas vá para o final
+    // Ordena por carga horária crescente, mantendo "xx" no campo EmpresasHabilitadas no final
     const produtosOrdenados = produtosFiltrados.sort((a, b) => {
         if (a.EmpresasHabilitadas === 'xx' && b.EmpresasHabilitadas !== 'xx') return 1;
         if (a.EmpresasHabilitadas !== 'xx' && b.EmpresasHabilitadas === 'xx') return -1;
-        return 0;
+        return a.CargaHoraria - b.CargaHoraria;
     });
     
     produtosOrdenados.forEach(produto => {
@@ -125,7 +125,7 @@ function exibirProdutosNaTela() {
                 <td>${produto.Natureza}</td>
                 <td>${produto.Modalidade}</td>
                 <td>${produto.CargaHoraria}</td>
-                <td>${produto.Setor}</td>
+                <td>${produto.PublicoAlvo}</td>
                 <td>${produto.PublicoAlvo}</td>
                 <td>${custoCredenciado}</td>
                 <td>${produto.Aplicador}</td>
