@@ -71,6 +71,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+let Briefing = "";
+      
+ function checkWordLimit() {
+   let textArea = document.getElementById("textInput");
+   let wordCountDisplay = document.getElementById("wordCount");
+   let words = textArea.value.match(/\b\w+\b/g) || [];
+      if (words.length > 200) {
+        let trimmedText = words.slice(0, 200).join(" ");
+         textArea.value = trimmedText;
+         }      
+           Briefing = textArea.value;
+           wordCountDisplay.textContent = `Palavras: ${words.length} / 200`;
+      }
+
+
 async function carregarDetalhes() {
   try {
     const res = await fetch(endpoint);
@@ -385,7 +400,7 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
   const emailCliente = document.getElementById('email').value || 'N/A';
 
 
-  // Formatação do corpo do e-mail
+  
 // Formatação do corpo do e-mail
     let emailBody = `Prezada equipe CREDENCIAMENTO,
 
@@ -413,6 +428,9 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - Nome do Projeto: ${nomeProjeto}
     - ${centroCustoProjeto}  
     - ${codCentroCustoProjeto}
+    
+    ** BRIEFING
+    ${Briefing}
 
     ** DETALHES SOBRE O CLIENTE QUE REPRESENTARÁ A EMPRESA
     - Nome Completo: ${nomeCliente}
