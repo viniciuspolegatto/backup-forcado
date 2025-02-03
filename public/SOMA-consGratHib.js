@@ -22,7 +22,7 @@ async function buscarProdutos() {
 
 function preencherFiltros(produtos) {
     const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
-    const setores = ['Todos', ...new Set(produtos.map(p => p.Setor).filter(setor => setor))];
+    const setores = ['Todos', ...new Set(produtos.map(p => p.PublicoAlvo).filter(setor => setor))];
 
     preencherDropdownAreas(areas);
     preencherSelect(filtroSetor, setores);
@@ -94,31 +94,7 @@ function exibirProdutosNaTela() {
             currency: 'BRL'
         });
 
-        const linha = `
-        
-    "ID_Produto": "6721 -----",
-    "NomeProduto": "Alcance melhores resultados com os agentes de roteiros turísticos",
-    "DescricaoProduto": "NaN",
-    "Area": "Desenvolvimento Setorial",
-    "Subarea": "Turismo Rural",
-    "Natureza": "NaN",
-    "Setor": "NaN",
-    "Segmento": "NaN",
-    "PublicoAlvo": "NaN",
-    "Familia": "NaN",
-    "Origem": "NaN",
-    "Num_Min_Pessoas": "NaN",
-    "Complexidade": "Avançado",
-    "CargaHoraria": "60",
-    "Custo_Credenciado": "15600",
-    "Soma_Precificacao": "NaN",
-    "Pago": "NaN",
-    "Modalidade": "Presencial",
-    "EmpresasHabilitadas": "6",
-    "Aplicador": "Credenciado"
-        
-        
-        
+        const linha = `        
             <tr>
                 <td style="border: 1px solid black; text-align: center; padding: 8px">${produto.EmpresasHabilitadas}</td>
                 <td style="border: 1px solid black; text-align: left; padding: 8px">${produto.Subarea}</td>
