@@ -22,7 +22,8 @@ async function buscarProdutos() {
 }
 
 function preencherFiltros(produtos) {
-    const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    //const areas = [...new Set(produtos.map(p => p.Area).filter(area => area && area !== 'Educação' && area !== 'Desenvolvimento Territorial'))];
+    const areas = [...new Set(produtos.map(p => p.Area).filter(area => area))];
     const publicosAlvo = [...new Set(produtos.map(p => p.PublicoAlvo).filter(publico => publico))];
 
     preencherDropdownAreas(areas);
