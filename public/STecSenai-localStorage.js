@@ -132,7 +132,7 @@ const descritivoSebraetecSenai = document.getElementById("descritivoSebraetecSen
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>FORMA DE PAGAMENTO</b></td>
-           <td style="border: 1px solid black; padding: 8px">Contrato realizado em ${dataFormatadaHoje}, contemplado por 100% de subsídio conforme diretrizes da UTS</td> 
+           <td style="border: 1px solid black; padding: 8px">Contrato realizado em ${dataFormatadaHoje}, contemplado por 95% de subsídio conforme diretrizes da UTS</td> 
        </tr>
       </table>
     </div>
