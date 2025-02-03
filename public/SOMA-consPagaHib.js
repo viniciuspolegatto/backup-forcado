@@ -125,7 +125,7 @@ function exibirProdutosNaTela() {
                 <td>${produto.Natureza}</td>
                 <td>${produto.Modalidade}</td>
                 <td>${produto.CargaHoraria}</td>
-                <td>${produto.PublicoAlvo}</td>
+                <td>${produto.Setor}</td>
                 <td>${produto.PublicoAlvo}</td>
                 <td>${custoCredenciado}</td>
                 <td>${produto.Aplicador}</td>
