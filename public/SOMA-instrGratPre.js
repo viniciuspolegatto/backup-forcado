@@ -99,10 +99,10 @@ function exibirProdutosNaTela() {
     const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Presencial' &&
         produto.Pago === 'Não' &&
-        produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra' &&
-        (selectedAreas.length === 0 || selectedAreas.includes(produto.Area))
+        produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra'
         && produto.EmpresasHabilitadas !== 'xx'
-        (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
+        && (selectedAreas.length === 0 || selectedAreas.includes(produto.Area))
+        && (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );
     
     // Ordena por carga horária crescente, mantendo "xx" no campo EmpresasHabilitadas no final
