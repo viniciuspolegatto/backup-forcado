@@ -99,7 +99,8 @@ function exibirProdutosNaTela() {
     const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Hibrido' &&
         produto.Pago === 'Sim' &&
-        produto.Natureza === 'Consultoria' &&
+        produto.Natureza === 'Consultoria'
+        && produto.EmpresasHabilitadas !== 'xx'
         (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
         (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );

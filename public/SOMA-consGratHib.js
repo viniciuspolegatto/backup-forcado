@@ -99,9 +99,10 @@ function exibirProdutosNaTela() {
     const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Hibrido' &&
         produto.Pago === 'Não' &&
-        produto.Natureza === 'Consultoria' &&
-        (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
-        (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
+        produto.Natureza === 'Consultoria' 
+        && produto.EmpresasHabilitadas !== 'xx'
+        && (selectedAreas.length === 0 || selectedAreas.includes(produto.Area))
+        && (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );
     
     // Ordena por carga horária crescente, mantendo "xx" no campo EmpresasHabilitadas no final

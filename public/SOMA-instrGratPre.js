@@ -100,7 +100,8 @@ function exibirProdutosNaTela() {
         produto.Modalidade === 'Presencial' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra' &&
-        (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
+        (selectedAreas.length === 0 || selectedAreas.includes(produto.Area))
+        && produto.EmpresasHabilitadas !== 'xx'
         (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );
     
