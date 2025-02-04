@@ -99,7 +99,8 @@ function exibirProdutosNaTela() {
     const produtosFiltrados = produtos.filter(produto =>
         produto.Modalidade === 'Remoto' &&
         produto.Pago === 'Sim' &&
-        produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra' &&
+        produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra'
+        && produto.EmpresasHabilitadas !== 'xx'
         (selectedAreas.length === 0 || selectedAreas.includes(produto.Area)) &&
         (selectedPublicosAlvo.length === 0 || selectedPublicosAlvo.includes(produto.PublicoAlvo))
     );
