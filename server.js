@@ -27,10 +27,16 @@ app.use(
   session({
     secret: "segredo_super_secreto",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, httpOnly: true, maxAge: 3600000 }, // Expira em 1 hora
+    saveUninitialized: false, // Altere para false para evitar criação de sessões vazias
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // Somente cookies seguros em produção
+      httpOnly: true,
+      sameSite: "lax", // Garante que os cookies sejam enviados corretamente entre requisições do mesmo site
+      maxAge: 3600000, // 1 hora
+    },
   })
 );
+
 
 // ************************** Pool de Conexões MySQL *************************
 const db = mysql.createPool({
@@ -371,13 +377,16 @@ app.post("/login", (req, res) => {
 
       if (results.length > 0) {
         req.session.user = username; // Armazena o usuário na sessão
-        res.json({ success: true, message: "Login bem-sucedido" });
+        req.session.save(() => {
+          res.json({ success: true, message: "Login bem-sucedido" });
+        });
       } else {
         res.status(401).json({ success: false, message: "Usuário ou senha incorretos" });
       }
     }
   );
 });
+
 
 // Rota para verificar autenticação
 app.get("/auth", (req, res) => {
@@ -387,6 +396,7 @@ app.get("/auth", (req, res) => {
     res.status(401).json({ authenticated: false });
   }
 });
+
 
 // Rota de logout
 app.post("/logout", (req, res) => {
