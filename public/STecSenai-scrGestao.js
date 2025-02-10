@@ -131,9 +131,10 @@ document.getElementById("AtualizarClienteStatus").addEventListener("click", () =
 });
 
 
-//** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
+/* *** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
 document.querySelector("#botaoPesquisar").addEventListener("click", function () {
     const cpf = document.querySelector("#cpfBusca").value;
 
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
 });
+********************************************************************************************** */
