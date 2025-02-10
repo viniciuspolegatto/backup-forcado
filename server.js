@@ -404,10 +404,11 @@ app.post("/logout", (req, res) => {
     if (err) {
       return res.status(500).json({ success: false, message: "Erro ao realizar logout" });
     }
-    res.clearCookie("connect.sid"); // Remove o cookie de sessão
+    res.clearCookie("connect.sid", { path: "/" });
     res.json({ success: true, message: "Logout realizado com sucesso" });
   });
 });
+
 
 
 
