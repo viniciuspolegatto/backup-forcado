@@ -1,35 +1,20 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("login-form");
+async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        try {
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include", // Garante que os cookies de sessão sejam enviados
-                body: JSON.stringify({ username, password })
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
-                alert("Login bem-sucedido!");
-                window.location.href = "STecSenai-gestao.html";
-            } else {
-                alert("Usuário ou senha incorretos");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
-            alert("Erro ao conectar ao servidor");
-        }
+    const response = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
     });
-});
+
+    const data = await response.json();
+    document.getElementById("message").innerText = data.message;
+
+    if (data.success) {
+        window.location.href = "/STecSenai-gestao.html";
+    }
+}
 
 
 
