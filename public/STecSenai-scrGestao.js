@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!data.authenticated) {
             sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
             window.location.href = "login.html"; // Redireciona para login
+        } else {
+            console.log("Usuário autenticado:", data.user);
         }
     } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
         window.location.href = "login.html";
     }
 });
+
 
 
 
