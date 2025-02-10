@@ -1,18 +1,18 @@
+// ********************* Verificação de autenticação *****************
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         const response = await fetch("/auth", { credentials: "include" });
         const data = await response.json();
 
         if (!data.authenticated) {
-            console.warn("Usuário não autenticado, redirecionando...");
-            window.location.href = "login.html";
+            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
+            window.location.href = "login.html"; // Redireciona para login
         }
     } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
         window.location.href = "login.html";
     }
 });
-
 
 
 
