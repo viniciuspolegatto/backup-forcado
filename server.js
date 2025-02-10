@@ -27,16 +27,10 @@ app.use(
   session({
     secret: "segredo_super_secreto",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // true em produção
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 3600000, // 1 hora
-    },
+    saveUninitialized: true,
+    cookie: { secure: false, httpOnly: true, maxAge: 3600000 }, // Expira em 1 hora
   })
 );
-
 
 // ************************** Pool de Conexões MySQL *************************
 const db = mysql.createPool({
@@ -377,16 +371,13 @@ app.post("/login", (req, res) => {
 
       if (results.length > 0) {
         req.session.user = username; // Armazena o usuário na sessão
-        req.session.save(() => {
-          res.json({ success: true, message: "Login bem-sucedido" });
-        });
+        res.json({ success: true, message: "Login bem-sucedido" });
       } else {
         res.status(401).json({ success: false, message: "Usuário ou senha incorretos" });
       }
     }
   );
 });
-
 
 // Rota para verificar autenticação
 app.get("/auth", (req, res) => {
@@ -397,18 +388,16 @@ app.get("/auth", (req, res) => {
   }
 });
 
-
 // Rota de logout
 app.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ success: false, message: "Erro ao realizar logout" });
     }
-    res.clearCookie("connect.sid", { path: "/" });
+    res.clearCookie("connect.sid"); // Remove o cookie de sessão
     res.json({ success: true, message: "Logout realizado com sucesso" });
   });
 });
-
 
 
 
