@@ -4,17 +4,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
 
         if (!data.authenticated) {
-            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
-            window.location.href = "login.html"; // Redireciona para login
-        } else {
-            console.log("Usuário autenticado:", data.user);
+            console.warn("Usuário não autenticado, redirecionando...");
+            window.location.href = "login.html";
         }
     } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
         window.location.href = "login.html";
     }
 });
-
 
 
 
