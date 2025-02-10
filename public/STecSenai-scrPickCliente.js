@@ -1,27 +1,73 @@
 // Script STecSenai-scrPickCliente.js para listar os CPF's cadastrados
 
 // ********************* Verificação de autenticação *****************
-function isAuthenticated() {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith('username=')) {
-            return true;
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch("/auth", { credentials: "include" });
+        const data = await response.json();
+
+        if (!data.authenticated) {
+            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
+            window.location.href = "login.html"; // Redireciona para login
         }
+    } catch (error) {
+        console.error("Erro ao verificar autenticação:", error);
+        window.location.href = "login.html";
     }
-    return false;
-}
+});
 
-// Função de logout
-function logout() {
-    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    window.location.href = 'index.html';
-}
 
-// Redirecionamento se o usuário não está autenticado
-if (!isAuthenticated()) {
-    window.location.href = 'login.html';
-}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("login-form");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include", // Garante que os cookies de sessão sejam enviados
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
+                alert("Login bem-sucedido!");
+                window.location.href = "STecSenai-gestao.html";
+            } else {
+                alert("Usuário ou senha incorretos");
+            }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Erro ao conectar ao servidor");
+        }
+    });
+});
+
+
+document.getElementById("logout").addEventListener("click", async () => {
+    try {
+        const response = await fetch("/logout", { method: "POST", credentials: "include" });
+
+        if (response.ok) {
+            sessionStorage.removeItem("authenticatedUser"); // Remove do sessionStorage
+            document.cookie = "connect.sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = "index.html";
+        } else {
+            alert("Erro ao realizar logout");
+        }
+    } catch (error) {
+        console.error("Erro ao processar logout:", error);
+    }
+});
+
 // ******************************** FIM LOGIN ************************
 
 

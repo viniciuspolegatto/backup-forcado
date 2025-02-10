@@ -1,3 +1,56 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("login-form");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include", // Garante que os cookies de sessão sejam enviados
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
+                alert("Login bem-sucedido!");
+                window.location.href = "STecSenai-gestao.html";
+            } else {
+                alert("Usuário ou senha incorretos");
+            }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Erro ao conectar ao servidor");
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 // Abrir o modal de login
 function openLoginModal() {
     document.getElementById('loginModal').style.display = 'block';
@@ -39,3 +92,59 @@ function isAuthenticated() {
 if (isAuthenticated()) {
     window.location.href = 'STecSenai-gestao.html';
 }
+
+
+
+/* =&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& FUTURO &&&&&&&&&&&&&&&&&&&&&
+// FUNÇÃO PARA REGISTRO DE USER e SENHA *************************************************************
+async function register() {
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const elemento = 10;
+
+    if (!email || !password) {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+  try {
+    const data = {
+        info01: email,
+        info02: password,
+        info03: elemento,
+    };
+
+// * CONEXÃO COM O BANCO DE DADOS E RETORNO DO SERVIDOR 
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(text => {
+        console.log('Resposta do servidor:', text);
+        if (text.includes("Dados adicionados ao banco de dados")) {
+        // Use SweetAlert para mostrar a mensagem centralizada
+        swal("REGISTRO REALIZADO COM SUCESSO", {
+            icon: "success",
+        }).then(() => {
+            // Redireciona para a página index.html após o usuário clicar em OK
+            //window.location.href = "index.html";
+        });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Erro ao realizar o cadastro: " + error.message);
+    });
+  
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao buscar os dados. Por favor, verifique as informações digitadas e tente novamente.");
+  }
+}
+//**************************************************************************************
+
+*/

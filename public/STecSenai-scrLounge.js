@@ -94,7 +94,7 @@ async function buscarProdutos() {
           <td style="border: 1px solid black; padding: 8px"><a href="STecSenai-dadosContrato.html">CONTRATAR</a></td>
           <td style="border: 1px solid black; text-align: left; padding: 8px"><a href="${produtoUnico.linkFicha}">Ficha Técnica - link</a></td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.codigoRm}</td>
-          <td style="border: 1px solid black; padding: 8px">${produtoUnico.valorSTecSenai}</td>
+          <td style="border: 1px solid black; padding: 8px">${(produtoUnico.valorSTecSenai * 0.05).toFixed(2)}</td>
           <td style="border: 1px solid black; padding: 8px">${produtoUnico.publico}</td>
           <td style="border: 1px solid black; text-align: left; padding: 8px">${produtoUnico.setorAtendido}</td>
         </tr>

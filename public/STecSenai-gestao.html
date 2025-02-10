@@ -18,8 +18,10 @@
         <button><a href="index.html">VOLTAR</a></button>
         <button><a href="STecSenai-dadosContrato.html">FAZER CONTRATO</a></button>
         <button onclick="window.location.href='STecSenai-consumir.html'">CONSUMIR SALDO</button>
-        <button onclick="logout()">Sair</button>
-    </div><br>
+    <h2>Bem-vindo!</h2>
+    <p>Você está autenticado.</p>
+    <button id="logout">Sair</button>    
+  </div><br>
 
     <h3>
       INFORME O ID_CLIENTE A SER ATUALIZADO E INSIRA AS NOVAS INFORMAÇÕES
@@ -61,12 +63,17 @@
 
     <h3><b>LISTA DE TODOS OS CONTRATOS ASSINADOS, EXECUTANDO OU EXECUTADOS:</b></h3>
 
-    <div id="listaClientes" class="tabela-container">
-        <h2>Dados Cadastrados:</h2>
-    </div>
-  
-  <br><br><br>
+  <div>
+    <table>
+        <tr>
+              <div id="listaClientes" class="tabela-container"></div>
+        </tr>
+    </table>
+  </div>
 
+ 
+  
+  
 </body>
 
 </html>
