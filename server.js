@@ -356,46 +356,49 @@ app.post('/register', (req, res) => {
 
 
 // ***************** ROTA PARA LOGIN **************************
+// Rota de login
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+    const { email, password } = req.body;
+    const connection = mysql.createConnection(dbConfig);
 
-  queryDatabase(
-    "SELECT * FROM USER_SENHAS_EMAIL WHERE email = ? AND password = ?",
-    [username, password],
-    (err, results) => {
-      if (err) {
-        console.error("Erro no banco de dados:", err);
-        return res.status(500).json({ message: "Erro no servidor" });
-      }
+    connection.connect();
+    connection.query(
+        "SELECT * FROM USER_SENHAS_EMAIL WHERE email = ? AND password = ?",
+        [email, password],
+        (err, results) => {
+            if (err) {
+                res.status(500).json({ success: false, message: "Erro no servidor" });
+            } else if (results.length > 0) {
+                res.cookie("auth", email, { 
+                    maxAge: 3600000, 
+                    httpOnly: true, 
+                    sameSite: "None", 
+                    secure: true 
+                });
+                res.json({ success: true, message: "Login bem-sucedido" });
+            } else {
+                res.json({ success: false, message: "Credenciais inválidas" });
+            }
+        }
+    );
 
-      if (results.length > 0) {
-        req.session.user = username; // Armazena o usuário na sessão
-        res.json({ success: true, message: "Login bem-sucedido" });
-      } else {
-        res.status(401).json({ success: false, message: "Usuário ou senha incorretos" });
-      }
-    }
-  );
+    connection.end();
 });
 
-// Rota para verificar autenticação
-app.get("/auth", (req, res) => {
-  if (req.session.user) {
-    res.json({ authenticated: true, user: req.session.user });
-  } else {
-    res.status(401).json({ authenticated: false });
-  }
+
+// Rota de verificação de autenticação
+app.get("/check-auth", (req, res) => {
+    if (req.cookies.auth) {
+        res.json({ authenticated: true });
+    } else {
+        res.json({ authenticated: false });
+    }
 });
 
 // Rota de logout
-app.post("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: "Erro ao realizar logout" });
-    }
-    res.clearCookie("connect.sid"); // Remove o cookie de sessão
-    res.json({ success: true, message: "Logout realizado com sucesso" });
-  });
+app.get("/logout", (req, res) => {
+    res.clearCookie("auth");
+    res.json({ success: true });
 });
 
 
