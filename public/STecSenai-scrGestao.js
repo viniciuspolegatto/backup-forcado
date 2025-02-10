@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
 
         if (!data.authenticated) {
-            console.warn("Usuário não autenticado, redirecionando...");
-            window.location.href = "login.html";
+            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
+            window.location.href = "login.html"; // Redireciona para login
         }
     } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
@@ -67,30 +67,6 @@ document.getElementById("logout").addEventListener("click", async () => {
 
 
 
-
-/*/ ********************* Verificação de autenticação *****************
-function isAuthenticated() {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith('username=')) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Função de logout
-function logout() {
-    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    window.location.href = 'index.html';
-}
-
-// Redirecionamento se o usuário não está autenticado
-if (!isAuthenticated()) {
-    window.location.href = 'login.html';
-}
-// ******************************** FIM LOGIN ************************ */
 
 
 // Carregar dados ao iniciar a página
@@ -209,4 +185,3 @@ document.querySelector("#botaoPesquisar").addEventListener("click", function () 
 
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
 });
-
