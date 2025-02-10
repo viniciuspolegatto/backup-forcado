@@ -27,11 +27,11 @@ app.use(
   session({
     secret: "segredo_super_secreto",
     resave: false,
-    saveUninitialized: false, // Altere para false para evitar criação de sessões vazias
+    saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production", // Somente cookies seguros em produção
+      secure: process.env.NODE_ENV === "production", // true em produção
       httpOnly: true,
-      sameSite: "lax", // Garante que os cookies sejam enviados corretamente entre requisições do mesmo site
+      sameSite: "lax",
       maxAge: 3600000, // 1 hora
     },
   })
