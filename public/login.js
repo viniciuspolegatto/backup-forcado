@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
 
             if (data.success) {
+                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
                 alert("Login bem-sucedido!");
                 window.location.href = "STecSenai-gestao.html";
-            }
-            else {
+            } else {
                 alert("Usuário ou senha incorretos");
             }
         } catch (error) {
@@ -30,16 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
