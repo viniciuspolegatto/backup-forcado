@@ -1,74 +1,187 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    try {
-        const response = await fetch("/auth", { credentials: "include" });
-        const data = await response.json();
+// Verifica se o usuário está autenticado antes de carregar o conteúdo da página
+async function checkAuth() {
+  try {
+    const response = await fetch('/check-auth', { method: 'GET' });
+    const data = await response.json();
 
-        if (!data.authenticated) {
-            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
-            window.location.href = "login.html"; // Redireciona para login
-        }
-    } catch (error) {
-        console.error("Erro ao verificar autenticação:", error);
-        window.location.href = "login.html";
+    if (!data.authenticated) {
+      console.log('Usuário não autenticado, redirecionando para login');
+      window.location.href = '/login.html'; // Redireciona para a página de login
+    } else {
+      console.log('Usuário autenticado, carregando conteúdo da página home');
+      // Chama a função para carregar dados APÓS a autenticação ser confirmada
+      carregarDados();
     }
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+  }
+}
+
+// Verifica a autenticação ao carregar a página
+checkAuth();
+
+// Logout
+document.getElementById('logoutButton').addEventListener('click', () => {
+  fetch('/logout', { method: 'GET' })
+    .then(() => {
+      window.location.href = '/'; // Redireciona para a página inicial
+    })
+    .catch(error => console.error('Erro ao fazer logout:', error));
 });
 
+// Redireciona para a página restrita1
+document.getElementById('restrita1Button').addEventListener('click', () => {
+  window.location.href = '/restrita1'; // Redireciona para a página restrita1 (sem .html)
+});
 
+// Função para carregar dados existentes
+function carregarDados() {
+    console.log("Carregando dados cadastrados...");
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("login-form");
+    fetch("/buscarCadastroClientes")
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Dados recebidos:", data);
 
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();
+            // Ordena os dados em ordem decrescente de ID
+            data.sort((a, b) => b.ID - a.ID);
 
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        try {
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include", // Garante que os cookies de sessão sejam enviados
-                body: JSON.stringify({ username, password })
+            let html = `
+              <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                          <th>ID CLIENTE</th>
+                          <th>Nome</th>
+                          <th>Serviço Contratado</th>
+                          <th>STARTEC Nº</th>
+                          <th>Nº PASTA</th>
+                          <th>STATUS</th>
+                          <th>CPF</th>
+                          <th>CNPJ</th>
+                          <th>Razão Social</th>
+                          <th>Testemunha Contrato</th>
+                        </tr>
+                      </thead>
+                    <tbody>
+            `;
+            data.forEach((item) => {
+                html += `
+                    <tr>
+                      <td>${item.ID}</td>
+                      <td>${item.NomePfSenaiST}</td>
+                      <td>${item.servTituloSenaiST}</td>
+                      <td>${item.procStarTec}</td>
+                      <td>${item.numeroPasta}</td>
+                      <td>${item.statusSTecSenai}</td>
+                      <td>${item.CpfPfSenaiST}</td>
+                      <td>${item.cnpjPj}</td>
+                      <td>${item.razaoPj}</td>
+                      <td>${item.testemunhaNomeSenaiST}</td>
+                    </tr>
+                `;
             });
+            html += `
+                    </tbody>
+                </table>
+              </div>
+            `;
+            document.querySelector("#listaClientes").innerHTML = html;
 
-            const data = await response.json();
+            // Exibe o corpo da página após carregar os dados
+            document.body.style.display = 'block';
 
-            if (data.success) {
-                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
-                alert("Login bem-sucedido!");
-                window.location.href = "STecSenai-gestao.html";
-            } else {
-                alert("Usuário ou senha incorretos");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
-            alert("Erro ao conectar ao servidor");
-        }
-    });
-});
+        })
+        .catch((error) => console.error("Erro ao carregar dados:", error));
+}
 
+// Função para atualizar informações do cliente
+document.getElementById("AtualizarClienteStatus").addEventListener("click", () => {
+    const idCliente = document.getElementById("UpdateId").value;
+    const numeroProcesso = document.getElementById("UpdateNoProcessoStartec").value;
+    const numeroPasta = document.getElementById("UpdatePastaServidor").value;
+    const status = document.getElementById("UpdateStatusStartec").value;
 
-document.getElementById("logout").addEventListener("click", async () => {
-    try {
-        const response = await fetch("/logout", { method: "POST", credentials: "include" });
-
-        if (response.ok) {
-            sessionStorage.removeItem("authenticatedUser"); // Remove do sessionStorage
-            document.cookie = "connect.sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.href = "index.html";
-        } else {
-            alert("Erro ao realizar logout");
-        }
-    } catch (error) {
-        console.error("Erro ao processar logout:", error);
+    if (!idCliente) {
+        swal("Erro", "O ID do Cliente precisa ser informado para atualizar as informações.", "error");
+        return;
     }
+
+    const updateData = { idCliente };
+
+    if (numeroProcesso) {
+        updateData.numeroProcesso = numeroProcesso;
+    }
+    if (numeroPasta) {
+        updateData.numeroPasta = numeroPasta;
+    }
+    if (status) {
+        updateData.status = status;
+    }
+
+    fetch('/atualizarCliente', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+    })
+    .then(response => {
+        if (response.ok) {
+            swal("Atualização realizada com sucesso!", {
+                icon: "success",
+            }).then(() => {
+                window.location.href = "STecSenai-gestao.html";
+            });
+        } else {
+            swal("Erro", "Erro ao atualizar informações.", "error");
+        }
+    })
+    .catch(error => console.error("Erro ao enviar solicitação:", error));
 });
 
 
 
+/* 
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// Verifica se o usuário está autenticado antes de carregar o conteúdo da página
+async function checkAuth() {
+  try {
+    const response = await fetch('/check-auth', { method: 'GET' });
+    const data = await response.json();
 
-/*/ ********************* Verificação de autenticação *****************
+    if (!data.authenticated) {
+      console.log('Usuário não autenticado, redirecionando para login');
+      window.location.href = '/'; // Redireciona para a página de login
+    } else {
+      console.log('Usuário autenticado, carregando conteúdo da página home');
+    
+    }
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+  }
+}
+
+// Verifica a autenticação ao carregar a página
+checkAuth();
+
+// Logout
+document.getElementById('logoutButton').addEventListener('click', () => {
+  fetch('/logout', { method: 'GET' })
+    .then(() => {
+      window.location.href = '/'; // Redireciona para a página inicial
+    })
+    .catch(error => console.error('Erro ao fazer logout:', error));
+});
+
+// Redireciona para a página restrita1
+document.getElementById('restrita1Button').addEventListener('click', () => {
+  window.location.href = '/restrita1.html'; // Redireciona para a página restrita1
+});
+
+
+
+// ********************* Verificação de autenticação *****************
 function isAuthenticated() {
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
@@ -90,7 +203,7 @@ function logout() {
 if (!isAuthenticated()) {
     window.location.href = 'login.html';
 }
-// ******************************** FIM LOGIN ************************ */
+// ******************************** FIM LOGIN ************************ 
 
 
 // Carregar dados ao iniciar a página
@@ -210,3 +323,4 @@ document.querySelector("#botaoPesquisar").addEventListener("click", function () 
     window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
 });
 
+*/
