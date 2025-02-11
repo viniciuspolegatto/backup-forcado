@@ -1,28 +1,38 @@
+// Verifica se o usuário está autenticado antes de carregar o conteúdo da página
 async function checkAuth() {
-    const response = await fetch("/check-auth");
+  try {
+    const response = await fetch('/check-auth', { method: 'GET' });
     const data = await response.json();
-    
+
     if (!data.authenticated) {
-        window.location.href = "/index.html";
+      console.log('Usuário não autenticado, redirecionando para login');
+      window.location.href = '/login.html'; // Redireciona para a página de login
+    } else {
+      console.log('Usuário autenticado, carregando conteúdo da página home');
+      // Chama a função para carregar dados APÓS a autenticação ser confirmada
+      carregarDados();
     }
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+  }
 }
 
-async function logout() {
-    await fetch("/logout");
-    window.location.href = "/index.html";
-}
-
-async function goToRestrita() {
-    window.location.href = "/restrita1.html";
-}
-
+// Verifica a autenticação ao carregar a página
 checkAuth();
 
+// Logout
+document.getElementById('logoutButton').addEventListener('click', () => {
+  fetch('/logout', { method: 'GET' })
+    .then(() => {
+      window.location.href = '/'; // Redireciona para a página inicial
+    })
+    .catch(error => console.error('Erro ao fazer logout:', error));
+});
 
-
-
-// Carregar dados ao iniciar a página
-carregarDados();
+// Redireciona para a página restrita1
+document.getElementById('restrita1Button').addEventListener('click', () => {
+  window.location.href = '/restrita1'; // Redireciona para a página restrita1 (sem .html)
+});
 
 // Função para carregar dados existentes
 function carregarDados() {
@@ -32,10 +42,10 @@ function carregarDados() {
         .then((response) => response.json())
         .then((data) => {
             console.log("Dados recebidos:", data);
-      
-          // Ordena os dados em ordem decrescente de ID
+
+            // Ordena os dados em ordem decrescente de ID
             data.sort((a, b) => b.ID - a.ID);
-      
+
             let html = `
               <div class="table-container">
                 <table>
@@ -58,16 +68,16 @@ function carregarDados() {
             data.forEach((item) => {
                 html += `
                     <tr>
-                      <th>${item.ID}</td>
-                      <th>${item.NomePfSenaiST}</td>
-                      <th>${item.servTituloSenaiST}</td>
-                      <th>${item.procStarTec}</td>
-                      <th>${item.numeroPasta}</td>
-                      <th>${item.statusSTecSenai}</td>
-                      <th>${item.CpfPfSenaiST}</td>
-                      <th>${item.cnpjPj}</td>
-                      <th>${item.razaoPj}</td>
-                      <th>${item.testemunhaNomeSenaiST}</td>
+                      <td>${item.ID}</td>
+                      <td>${item.NomePfSenaiST}</td>
+                      <td>${item.servTituloSenaiST}</td>
+                      <td>${item.procStarTec}</td>
+                      <td>${item.numeroPasta}</td>
+                      <td>${item.statusSTecSenai}</td>
+                      <td>${item.CpfPfSenaiST}</td>
+                      <td>${item.cnpjPj}</td>
+                      <td>${item.razaoPj}</td>
+                      <td>${item.testemunhaNomeSenaiST}</td>
                     </tr>
                 `;
             });
@@ -82,7 +92,7 @@ function carregarDados() {
             document.body.style.display = 'block';
 
         })
-        .catch((error) => console.error("Error ao carregar dados:", error));
+        .catch((error) => console.error("Erro ao carregar dados:", error));
 }
 
 // Função para atualizar informações do cliente
@@ -131,10 +141,3 @@ document.getElementById("AtualizarClienteStatus").addEventListener("click", () =
 });
 
 
-/* *** EXEMPLO ****************** FUNÇÃO PARA PESQUISAR E ABRIR NOVA PÁGINA *********************
-document.querySelector("#botaoPesquisar").addEventListener("click", function () {
-    const cpf = document.querySelector("#cpfBusca").value;
-
-    window.location.href = `/STecSenai-pickCliente.html?cpf=${cpf}`;
-});
-********************************************************************************************** */

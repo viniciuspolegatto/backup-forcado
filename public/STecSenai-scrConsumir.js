@@ -1,75 +1,42 @@
 // ********************* Verificação de autenticação *****************
-document.addEventListener("DOMContentLoaded", async function () {
-    try {
-        const response = await fetch("/auth", { credentials: "include" });
-        const data = await response.json();
+// Verifica se o usuário está autenticado antes de carregar o conteúdo da página
+async function checkAuth() {
+  try {
+    const response = await fetch('/check-auth', { method: 'GET' });
+    const data = await response.json();
 
-        if (!data.authenticated) {
-            sessionStorage.removeItem("authenticatedUser"); // Remove qualquer dado de sessão
-            window.location.href = "login.html"; // Redireciona para login
-        }
-    } catch (error) {
-        console.error("Erro ao verificar autenticação:", error);
-        window.location.href = "login.html";
+    if (!data.authenticated) {
+      console.log('Usuário não autenticado, redirecionando para login');
+      window.location.href = '/login.html'; // Redireciona para a página de login
+    } else {
+      console.log('Usuário autenticado, carregando conteúdo da página home');
+      // Chama a função para carregar dados APÓS a autenticação ser confirmada
+      carregarDados(); // Carregar os dados depois que a senha for verificada
     }
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+  }
+}
+
+// Verifica a autenticação ao carregar a página
+checkAuth();
+
+// Logout
+document.getElementById('logoutButton').addEventListener('click', () => {
+  fetch('/logout', { method: 'GET' })
+    .then(() => {
+      window.location.href = '/'; // Redireciona para a página inicial
+    })
+    .catch(error => console.error('Erro ao fazer logout:', error));
 });
 
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("login-form");
-
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        try {
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include", // Garante que os cookies de sessão sejam enviados
-                body: JSON.stringify({ username, password })
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                sessionStorage.setItem("authenticatedUser", username); // Salva no navegador
-                alert("Login bem-sucedido!");
-                window.location.href = "STecSenai-gestao.html";
-            } else {
-                alert("Usuário ou senha incorretos");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
-            alert("Erro ao conectar ao servidor");
-        }
-    });
+// Redireciona para a página restrita1
+document.getElementById('restrita1Button').addEventListener('click', () => {
+  window.location.href = '/restrita1'; // Redireciona para a página restrita1 (sem .html)
 });
-
-
-document.getElementById("logout").addEventListener("click", async () => {
-    try {
-        const response = await fetch("/logout", { method: "POST", credentials: "include" });
-
-        if (response.ok) {
-            sessionStorage.removeItem("authenticatedUser"); // Remove do sessionStorage
-            document.cookie = "connect.sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.href = "index.html";
-        } else {
-            alert("Erro ao realizar logout");
-        }
-    } catch (error) {
-        console.error("Erro ao processar logout:", error);
-    }
-});
-
 // ******************************** FIM LOGIN ************************
 
 
-carregarDados(); // Carregar os dados depois que a senha for verificada
 
 // Função para carregar dados existentes
 function carregarDados() {
