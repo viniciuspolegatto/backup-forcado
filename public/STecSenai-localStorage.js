@@ -124,15 +124,15 @@ const descritivoSebraetecSenai = document.getElementById("descritivoSebraetecSen
         </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR SUBSIDIADO PELO SEBRAE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.95).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 1.0).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>VALOR PAGO PELO CLIENTE</b></td>
-           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.05).toFixed(2)}</td>
+           <td style="border: 1px solid black; padding: 8px">R$ ${(servicoSTecSenaiValor * 0.0).toFixed(2)}</td>
        </tr>
         <tr>
            <td style="border: 1px solid black; padding: 8px"><b>FORMA DE PAGAMENTO</b></td>
-           <td style="border: 1px solid black; padding: 8px">Contrato realizado em ${dataFormatadaHoje}, contemplado por 95% de subsídio conforme diretrizes da UTS</td> 
+           <td style="border: 1px solid black; padding: 8px">A negociação do atendimento ocorreu antes de Janeiro de 2025 e aguardava diretrizes da UTS sobre a política comercial do Sebrae SP para formalização em contrato.  A celebração deste ocorre em ${dataFormatadaHoje} e está contemplado por 100% de subsídio, conforme diretrizes da UTS em 17/02/2025 para contratos firmados até 28/02/2025</td> 
        </tr>
       </table>
     </div>
