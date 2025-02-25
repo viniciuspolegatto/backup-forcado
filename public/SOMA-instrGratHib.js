@@ -97,7 +97,7 @@ function exibirProdutosNaTela() {
     const selectedPublicosAlvo = getSelectedPublicosAlvo();
     
     const produtosFiltrados = produtos.filter(produto =>
-        produto.Modalidade === 'Hibrido' &&
+        produto.Modalidade === 'Híbrido' &&
         produto.Pago === 'Não' &&
         produto.Natureza === 'Instrutoria / Oficina / Curso / Palestra'
         && produto.EmpresasHabilitadas !== 'xx'
