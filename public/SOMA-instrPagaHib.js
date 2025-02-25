@@ -123,7 +123,7 @@ function exibirProdutosNaTela() {
                 <td>${produto.EmpresasHabilitadas}</td>
                 <td>${produto.Subarea}</td>
                 <td>${produto.Area}</td>
-                <td><a href="SOMA-detalhes.html?id=${produto.ID_Produto}">${produto.NomeProduto}</a></td>
+                <td><a href="SOMA-detalhesInst.html?id=${produto.ID_Produto}">${produto.NomeProduto}</a></td>
                 <td>${produto.Natureza}</td>
                 <td>${produto.Modalidade}</td>
                 <td>${produto.CargaHoraria}</td>
