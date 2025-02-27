@@ -449,7 +449,6 @@ document.getElementById('botaoGerarContrato').addEventListener('click', async fu
     - Atividade Principal: ${atividadePrincipal}
     - Endereço CNPJ: ${logradouro}
     - CEP CNPJ: ${cepCNPJ}
-    - Optante pelo MEI: ${simei}
     - Telefone CNPJ: ${telefonePj}
     - E-mail do CNPJ: ${EmailCnpjStrg}
     - Optante pelo MEI?: ${simei}
